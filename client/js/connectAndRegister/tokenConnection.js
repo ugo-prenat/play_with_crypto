@@ -1,5 +1,8 @@
-// Search auth token in localStorage
-const authToken = localStorage.getItem('authToken')
-let redirect = window.location.href
+searchAuthToken()
 
-authToken ? window.location.href = 'pages/home.html' : window.location.href = 'pages/login.html'
+async function searchAuthToken() {
+    const authToken = localStorage.getItem('authToken')
+    const isTokenValid = await searchToken(authToken)
+    
+    isTokenValid ? window.location.href = 'pages/home.html' : window.location.href = 'pages/login.html'
+}

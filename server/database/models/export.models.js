@@ -1,1 +1,5 @@
-const user = require('./users.models')
+const users = require('./users.models')
+
+module.exports = {
+    users: users
+}

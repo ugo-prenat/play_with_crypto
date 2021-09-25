@@ -5,8 +5,22 @@ const userSchema = new mongoose.Schema({
     email: String,
     password: String,
     profilImg: String,
-}, {timestamps: true})
+    wallet: {
+        balance: {
+            amount: Number,
+            currency: {
+                name: String,
+                symbol: String
+            }
+        },
+        crypto: [
+            {
+                name: String,
+                symbol: String,
+                totalBalance: Number
+            }
+        ]
+    }
+},{ timestamps: true })
 
-module.exports = {
-    user: mongoose.model('user', userSchema),
-}
+module.exports = mongoose.model('user', userSchema)

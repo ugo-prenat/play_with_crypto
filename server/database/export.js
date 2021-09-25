@@ -4,6 +4,6 @@ const models = require('./models/export.models')
 module.exports = {
     connect: connection.connect,
     models: {
-        User: models.user
+        users: models.users
     }
 }

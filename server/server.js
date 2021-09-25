@@ -17,4 +17,4 @@ const userModel = db.models.user
 
 // Routes import
 const routes = require('./routes/export.routes')
-app.use('/users', routes.user)
+app.use('/api/users/', routes.user)
