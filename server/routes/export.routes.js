@@ -1,5 +1,7 @@
-const user = require('./users.routes')
+const users = require('./users.routes')
+const prices = require('./prices.routes')
 
 module.exports = {
-    user: user
+    users,
+    prices
 }
