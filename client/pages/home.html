@@ -12,18 +12,35 @@
     <title>Home</title>
 </head>
 <body>
-    <p class="user-wallet-amount"></p>
+    <div id="root">
 
-    <div class="currencies-list">
-
+        <p class="user-wallet-amount"></p>
+        
+        <div class="currencies-list">
+            
+        </div>
     </div>
 
+
+    <!-- GENERIC SCRIPTS AND CONSTANT VAR -->
     <script src="../js/authToken.js"></script>
     <script src="../js/DatabaseFunctions/users.functions.js"></script>
-    <script src="../js/prices.js"></script>
+    <script src="../js/DatabaseFunctions/prices.functions.js"></script>
 
+    <!-- REACT -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 
-    <script src="../js/userData.js"></script>
-    <script src="../js/home/currenciesList.js"></script>
+    <!-- REACT COMPONENTS -->
+    <script src="../js/components/header.jsx" type="text/babel"></script>
+    <script src="../js/components/currencyCard.jsx" type="text/babel"></script>
+    <script src="../js/components/currenciesList.jsx" type="text/babel"></script>
+
+    <!-- REACT VIEWS -->
+    <script src="../js/views/home.jsx" type="text/babel"></script>
+    
+    <!--  -->
+    
 </body>
 </html>
