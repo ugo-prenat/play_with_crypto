@@ -1,0 +1,1 @@
+const USER_ID = localStorage.getItem('authToken')

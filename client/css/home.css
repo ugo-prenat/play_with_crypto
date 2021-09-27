@@ -1,0 +1,7 @@
+.currencies-list .currency {
+    margin: 20px 0;
+    opacity: .5;
+}
+.buy-btn, .sell-btn {
+    cursor: pointer;
+}

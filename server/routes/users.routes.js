@@ -1,5 +1,5 @@
 const express = require('express')
-const db = require('../database/export')
+const db = require('../database/export.database')
 const router = express.Router()
 
 const models = db.models
@@ -36,6 +36,9 @@ router.post('/searchToken', (req, res) => {
     .then(() => res.send({ response: true }))
     .catch(() => res.send({ response: false }))
 })
-
+router.post('/getById', (req, res) => {
+    const userId = req.body
+    Users.findById(userId).then(user => res.send(user))
+})
 
 module.exports = router

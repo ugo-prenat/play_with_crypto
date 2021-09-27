@@ -7,3 +7,12 @@ async function searchToken(token) {
 
     return toReturn
 }
+async function getUserById(userId) {
+    let toReturn
+
+    await fetch('/api/users/getById', { method: 'POST', body: userId })
+    .then(response => response.json())
+    .then(result => toReturn = result)
+
+    return toReturn
+}

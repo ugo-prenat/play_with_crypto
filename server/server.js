@@ -11,7 +11,7 @@ app.use(express.text())
 app.use(express.static('client'))
 
 // DB connection
-const db = require('./database/export')
+const db = require('./database/export.database')
 db.connect
 
 // Routes import
