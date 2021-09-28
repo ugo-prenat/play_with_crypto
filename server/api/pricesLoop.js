@@ -1,14 +1,8 @@
 const rp = require('request-promise')
 const Prices = require('../database/export.database').models.prices
+const cryptoList = require('./currencies.data')
 
 API_PATH = 'https://api.coinbase.com/v2/prices'
-
-const cryptoList = [
-    'BTC',  'ETH', 'ADA',
-    'USDT', 'SOL', 'DOT',
-    'DOGE', 'UNI', 'LINK',
-    'LTC',  'BAT', 'GRT'
-]
 
 const currencyList = [
     { name: 'EUR', symbol: '€' },
@@ -20,7 +14,7 @@ async function pricesLoop() {
 
     setInterval(() => {
         getPrices().then(prices => storePricesToDB(prices))
-    }, 15000)
+    }, 10000)
 }
 
 async function getPrices() {
@@ -29,10 +23,16 @@ async function getPrices() {
 
     for (let i = 0; i < cryptoList.length; i++) {
         const crypto = cryptoList[i];
-        url = `${API_PATH}/${crypto}-${currency.name}/spot`
+        url = `${API_PATH}/${crypto.base}-${currency.name}/spot`
 
         await rp({ url, json: true })
-        .then(result => output.push(result.data))
+        .then(async result => {
+            currencyObj = result.data
+            currencyObj.currency == 'EUR' ? currencyObj.symbol = '€' : '$'
+            currencyObj.name = crypto.name
+            currencyObj.icon = crypto.icon
+            output.push(currencyObj)
+        })
         .catch(err => console.log(err))
     }
     return output

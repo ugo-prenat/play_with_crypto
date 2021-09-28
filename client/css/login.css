@@ -1,0 +1,10 @@
+body {
+    height: 100vh;
+    overflow: hidden;
+}
+.st0{fill-rule:evenodd;clip-rule:evenodd;fill:#F0F3F8;}
+.st1{filter:url(#Adobe_OpacityMaskFilter);}
+.st2{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+.st3{mask:url(#prefix__background-b_1_);fill:none;}
+.st4{filter:url(#Adobe_OpacityMaskFilter_1_);}
+.st5{mask:url(#prefix__background-d_1_);fill-rule:evenodd;clip-rule:evenodd;fill: var(--main-color);}

@@ -22,7 +22,7 @@ class Header extends React.Component {
         return (
             <header>
                 <div className="user-wallet">
-                    <p>Total amount : { this.state.walletBalance } { this.state.currencySymbol }</p>
+                    <p>Wallet amount : { this.state.walletBalance } { this.state.currencySymbol }</p>
                 </div>
             </header>
         )

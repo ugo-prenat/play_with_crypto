@@ -1,7 +1,36 @@
-.currencies-list .currency {
+.currency {
+    width: 35%;
+    background-color: var(--light-bg-color);
+    padding: 10px 25px;
+    border-radius: 7px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, .2);
     margin: 20px 0;
+}
+.currency .currency-data {
+    display: flex;
+    justify-content: space-between;
+}
+.currency .currency-data img {
+    height: 50%;
+}
+.currency .currency-data-left-part {
+    display: flex;
+    align-items: center;
+}
+.currency .currency-name {
+    margin-left: 10%;
+    line-height: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.currency .currency-name .name {
+    font-weight: 500;
+}
+.currency .currency-name .base {
+    font-size: 13px;
     opacity: .5;
 }
-.buy-btn, .sell-btn {
-    cursor: pointer;
+.currency .currency-price {
+    display: flex;
+    align-items: center;
 }

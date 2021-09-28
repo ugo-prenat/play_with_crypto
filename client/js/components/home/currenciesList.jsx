@@ -5,14 +5,13 @@ class CurrencyList extends React.Component {
             currenciesList: []
         }
     }
-    
-    componentDidMount() {
+
+    UNSAFE_componentWillMount() {
         getPrices().then(prices => this.setState({ currenciesList: prices }))
 
         setInterval(() => {
             getPrices().then(prices => {
                 this.setState({ currenciesList: prices })
-                console.log('Prices updated')
         })
         }, 10000)
     }
@@ -20,11 +19,9 @@ class CurrencyList extends React.Component {
     render() {
         return (
             <div className="currencies-list">
-                {this.state.currenciesList.length > 0 ? 
-                    this.state.currenciesList.map(currency => {
-                        <CurrencyCard data = {currency} />
-                    })
-                : ''}
+                {this.state.currenciesList.map(currency => {
+                    return <CurrencyCard currency={currency} key={currency.base} />
+                })}
             </div>
         )
     }
