@@ -1,0 +1,117 @@
+:root {
+  --horiz-margin: 3vh;
+  --vert-margin: 2%;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: 'poppins', sans-serif;
+  background-color: var(--bg-color);
+  color: white;
+  height: 100vh;
+}
+a {
+  color: var(--main-color);
+}
+.App {
+  display: flex;
+}
+.menu-container {
+  background-color: var(--light-bg-color);
+  height: 100vh;
+  width: 20%;
+}
+.menu-container .logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10vh;
+  margin-bottom: 10vh;
+}
+.menu-container .logo-container .logo {
+  fill: var(--main-color);
+  width: 40px;
+  height: 40px;
+  margin-right: 5%;
+}
+
+.menu-container .logo-container h1 {
+  font-size: 17px;
+}
+.menu-container .links-container {
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+}
+.menu-container .links-container a {
+  display: flex;
+  align-items: center;
+  color: white;
+  text-decoration: none;
+  padding: 1vh 0;
+  padding-left: 5%;
+  transition: background-color .2s;
+}
+.menu-container .links-container a.active::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 120%;
+  background-color: var(--main-color);
+  position: relative;
+  left: -5%;
+  border-radius: 0 5px 5px 0;
+}
+.menu-container .links-container a:hover {
+  background-color: rgba(100, 100, 100, .1);
+}
+
+.menu-container .bottom-menu-container {
+  height: 10vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 15%;
+}
+.menu-container .bottom-menu-container a {
+  color: white;
+  text-decoration: none;
+  opacity: .3;
+  font-size: 14px;
+  font-weight: 300;
+  margin-bottom: 10px;
+}
+
+.header-and-main-component-container {
+  width: 76%;
+  margin: var(--horiz-margin) var(--vert-margin)
+}
+
+.header-container {
+  height: 4vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+}
+.header-container .profile-img-container {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-left: 2%;
+}
+.header-container .profile-img-container img {
+  width: 100%;
+  height: 100%;
+}
+
+.main-component-container {
+  background-color: var(--light-bg-color);
+  height: 81vh;
+  margin-top: var(--horiz-margin);
+  border-radius: 7px;
+  padding: var(--vert-margin) var(--horiz-margin);
+}

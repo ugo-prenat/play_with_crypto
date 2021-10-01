@@ -6,7 +6,7 @@ function Profile() {
 
     return (
         <div>
-            <p>Salut {name}, voici ton profil</p>
+            <p>Profil de {name}</p>
         </div>
     )
 }
