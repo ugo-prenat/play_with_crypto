@@ -1,21 +1,17 @@
 {
-  "name": "crypto_trading_game",
+  "name": "test-react-app",
   "version": "1.0.0",
   "description": "",
-  "main": "server/server.js",
+  "main": "server.js",
   "scripts": {
-    "start": "nodemon server/server.js"
+    "start": "nodemon server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^5.0.1",
-    "coinbase": "^2.0.8",
-    "cryptocurrency-icons": "^0.18.0",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "fs": "0.0.1-security",
-    "mongoose": "^6.0.7",
+    "mongoose": "^6.0.8",
     "nodemon": "^2.0.13",
     "request": "^2.88.2",
     "request-promise": "^4.2.6"
