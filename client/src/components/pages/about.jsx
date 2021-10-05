@@ -1,6 +1,6 @@
 function About() {
     return (
-        <div>
+        <div className="component">
             <p>About page</p>
         </div>
     )

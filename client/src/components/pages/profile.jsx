@@ -5,7 +5,7 @@ function Profile() {
     const { name } = useParams()
 
     return (
-        <div>
+        <div className="component">
             <p>Profil de {name}</p>
         </div>
     )

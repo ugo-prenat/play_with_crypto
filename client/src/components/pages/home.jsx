@@ -1,9 +1,11 @@
 import React from 'react';
 import { withRouter } from "react-router"
+import { Link } from "react-router-dom"
 
-function Home() {
+function Home(props) {
     return (
-        <div>
+        <div className="component">
+            <Link to='/about'>about</Link>
             <p>Home page</p>
         </div>
     )

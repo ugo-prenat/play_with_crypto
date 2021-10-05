@@ -1,6 +1,6 @@
 function Settings() {
     return (
-        <div>
+        <div className="component">
             <p>Settings page</p>
         </div>
     )
