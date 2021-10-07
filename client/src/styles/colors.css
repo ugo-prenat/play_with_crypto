@@ -3,6 +3,7 @@
     --main-color-low-opacity: rgba(251, 174, 60, .4);
     --bg-color: rgb(27, 27, 27);
     --light-bg-color: rgb(35, 35, 35);
+    --light-white: rgb(209, 209, 209);
     --error-color: red;
     --success-color: green;
 }
