@@ -1,5 +1,5 @@
 const rp = require('request-promise')
-const Prices = require('../database/export.database').models.prices
+const Crypto = require('../database/export.database').models.crypto
 const cryptoList = require('./currencies.data')
 
 API_PATH = 'https://api.coinbase.com/v2/prices'
@@ -39,7 +39,7 @@ async function getPrices() {
 }
 
 async function storePricesToDB(newPrices) {
-    Prices.findById('6151823848fe492bdae20310')
+    Crypto.findById('6151823848fe492bdae20310')
     .then(pricesModel => {
         pricesModel.prices = newPrices
         pricesModel.save()

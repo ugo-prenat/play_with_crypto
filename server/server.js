@@ -17,7 +17,7 @@ db.connect
 // Routes import
 const routes = require('./routes/export.routes')
 app.use('/api/users/', routes.users)
-app.use('/api/crypto/', routes.prices)
+app.use('/api/crypto/', routes.crypto)
 
 // API import
 const api = require('./api/export.api')

@@ -1,0 +1,10 @@
+.main-component-container {
+    width: 100%;
+    height: 93vh;
+}
+.main-component-container .component {
+    width: 96%;
+    height: 95%;
+    height: -webkit-fill-available;
+    padding: 2%;
+}

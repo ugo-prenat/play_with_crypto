@@ -40,5 +40,8 @@ router.post('/getById', (req, res) => {
     const userId = req.body
     Users.findById(userId).then(user => res.send(user))
 })
+router.get(['/', '/:username'], (req, res) => {
+    res.send({username: req.params.username})
+})
 
 module.exports = router

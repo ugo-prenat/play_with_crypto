@@ -4,19 +4,22 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 import './styles/colors.css';
 import './styles/fonts.css';
 import './styles/app.css';
+import './styles/header.css';
+import './styles/menu.css';
+import './styles/mainComponent.css';
 
-import Menu from './components/menu'
-import Header from './components/header'
+import Menu from './components/Menu'
+import Header from './components/Header'
 
-import Home from './components/pages/home'
-import About from './components/pages/about'
-import Settings from './components/pages/settings'
-import PageNotFound from './components/pages/404'
-import Profile from './components/pages/profile'
-import Login from './components/pages/login'
-import IssueReport from './components/pages/issueReport'
-import NeedFunds from './components/pages/needFunds'
-import WallOfFame from './components/pages/wallOfFame'
+import Home from './components/pages/Home'
+import About from './components/pages/About'
+import Settings from './components/pages/Settings'
+import PageNotFound from './components/pages/PageNotFound'
+import Profile from './components/pages/Profile'
+import Login from './components/pages/Login'
+import IssueReport from './components/pages/IssueReport'
+import NeedFunds from './components/pages/NeedFunds'
+import WallOfFame from './components/pages/WallOfFame'
 
 import ProtectedRoute from './protectedRoute';
 

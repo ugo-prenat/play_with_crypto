@@ -1,14 +1,14 @@
 import React from 'react';
-import { withRouter } from "react-router"
-import { Link } from "react-router-dom"
+import CryptoList from '../homePage/CryptoList'
 
-function Home(props) {
+function Home() {
     return (
         <div className="component">
-            <Link to='/about'>about</Link>
-            <p>Home page</p>
+            <div className="crypto-list">
+                <CryptoList />
+            </div>
         </div>
     )
 }
 
-export default withRouter(Home)
+export default Home

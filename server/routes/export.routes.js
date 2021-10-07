@@ -1,7 +1,7 @@
 const users = require('./users.routes')
-const prices = require('./prices.routes')
+const crypto = require('./crypto.routes')
 
 module.exports = {
     users,
-    prices
+    crypto
 }
