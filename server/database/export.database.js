@@ -5,6 +5,7 @@ module.exports = {
     connect: connection.connect,
     models: {
         users: models.users,
-        crypto: models.crypto
+        crypto: models.crypto,
+        logs: models.logs,
     }
 }

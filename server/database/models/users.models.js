@@ -1,23 +1,31 @@
 const mongoose = require('mongoose')
 
 const userModel = new mongoose.Schema({
+    id: Number,
     username: String,
     email: String,
     password: String,
     profilImg: String,
     wallet: {
-        balance: {
-            amount: Number,
-            currency: {
-                name: String,
-                symbol: String
-            }
+        amount: Number,
+        currency: {
+            name: String,
+            symbol: String
         },
-        crypto: [
+        cryptoList: [
             {
                 name: String,
                 symbol: String,
-                totalBalance: Number
+                icon: String,
+                totalAmount: Number
+            }
+        ],
+        activity: [
+            {
+                date: Date,
+                type: String, // Deposit or withdraw
+                cryptoAmount: Number,
+                cryptoBase: String
             }
         ]
     }

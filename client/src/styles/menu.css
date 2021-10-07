@@ -22,7 +22,7 @@
     font-size: 17px;
 }
 .menu-container .links-container {
-    height: 65vh;
+    height: 60vh;
     display: flex;
     flex-direction: column;
 }
@@ -64,7 +64,7 @@
     background-color: rgba(100, 100, 100, .1);
 }
 .menu-container .bottom-menu-container {
-    height: 10vh;
+    height: 15vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
