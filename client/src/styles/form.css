@@ -65,6 +65,7 @@ form .error-input-group .input-label {
     display: flex;
     align-items: center;
     height: 100%;
+    width: 23px;
     right: 2px;
     top: 0;
     padding: 0 3%;
@@ -79,6 +80,7 @@ form .show-password-container .password-eye {
     display: none;
 }
 form .input-submit {
+    font-family: 'poppins', sans-serif;
     border: none;
     outline: none;
     background-color: var(--main-color);
