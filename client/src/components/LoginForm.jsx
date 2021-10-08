@@ -12,59 +12,36 @@ export default function RegisterForm() {
     let history = useHistory()
 
     const onSubmit = async data => {
-        const user = {
-            username: data.username.toLowerCase(),
+        const userLogs = {
             mail: data.mail.toLowerCase(),
             password: data.password
         }
 
-        await fetch('/api/users/create', { method: 'POST', body: JSON.stringify(user) })
+        await fetch('/api/users/connection', { method: 'POST', body: JSON.stringify(userLogs) })
         .then(response=> response.json())
         .then(result => {
-            if (result.usernameError) {
-                setError('username', {
-                    type: 'manual',
-                    message: result.usernameError
-                })
-            } else if (result.mailError) {
+            if (result.mailError) {
                 setError('mail', {
                     type: 'manual',
                     message: result.mailError
                 })
+            } else if (result.passwordError) {
+                setError('password', {
+                    type: 'manual',
+                    message: result.passwordError
+                })
             } else {
                 setShowSuccesMsg(true)
-                localStorage.setItem('token', result.userId)
                 history.push('/')
             }
         })
     }
 
-
     return (
         <div className="form-container">
             <form className="register-form" onSubmit={handleSubmit(onSubmit)}>
-                <p className="form-title">Inscription</p>
+                <p className="form-title">Connexion</p>
     
-                <div style={errors.username && {borderColor: 'var(--error-color)'}} className="input-group username-input-group active-input-group" group="username">
-                    <label style={errors.username && {color: 'var(--error-color)'}} htmlFor="username" className="input-label">Nom d'utilisateur</label>
-                    <input {...register('username',
-                        {
-                            required: 'Nom d\'utilisateur obligatoire',
-                            minLength: { value: 3, message: 'Nom d\'utilisateur trop court' },
-                            maxLength: { value: 15, message: 'Nom d\'utilisateur trop long' }
-                        })}
-                        type="text"
-                        name="username"
-                        className="input-field"
-                    />
-                </div>
-                    {errors.username &&
-                        <div className="error-msg-container">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 286.1 286.1"><path d="M143 0C64 0 0 64 0 143c0 79 64 143 143 143 79 0 143-64 143-143C286.1 64 222 0 143 0zM143 259.2c-64.2 0-116.2-52-116.2-116.2S78.8 26.8 143 26.8s116.2 52 116.2 116.2S207.2 259.2 143 259.2zM143 62.7c-10.2 0-18 5.3-18 14v79.2c0 8.6 7.8 14 18 14 10 0 18-5.6 18-14V76.7C161 68.3 153 62.7 143 62.7zM143 187.7c-9.8 0-17.9 8-17.9 17.9 0 9.8 8 17.8 17.9 17.8s17.8-8 17.8-17.8C160.9 195.7 152.9 187.7 143 187.7z"/></svg>
-                            <p className="error-msg">{errors.username && errors.username.message}</p>
-                        </div>
-                    }
-
                 <div style={errors.mail && {borderColor: 'var(--error-color)'}} className="input-group mail-input-group" group="mail">
                     <label style={errors.mail && {color: 'var(--error-color)'}} htmlFor="mail" className="input-label">Mail</label>
                     <input
@@ -91,7 +68,6 @@ export default function RegisterForm() {
                         {...register('password',
                         {
                             required: 'Mot de passe obligatoire',
-                            pattern: { value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/, message: 'Minimum 8 caractères, une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial' },
                         })}
                         type={showPassword ? "text" : "password"}
                         name="password"
@@ -114,16 +90,16 @@ export default function RegisterForm() {
                 </div>
                 {errors.password &&
                     <div className="error-msg-container password-error-msg-container">
-                        <svg style={{width: '12%'}} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 286.1 286.1"><path d="M143 0C64 0 0 64 0 143c0 79 64 143 143 143 79 0 143-64 143-143C286.1 64 222 0 143 0zM143 259.2c-64.2 0-116.2-52-116.2-116.2S78.8 26.8 143 26.8s116.2 52 116.2 116.2S207.2 259.2 143 259.2zM143 62.7c-10.2 0-18 5.3-18 14v79.2c0 8.6 7.8 14 18 14 10 0 18-5.6 18-14V76.7C161 68.3 153 62.7 143 62.7zM143 187.7c-9.8 0-17.9 8-17.9 17.9 0 9.8 8 17.8 17.9 17.8s17.8-8 17.8-17.8C160.9 195.7 152.9 187.7 143 187.7z"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 286.1 286.1"><path d="M143 0C64 0 0 64 0 143c0 79 64 143 143 143 79 0 143-64 143-143C286.1 64 222 0 143 0zM143 259.2c-64.2 0-116.2-52-116.2-116.2S78.8 26.8 143 26.8s116.2 52 116.2 116.2S207.2 259.2 143 259.2zM143 62.7c-10.2 0-18 5.3-18 14v79.2c0 8.6 7.8 14 18 14 10 0 18-5.6 18-14V76.7C161 68.3 153 62.7 143 62.7zM143 187.7c-9.8 0-17.9 8-17.9 17.9 0 9.8 8 17.8 17.9 17.8s17.8-8 17.8-17.8C160.9 195.7 152.9 187.7 143 187.7z"/></svg>
                         <p className="error-msg">{errors.password && errors.password.message}</p>
                     </div>
                 }
 
-                <button className="input-submit" disabled={isSubmitting}>Inscription</button>
+                <button className="input-submit" disabled={isSubmitting}>Connexion</button>
 
                 {showSuccesMsg && 
                     <div className="success-msg-container">
-                        <p className="success-msg">Inscription réussie !</p>
+                        <p className="success-msg">Connexion réussie !</p>
                     </div>
                 }
 

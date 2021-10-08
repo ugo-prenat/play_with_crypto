@@ -98,12 +98,14 @@ form .form-links-container p {
 form .form-links-container a {
     color: var(--main-color);
 }
+form .password-error-msg-container svg {
+    align-self: normal;
+    margin-top: 1%;
+}
 /* MESSAGES */
  form .error-msg-container {
-    position: absolute;
-    top: calc(100% + 2px);
-    left: 0;
-    display: none;
+    margin-top: -6%;
+    display: flex;
     align-items: center;
     font-size: 13px;
 }

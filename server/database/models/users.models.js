@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const userModel = new mongoose.Schema({
     id: Number,
     username: String,
-    email: String,
+    mail: String,
     password: String,
     profilImg: String,
     wallet: {

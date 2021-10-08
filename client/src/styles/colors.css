@@ -4,6 +4,6 @@
     --bg-color: rgb(27, 27, 27);
     --light-bg-color: rgb(35, 35, 35);
     --light-white: rgb(209, 209, 209);
-    --error-color: red;
+    --error-color: rgb(255, 85, 78);
     --success-color: green;
 }
