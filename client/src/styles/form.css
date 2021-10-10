@@ -1,8 +1,11 @@
 .form-container {
     width: 300px;
+    height: fit-content;
     display: flex;
+    flex-direction: column;
     padding: 50px;
     border-radius: 7px;
+    background-color: var(--light-bg-color);
 }
 form {
     display: flex;
@@ -133,4 +136,15 @@ form .success-msg {
     margin: 0;
     font-size: 14px;
     font-weight: 500;
+}
+.form-bottom-link {
+    font-size: 13px;
+    display: inline-flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+.form-bottom-link a {
+    cursor: pointer;
+    text-decoration: underline;
+    margin-left: 5px;
 }

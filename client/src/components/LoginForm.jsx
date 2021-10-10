@@ -38,7 +38,6 @@ export default function RegisterForm() {
     }
 
     return (
-        <div className="form-container">
             <form className="register-form" onSubmit={handleSubmit(onSubmit)}>
                 <p className="form-title">Connexion</p>
     
@@ -104,6 +103,5 @@ export default function RegisterForm() {
                 }
 
             </form>
-        </div>
     )
 }

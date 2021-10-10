@@ -16,6 +16,10 @@ function Menu(props) {
               <svg viewBox="0 0 24 24" fill='none'><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M6.75024 19.2502H17.2502C18.3548 19.2502 19.2502 18.3548 19.2502 17.2502V9.75025L12.0002 4.75024L4.75024 9.75025V17.2502C4.75024 18.3548 5.64568 19.2502 6.75024 19.2502Z"></path><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9.74963 15.7493C9.74963 14.6447 10.6451 13.7493 11.7496 13.7493H12.2496C13.3542 13.7493 14.2496 14.6447 14.2496 15.7493V19.2493H9.74963V15.7493Z"></path></svg>
               Accueil
             </Link>
+            <Link to='/activity' className={props.location.pathname === '/activity' ? 'active' : ''} >
+              <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><circle cx="15" cy="9" r="1" fill="currentColor"></circle><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 4.75H19.25V12L12.5535 18.6708C11.7544 19.4668 10.4556 19.445 9.68369 18.6226L5.28993 13.941C4.54041 13.1424 4.57265 11.8895 5.36226 11.1305L12 4.75Z"></path></svg>
+              Activité
+            </Link>
             <Link to='/wall-of-fame' className={props.location.pathname === '/wall-of-fame' ? 'active' : ''} >
               <svg fill="none" viewBox="0 0 24 24"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M14.25 8.75L18.25 4.75H5.75L9.75 8.75"></path><circle cx="12" cy="14" r="5.25" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5"></circle></svg>
               Wall of fame

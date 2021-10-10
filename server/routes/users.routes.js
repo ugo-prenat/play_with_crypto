@@ -1,6 +1,7 @@
 const express = require('express')
 const db = require('../database/export.database')
 const router = express.Router()
+const bcrypt = require('bcrypt')
 
 const Users = db.models.users
 const Logs = db.models.logs
@@ -22,8 +23,8 @@ router.post('/connection', async (req, res) => {
     else res.send({ isLogCorrect: true })
 
 })
-router.get('/:id', (req,res) => {
-    Users.find({ id: req.params.id })
+router.get('/:username', (req,res) => {
+    Users.find({ username: req.params.username })
     .then(user => {
         const toReturn = {
             id: user[0].id,
