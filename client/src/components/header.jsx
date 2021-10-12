@@ -16,16 +16,16 @@ function Header() {
     }, []) */
   })
 
-    return (
-        <div className="header">
-            <div className="profile-img-container">
-              <Link to={`/profile/${profil.id}`}>
-                <img src={profil.icon} alt="profile-img" />
-              </Link>
-            </div>
-            <p>Portefeuille : {profil.walletAmount}€</p>
-        </div>
-    )
+  return (
+    <div className="header">
+      <div className="profile-img-container">
+        <Link to={`/profile/${profil.id}`}>
+          <img src={profil.icon} alt="profile-img" />
+        </Link>
+      </div>
+      <p>Portefeuille : {profil.walletAmount}€</p>
+    </div>
+  )
 }
 
 export default withRouter(Header)

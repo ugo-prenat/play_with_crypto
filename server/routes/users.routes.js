@@ -46,7 +46,37 @@ router.get('/:id/wallet', (req, res) => {
     // res.send({msg: 'Wallet of ' + req.params.id})
     res.send([])
 })
+router.post('/buy', async (req, res) => {
+    const posted = JSON.parse(req.body)
+    const data = {
+        currencyAmount: posted.currencyAmount,
+        cryptoAmount: posted.cryptoAmount,
+        cryptoName: posted.cryptoName
+    }
 
+    if (await isCryptoAlreadyInWallet()) {
+        console.log('Create new entry in wallet');
+    } else {
+        createNewCryptoInWallet()
+    }
+
+    console.log(data);
+
+    updateActivity()
+})
+
+async function updateActivity() {
+
+}
+async function isCryptoAlreadyInWallet() {
+
+}
+async function createNewCryptoInWallet() {
+
+}
+async function updateActivity() {
+
+}
 async function isUsernameAlreadyTaken(newUsername) {
     const logList = await Logs.find()
     let foundMatch = false

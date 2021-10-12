@@ -17,7 +17,8 @@ const userModel = new mongoose.Schema({
                 name: String,
                 symbol: String,
                 icon: String,
-                totalAmount: Number
+                cryptoAmount: Number,
+                currencyAmount: Number
             }
         ],
         activity: [

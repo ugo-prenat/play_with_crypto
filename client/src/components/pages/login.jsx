@@ -1,5 +1,5 @@
-import RegisterForm from "../RegisterForm"
-import LoginForm from "../LoginForm"
+import RegisterForm from "../loginPage/RegisterForm"
+import LoginForm from "../loginPage/LoginForm"
 
 import '../../styles/form.css'
 import '../../styles/login.css'

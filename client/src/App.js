@@ -21,6 +21,7 @@ import Login from './components/pages/Login'
 import IssueReport from './components/pages/IssueReport'
 import NeedFunds from './components/pages/NeedFunds'
 import WallOfFame from './components/pages/WallOfFame'
+import Wallet from './components/pages/Wallet'
 
 import ProtectedRoute from './protectedRoute';
 
@@ -45,6 +46,7 @@ function App() {
               <Route path='/login' exact component={Login} />
               <ProtectedRoute path='/' component={Home} isAuth={isAuth} exact />
               <ProtectedRoute path='/about' component={About} isAuth={isAuth} exact />
+              <ProtectedRoute path='/wallet' component={Wallet} isAuth={isAuth} exact />
               <ProtectedRoute path='/issue' component={IssueReport} isAuth={isAuth} exact />
               <ProtectedRoute path='/settings' component={Settings} isAuth={isAuth} exact />
               <ProtectedRoute path='/activity' component={Activity} isAuth={isAuth} exact />

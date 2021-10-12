@@ -3,7 +3,7 @@ import React from 'react';
 import '../../styles/home.css'
 
 import CryptoList from '../homePage/CryptoList'
-import UserCrypto from '../homePage/UserCrypto'
+import BuyAndSellForm from '../homePage/BuyAndSellForm'
 
 function Home() {
     return (
@@ -12,7 +12,7 @@ function Home() {
                 <CryptoList />
             </div>
             <div className="user-crypto">
-                <UserCrypto />
+                <BuyAndSellForm />
             </div>
         </div>
     )
