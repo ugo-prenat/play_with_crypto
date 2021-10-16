@@ -100,7 +100,7 @@ form .form-links-container p {
     font-size: 13px;
     text-align: center;
 }
-form .form-links-container a {
+form .form-links-container span {
     color: var(--main-color);
 }
 form .password-error-msg-container svg {
@@ -143,8 +143,9 @@ form .success-msg {
     justify-content: center;
     margin-top: 10px;
 }
-.form-bottom-link a {
+.form-bottom-link span {
     cursor: pointer;
     text-decoration: underline;
     margin-left: 5px;
+    color: var(--main-color);
 }

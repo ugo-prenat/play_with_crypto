@@ -4,9 +4,9 @@ async function setBuyData() {
     await fetch('/api/users/buy', {
         method: 'POST',
         body: JSON.stringify({
-            cryptoName: 'Bitcoin',
-            cryptoAmount: 5,
-            currencyAmount: 1000,
+            cryptoName: 'Ethereum',
+            cryptoAmount: 30,
+            currencyAmount: 1300,
             userId: 1
         })
     })
@@ -17,13 +17,16 @@ async function setSellData() {
         method: 'POST',
         body: JSON.stringify({
             from: {
-                cryptoName: 'Bitcoin',
-                cryptoAmount: 30,
-                currencyAmount: 1000,
+                type: 'currency', // crypto or currency
+                name: 'euro',
+                cryptoAmount: 10,
+                currencyAmount: 10,
             },
             to: {
-                cryptoName: 'Ethereum',
-                cryptoAmount: 1,
+                type: 'crypto', // crypto or currency
+                name: 'Bitcoin',
+                cryptoAmount: 10,
+                currencyAmount: 10
             },
             userId: 1
         })
@@ -31,10 +34,13 @@ async function setSellData() {
     .then(res => res.json())
     .then(result => {
         if (result.error) console.log(result.error)
+        else console.log(result.success);
     })
 }
 
 export default function BuyAndSellForm() {
+    const x = false
+    if (x === true) setBuyData()
 
     useEffect(() => {
         setSellData()

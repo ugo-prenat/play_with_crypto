@@ -6,31 +6,27 @@ const Users = db.models.users
 
 router.post('/buy', async (req, res) => {
     // Get request data
-    const posted = JSON.parse(req.body)
-    const data = {
-        currencyAmount: posted.currencyAmount,
-        cryptoAmount: posted.cryptoAmount,
-        cryptoName: posted.cryptoName.toLowerCase(),
-        userId: posted.userId
-    }
+    const reqData = JSON.parse(req.body)
+    reqData.cryptoName = reqData.cryptoName.toLowerCase()
+
     // Get user's wallet
-    const user = await Users.find({ id: data.userId }).then(users => { return users[0]})
-    let userWallet = user.wallet.cryptoList
+    const user = await Users.find({ id: reqData.userId }).then(users => { return users[0]})
+    let userWallet = user.wallet
 
     // If crypto already exists in the wallet, update his amount
-    if (await isCryptoAlreadyInWallet(userWallet, data.cryptoName)) {
-        const newWallet = updateUserWallet(userWallet, data)
+    if (await isCryptoAlreadyInWallet(userWallet, reqData.cryptoName)) {
+        const newWallet = updateUserWallet(userWallet, reqData)
         userWallet = newWallet
     }
     // If crypto doesn't exist in the wallet, create it
     else {
-        const newCrypto = getNewCrypto(data)
+        const newCrypto = getNewCrypto(reqData)
         userWallet.push(newCrypto)
     }
 
     updateUserActivity()
 
-    await user.save().then(() => console.log('done'))
+    await user.save()
 })
 
 function isCryptoAlreadyInWallet(userWallet, cryptoName) {
@@ -80,7 +76,7 @@ function getCryptoFromName(cryptoName) {
     }
 }
 async function updateUserActivity() {
-    console.log('Activity updated');
+    
 }
 
 module.exports = router

@@ -13,8 +13,8 @@ function Login() {
             <div className="form-container">
                 {showForm === 'login' ? <LoginForm /> : <RegisterForm />}
                 {showForm === 'login' ?
-                    <p className="form-bottom-link">Pas de compte ?<a onClick={() => setShowForm('register')}>S'inscire</a></p>:
-                    <p className="form-bottom-link">Déjà inscrit ?<a onClick={() => setShowForm('login')}>Se connecter</a></p>    
+                    <p className="form-bottom-link">Pas de compte ?<span onClick={() => setShowForm('register')}>S'inscire</span></p>:
+                    <p className="form-bottom-link">Déjà inscrit ?<span onClick={() => setShowForm('login')}>Se connecter</span></p>    
                 }
             </div>
         </div>

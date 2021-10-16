@@ -13,13 +13,13 @@ export default function RegisterForm() {
 
     const onSubmit = async data => {
         const user = {
-            username: data.username.toLowerCase(),
-            mail: data.mail.toLowerCase(),
+            username: data.username,
+            mail: data.mail,
             password: data.password
         }
 
         await fetch('/api/users/create', { method: 'POST', body: JSON.stringify(user) })
-        .then(response=> response.json())
+        .then(response => response.json())
         .then(result => {
             if (result.usernameError) {
                 setError('username', {
