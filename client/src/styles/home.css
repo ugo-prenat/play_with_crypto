@@ -1,9 +1,9 @@
 /* Hide scrollbar for Chrome, Safari and Opera */
-.crypto-list::-webkit-scrollbar, .user-crypto::-webkit-scrollbar {
+.crypto-list::-webkit-scrollbar {
     display: none;
 }
 /* Hide scrollbar for IE, Edge and Firefox */
-.crypto-list, .user-crypto {
+.crypto-list {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
 }
@@ -11,7 +11,7 @@
 .crypto-list {
     margin-right: 3%;
 }
-.crypto-list, .user-crypto {
+.crypto-list, .buy-and-sell-form-container {
     width: 45%;
     height: 100%;
     display: flex;
@@ -53,3 +53,4 @@
     opacity: .3;
     margin-top: 40vh;
 }
+

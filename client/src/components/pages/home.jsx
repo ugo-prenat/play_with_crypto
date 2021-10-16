@@ -11,7 +11,7 @@ function Home() {
             <div className="crypto-list">
                 <CryptoList />
             </div>
-            <div className="user-crypto">
+            <div className="buy-and-sell-form-container">
                 <BuyAndSellForm />
             </div>
         </div>

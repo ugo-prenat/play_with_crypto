@@ -26,17 +26,9 @@ router.post('/connection', async (req, res) => {
     else res.send({ isLogCorrect: true })
 
 })
-router.get('/:username', (req,res) => {
-    Users.find({ username: req.params.username })
-    .then(user => {
-        const toReturn = {
-            id: user[0].id,
-            walletAmount: user[0].wallet.amount,
-            currency: user[0].wallet.currency.symbol,
-            icon: user[0].profilImg
-        }
-        res.send(toReturn)
-    })
+router.get('/:id', (req,res) => {
+    Users.find({ id: req.params.id })
+    .then(user => res.send(user[0]))
 })
 router.get('/:id/crypto', (req,res) => {
     res.send({msg: 'Crypto of ' + req.params.id})

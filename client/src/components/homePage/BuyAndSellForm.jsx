@@ -41,21 +41,21 @@ async function setSellData() {
 export default function BuyAndSellForm() {
     const x = false
     if (x === true) setBuyData()
+    else if (x === 'truc') setSellData()
 
     useEffect(() => {
-        setSellData()
     }, [])
 
     return (
         <div>
             <form className="buy-and-sell-form">
-                <div className="input-group">
-                    <input type="text" placeholder="crypto" className="input-field" />
-                    <select>
-                        <option>BTC</option>
-                        <option>ETH</option>
-                        <option>DOGE</option>
-                    </select>
+                <div className="first-input-containers">
+                    <div className="input-container">
+                        <input type="text" placeholder="0" />
+                        <select>
+                            <option value=""></option>
+                        </select>
+                    </div>
                 </div>
             </form>
         </div>

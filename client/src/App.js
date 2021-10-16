@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 
 import './styles/colors.css';
@@ -28,6 +28,19 @@ import ProtectedRoute from './protectedRoute';
 function App() {
   //const [isAuth, setIsAuth] = useState(true)
   const isAuth = useState(true)
+  const [ user, setUser ] = useState({})
+
+  async function getUser() {
+    const userId = 1
+  
+    await fetch(`/api/users/${userId}`)
+    .then(res => res.json())
+    .then(user => setUser(user))
+  }
+
+  useEffect(() => {
+    getUser()
+  }, [])
 
   return (
     <div className="App">
