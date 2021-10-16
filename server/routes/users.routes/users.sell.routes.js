@@ -25,7 +25,7 @@ router.post('/sell', async (req, res) => {
     // Check if user has enough crypto/currency
     if (from.cryptoAmount >= reqData.from.cryptoAmount || from.currencyAmount >= reqData.from.currencyAmount) {
         if (reqData.from.type === 'crypto') userWallet[from.walletIndex] = debitWallet(userWallet[from.walletIndex], reqData.from.cryptoAmount, reqData.from.currencyAmount)
-        else userWallet = debitWallet(userWallet[from.walletIndex], reqData.from.currencyAmount)
+        else userWallet[from.walletIndex] = debitWallet(userWallet[from.walletIndex], null, reqData.from.currencyAmount)
     } else {
         foundError = true
         res.send({ error: `Vous avez ${from.cryptoAmount ? from.cryptoAmount + ' ' + from.symbol : from.currencyAmount + from.symbol} dans votre protefeuille` })
@@ -40,13 +40,12 @@ router.post('/sell', async (req, res) => {
             to = userWallet[0]
             to.walletIndex = 0
         }
-    
         if (reqData.to.type === 'crypto') userWallet[to.walletIndex] = creditWallet(userWallet[to.walletIndex], reqData.to.cryptoAmount, reqData.to.currencyAmount)
-        else userWallet[to.walletIndex] = creditWallet(userWallet[to.walletIndex], reqData.to.currencyAmount)
+        else userWallet[to.walletIndex] = creditWallet(userWallet[to.walletIndex], null, reqData.to.currencyAmount)
     
         await user.save().then(res.send({ success: 'Votre transaction a été effectuée' }))
     }
-    console.log('done');
+    console.log(foundError ? 'Unable to do the transaction' : 'Transaction done');
 })
 function creditWallet(walletElement, cryptoAmount, currencyAmount) {
     if (cryptoAmount) walletElement.cryptoAmount += cryptoAmount
@@ -57,7 +56,7 @@ function creditWallet(walletElement, cryptoAmount, currencyAmount) {
 function debitWallet(walletElement, cryptoAmount, currencyAmount) {
     if (cryptoAmount) walletElement.cryptoAmount -= cryptoAmount
     walletElement.currencyAmount -= currencyAmount
-    
+
     return walletElement
 }
 function getToCrypto(userWallet, cryptoName) {

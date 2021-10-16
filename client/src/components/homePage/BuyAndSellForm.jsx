@@ -17,16 +17,16 @@ async function setSellData() {
         method: 'POST',
         body: JSON.stringify({
             from: {
-                type: 'currency', // crypto or currency
-                name: 'euro',
-                cryptoAmount: 10,
-                currencyAmount: 10,
-            },
-            to: {
                 type: 'crypto', // crypto or currency
                 name: 'Bitcoin',
-                cryptoAmount: 10,
-                currencyAmount: 10
+                cryptoAmount: 9,
+                currencyAmount: 9,
+            },
+            to: {
+                type: 'currency', // crypto or currency
+                name: 'Euro',
+                cryptoAmount: 9,
+                currencyAmount: 9
             },
             userId: 1
         })
