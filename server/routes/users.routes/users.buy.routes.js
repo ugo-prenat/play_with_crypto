@@ -13,7 +13,7 @@ router.post('/buy', async (req, res) => {
         cryptoName: posted.cryptoName.toLowerCase(),
         userId: posted.userId
     }
-    // Get user
+    // Get user's wallet
     const user = await Users.find({ id: data.userId }).then(users => { return users[0]})
     let userWallet = user.wallet.cryptoList
 
