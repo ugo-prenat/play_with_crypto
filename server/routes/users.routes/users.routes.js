@@ -38,8 +38,8 @@ router.get('/:id/activity', (req,res) => {
     res.send([])
 })
 router.get('/:id/wallet', (req, res) => {
-    // res.send({msg: 'Wallet of ' + req.params.id})
-    res.send([])
+    Users.find({ id: req.params.id })
+    .then(user => res.send(user[0].wallet))
 })
 async function getUserLogs(userLogs) {
     let toReturn = { mailError: true, passwordError: false }

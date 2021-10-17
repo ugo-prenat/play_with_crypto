@@ -1,4 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import Select from './Select';
+
 
 async function setBuyData() {
     await fetch('/api/users/buy', {
@@ -42,9 +44,21 @@ export default function BuyAndSellForm() {
     const x = false
     if (x === true) setBuyData()
     else if (x === 'truc') setSellData()
+    const [ userWallet, setUserWallet ] = useState([])
 
-    useEffect(() => {
-    }, [])
+    async function getUserWallet() {
+        const userId = 1
+    
+        setTimeout(() => {
+            fetch(`/api/users/${userId}/wallet`)
+            .then(res => res.json())
+            .then(userWallet => setUserWallet(userWallet))
+        }, 1000)
+    }
+    
+      useEffect(() => {
+        getUserWallet()
+      }, [])
 
     return (
         <div>
@@ -52,9 +66,7 @@ export default function BuyAndSellForm() {
                 <div className="first-input-containers">
                     <div className="input-container">
                         <input type="text" placeholder="0" />
-                        <select>
-                            <option value=""></option>
-                        </select>
+                        <Select options={userWallet} />
                     </div>
                 </div>
             </form>

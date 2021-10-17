@@ -54,3 +54,14 @@
     margin-top: 40vh;
 }
 
+
+
+
+.select .option {
+    display: flex;
+    align-items: center;
+}
+.select .option img, .select .option svg {
+    width: 25px;
+    margin-right: 10px;
+}
