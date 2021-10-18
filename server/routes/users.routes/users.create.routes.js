@@ -44,7 +44,8 @@ async function createUser(user) {
         wallet: [
             {
                 name: 'euro',
-                symbol: '€',
+                symbol: 'EUR',
+                base: '€',
                 icon: 'https://s2.coinmarketcap.com/static/cloud/img/fiat-flags/EUR.svg',
                 currencyAmount: 0
             }

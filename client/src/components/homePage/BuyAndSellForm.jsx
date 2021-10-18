@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import Select from './Select';
 
-
 async function setBuyData() {
     await fetch('/api/users/buy', {
         method: 'POST',
         body: JSON.stringify({
-            cryptoName: 'Ethereum',
-            cryptoAmount: 30,
-            currencyAmount: 1300,
+            cryptoName: 'Dogecoin',
+            cryptoAmount: 10,
+            currencyAmount: 10,
             userId: 1
         })
     })
@@ -41,34 +40,61 @@ async function setSellData() {
 }
 
 export default function BuyAndSellForm() {
-    const x = false
-    if (x === true) setBuyData()
-    else if (x === 'truc') setSellData()
     const [ userWallet, setUserWallet ] = useState([])
+    const [cryptoList, setCryptoList] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
+    const euro = { symbol: 'EUR', icon: 'https://s2.coinmarketcap.com/static/cloud/img/fiat-flags/EUR.svg' }
 
     async function getUserWallet() {
         const userId = 1
-    
-        setTimeout(() => {
-            fetch(`/api/users/${userId}/wallet`)
-            .then(res => res.json())
-            .then(userWallet => setUserWallet(userWallet))
-        }, 1000)
+        let toReturn
+
+        await fetch(`/api/users/${userId}/wallet`)
+        .then(res => res.json())
+        .then(userWallet => {
+            setUserWallet(userWallet)
+            setIsLoading(false)
+        })
+    }
+    async function getCryptoList() {
+        let toReturn
+
+        await fetch('/api/crypto/list')
+        .then(res => res.json())
+        .then(cryptoList => {
+            setCryptoList(cryptoList)
+        })
     }
     
-      useEffect(() => {
+    useEffect(() => {
         getUserWallet()
-      }, [])
+    }, [])
+    
+    if (isLoading) { return <div className="loading-container"><p>Chargement...</p></div> }
 
     return (
         <div>
             <form className="buy-and-sell-form">
+
                 <div className="first-input-containers">
+
                     <div className="input-container">
-                        <input type="text" placeholder="0" />
+                        <input type="number" placeholder="0" />
+                        <span className="vertical-bar"></span>
                         <Select options={userWallet} />
                     </div>
+
+                    <div className="input-container">
+                        <input type="number" placeholder="0" />
+                        <span className="vertical-bar"></span>
+                        <div className="currency-input-container">
+                            <img src={euro.icon} alt={euro.symbol + '-icon'} />
+                            <p>{euro.symbol}</p>
+                        </div>
+                    </div>
+
                 </div>
+
             </form>
         </div>
     )

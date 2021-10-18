@@ -10,6 +10,7 @@ const userModel = new mongoose.Schema({
         {
             name: String,
             symbol: String,
+            base: String,
             icon: String,
             cryptoAmount: Number,
             currencyAmount: Number
