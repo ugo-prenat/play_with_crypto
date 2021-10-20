@@ -11,8 +11,11 @@
 .crypto-list {
     margin-right: 3%;
 }
+.buy-and-sell-form-container {
+    justify-content: center;
+}
 .crypto-list, .buy-and-sell-form-container {
-    width: 60%;
+    width: 55%;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -67,18 +70,30 @@
 }
 
 
-.first-input-containers {
+.from-input-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+}
+.from-input-container .equal-sign {
+    margin: 0 2%;
+    font-size: 30px;
+    opacity: .2;
+    font-weight: lighter;
+}
+.to-input-container {
+    margin-top: 10vh;
+    display: flex;
+    justify-content: center;
 }
 .input-container {
     border: 2px solid var(--light-white);
     border-radius: 7px;
     display: flex;
-    width: initial;
 }
 .input-container input {
     background-color: transparent;
+    width: 170px;
     color: white;
     border: none;
     outline: none;
@@ -87,10 +102,10 @@
 }
 .input-container .vertical-bar {
     display: inline;
-    width: 2px;
+    width: 1px;
     height: auto;
-    margin: 9px 0;
-    background-color: var(--light-white);
+    margin: 11px 0;
+    background-color: rgba(255, 255, 255, .5);
 }
 /* REMOVE INPUT ARROWS */
 /* Chrome, Safari, Edge, Opera */
@@ -108,18 +123,26 @@ input[type=number] {
     position: relative;
     display: flex;
     align-items: center;
-    width: 70%;
-    margin-right: 20px;
+    width: 130px;
 }
 .select .selected {
     display: flex;
     align-items: center;
     margin-left: 10px;
 }
+.select .selected svg {
+    width: 35px;
+    margin: 0 8%;
+}
+.select .selected svg path {
+    stroke: rgba(255, 255, 255, .5);
+}
 .select .option-list {
     position: absolute;
     top: calc(100% + 2px);
-    width: 100%;
+    z-index: +1;
+    width: -webkit-fill-available;
+    width: -moz-available;
 }
 .select .option {
     display: flex;
@@ -128,7 +151,7 @@ input[type=number] {
     padding: 10px;
     width: inherit;
 }
-.select img, .select svg {
+.select img {
     width: 25px;
     margin-right: 10px;
 }

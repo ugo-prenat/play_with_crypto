@@ -20,7 +20,6 @@ import Profile from './components/pages/Profile'
 import Login from './components/pages/Login'
 import IssueReport from './components/pages/IssueReport'
 import NeedFunds from './components/pages/NeedFunds'
-import WallOfFame from './components/pages/WallOfFame'
 import Wallet from './components/pages/Wallet'
 
 import ProtectedRoute from './protectedRoute';
@@ -65,7 +64,6 @@ function App() {
               <ProtectedRoute path='/activity' component={Activity} isAuth={isAuth} exact />
               <ProtectedRoute path='/need-funds' component={NeedFunds} isAuth={isAuth} exact />
               <ProtectedRoute path='/profile/:name' component={Profile} isAuth={isAuth} exact />
-              <ProtectedRoute path='/wall-of-fame' component={WallOfFame} isAuth={isAuth} exact />
               <Route path='*' exact component={PageNotFound} />
             </Switch>
           </div>

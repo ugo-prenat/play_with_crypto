@@ -23,7 +23,7 @@ async function getPrices() {
 
     for (let i = 0; i < cryptoList.length; i++) {
         const crypto = cryptoList[i];
-        url = `${API_PATH}/${crypto.base}-${currency.name}/spot`
+        url = `${API_PATH}/${crypto.symbol}-${currency.name}/spot`
 
         await rp({ url, json: true })
         .then(async result => {

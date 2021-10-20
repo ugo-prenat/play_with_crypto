@@ -47,27 +47,21 @@ export default function BuyAndSellForm() {
 
     async function getUserWallet() {
         const userId = 1
-        let toReturn
 
         await fetch(`/api/users/${userId}/wallet`)
         .then(res => res.json())
-        .then(userWallet => {
-            setUserWallet(userWallet)
-            setIsLoading(false)
-        })
+        .then(userWallet => setUserWallet(userWallet))
     }
     async function getCryptoList() {
-        let toReturn
-
         await fetch('/api/crypto/list')
         .then(res => res.json())
-        .then(cryptoList => {
-            setCryptoList(cryptoList)
-        })
+        .then(cryptoList => setCryptoList(cryptoList))
     }
     
-    useEffect(() => {
-        getUserWallet()
+    useEffect(async () => {
+        await getUserWallet()
+        await getCryptoList()
+        setIsLoading(false)
     }, [])
     
     if (isLoading) { return <div className="loading-container"><p>Chargement...</p></div> }
@@ -76,13 +70,14 @@ export default function BuyAndSellForm() {
         <div>
             <form className="buy-and-sell-form">
 
-                <div className="first-input-containers">
-
+                <div className="from-input-container">
                     <div className="input-container">
                         <input type="number" placeholder="0" />
                         <span className="vertical-bar"></span>
                         <Select options={userWallet} />
                     </div>
+
+                    <p className="equal-sign">=</p>
 
                     <div className="input-container">
                         <input type="number" placeholder="0" />
@@ -92,9 +87,17 @@ export default function BuyAndSellForm() {
                             <p>{euro.symbol}</p>
                         </div>
                     </div>
-
                 </div>
 
+                <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M17.25 13.75L12 19.25L6.75 13.75"></path><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 18.25V4.75"></path></svg>
+
+                <div className="to-input-container">
+                    <div className="input-container">
+                        <input type="number" placeholder="0" />
+                        <span className="vertical-bar"></span>
+                        <Select options={cryptoList} type="cryptoList" />
+                    </div>
+                </div>
             </form>
         </div>
     )

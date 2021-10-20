@@ -24,10 +24,6 @@ function Menu(props) {
               <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><circle cx="15" cy="9" r="1" fill="currentColor"></circle><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 4.75H19.25V12L12.5535 18.6708C11.7544 19.4668 10.4556 19.445 9.68369 18.6226L5.28993 13.941C4.54041 13.1424 4.57265 11.8895 5.36226 11.1305L12 4.75Z"></path></svg>
               Activité
             </Link>
-            <Link to='/wall-of-fame' className={props.location.pathname === '/wall-of-fame' ? 'active' : ''} >
-              <svg fill="none" viewBox="0 0 24 24"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M14.25 8.75L18.25 4.75H5.75L9.75 8.75"></path><circle cx="12" cy="14" r="5.25" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5"></circle></svg>
-              Wall of fame
-            </Link>
             <Link to='/need-funds' className={props.location.pathname === '/need-funds' ? 'active' : ''} >
               <svg fill="none" viewBox="0 0 24 24"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M18.25 11.5V19.25M5.75 19.25V11.5M9.75 19.25V11.5M14.25 19.25V11.5"></path><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 4.75L19.25 11.25H4.75L12 4.75Z"></path><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4.75 19.25H19.25"></path></svg>
               Besoin d'argent
