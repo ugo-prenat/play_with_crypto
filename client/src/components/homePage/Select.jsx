@@ -15,7 +15,10 @@ export default function Select(props) {
         <div className="select">
             <div className="selected" onClick={() => setShowOptionList(!showOptionList)}>
                 <img src={selected.icon} alt={selected.name + '-icon'} />
-                <p>{selected.symbol}</p>
+                <div className="crypto-name">
+                    <p className="name">{selected.name.charAt(0).toUpperCase() + selected.name.slice(1)}</p>
+                    <p className="symbol">{selected.symbol}</p>
+                </div>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="20" d="M112 184l144 144 144-144"/></svg>
             </div>
             {showOptionList && 

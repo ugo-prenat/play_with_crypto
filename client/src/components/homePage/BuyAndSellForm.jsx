@@ -43,7 +43,7 @@ export default function BuyAndSellForm() {
     const [ userWallet, setUserWallet ] = useState([])
     const [cryptoList, setCryptoList] = useState([])
     const [isLoading, setIsLoading] = useState(true)
-    const euro = { symbol: 'EUR', icon: 'https://s2.coinmarketcap.com/static/cloud/img/fiat-flags/EUR.svg' }
+    const euro = { symbol: 'EUR', name: 'Euro', icon: 'https://s2.coinmarketcap.com/static/cloud/img/fiat-flags/EUR.svg' }
 
     async function getUserWallet() {
         const userId = 1
@@ -69,35 +69,31 @@ export default function BuyAndSellForm() {
     return (
         <div>
             <form className="buy-and-sell-form">
+                <div className="input-container border-bottom">
+                    <Select options={userWallet} type="fromCrypto" className="border-bottom" />
+                    <input type="number" placeholder="0" />
+                </div>
 
-                <div className="from-input-container">
-                    <div className="input-container">
-                        <input type="number" placeholder="0" />
-                        <span className="vertical-bar"></span>
-                        <Select options={userWallet} />
-                    </div>
+                <div className="equal-sign-container">
+                    <span>=</span>
+                </div>
 
-                    <p className="equal-sign">=</p>
-
-                    <div className="input-container">
-                        <input type="number" placeholder="0" />
-                        <span className="vertical-bar"></span>
-                        <div className="currency-input-container">
-                            <img src={euro.icon} alt={euro.symbol + '-icon'} />
-                            <p>{euro.symbol}</p>
+                <div className="input-container">
+                    <div className="selected">
+                        <img src={euro.icon} alt={euro.name + '-icon'} />
+                        <div className="crypto-name">
+                            <p className="name">{euro.name.charAt(0).toUpperCase() + euro.name.slice(1)}</p>
+                            <p className="symbol">{euro.symbol}</p>
                         </div>
                     </div>
+                    <input type="number" placeholder="0" />
                 </div>
 
-                <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M17.25 13.75L12 19.25L6.75 13.75"></path><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 18.25V4.75"></path></svg>
-
-                <div className="to-input-container">
-                    <div className="input-container">
-                        <input type="number" placeholder="0" />
-                        <span className="vertical-bar"></span>
-                        <Select options={cryptoList} type="cryptoList" />
-                    </div>
+                <div className="input-container border-top">
+                    <Select options={cryptoList} type="toCrypto" />
+                    <input type="number" placeholder="0" />
                 </div>
+                <button>Confirmer</button>
             </form>
         </div>
     )
