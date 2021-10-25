@@ -81,29 +81,30 @@
     justify-content: center;
     align-items: center;
 }
-.equal-sign-container {
-    
+.sign-container {
+    position: absolute;
+    top: 113px;
+    display: flex;
+    justify-content: center;
+    height: 35px;
+    width: calc(100% - 40px);
+    margin-top: -20px;
 }
-.equal-sign {
+.sign-container span {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
-    left: 45%;
-    top: 90px;
-    width: 40px;
-    height: 40px;
     background-color: white;
-    color: gray;
-    border-radius: 30px;
-    margin: 0 2%;
-    font-size: 30px;
-    font-weight: lighter;
+    color: rgba(0, 0, 0, .4);
+    border-radius: 50%;
+    width: 35px;
+    font-size: 24px;
+}
+.down-arrow-container {
+    top: 255px;
 }
 .to-input-container {
-    margin-top: 10vh;
-    display: flex;
-    justify-content: center;
+    margin-top: 100px;
 }
 .input-container {
     display: flex;
@@ -188,9 +189,6 @@ input[type=number] {
 }
 .currency-input-container img {
     margin: 0 10px;
-}
-.border-top {
-    border-top: 1px solid rgba(255, 255, 255, .2);
 }
 .border-bottom {
     border-bottom: 1px solid rgba(255, 255, 255, .2);

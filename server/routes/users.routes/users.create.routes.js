@@ -5,12 +5,14 @@ const db = require('../../database/export.database')
 const Users = db.models.users
 const Logs = db.models.logs
 
-router.post('/create', async (req, res) => {
-    const user = JSON.parse(req.body)
+router.post('/', async (req, res) => {
+    //const user = JSON.parse(req.body)
 
-    if (await isUsernameAlreadyTaken(user.username)) res.send({ usernameError: 'Nom d\'utilisateur déjà existant' })
+    return { code: 200, msg: 'create user' }
+
+    /* if (await isUsernameAlreadyTaken(user.username)) res.send({ usernameError: 'Nom d\'utilisateur déjà existant' })
     else if (await isMailAlreadyTaken(user.mail)) res.send({ mailError: 'Mail déjà existant' })
-    else await createUser(user).then(userId => res.send({ userId }))
+    else await createUser(user).then(userId => res.send({ userId })) */
 
 })
 async function isUsernameAlreadyTaken(newUsername) {

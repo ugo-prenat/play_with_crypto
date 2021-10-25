@@ -1,6 +1,13 @@
 const express = require('express')
 const app = express()
 require('dotenv').config()
+const Crypto = require('./database/export.database').models.crypto
+
+const rp = require('request-promise')
+const cryptoList = require('./api/currencies.data')
+
+API_PATH = 'https://api.coinbase.com/v2/prices'
+
 
 PORT = process.env.PORT
 
@@ -19,6 +26,6 @@ const routes = require('./routes/export.routes')
 app.use('/api/users/', routes.users)
 app.use('/api/crypto/', routes.crypto)
 
-// API import
-const api = require('./api/export.api')
-api.pricesLoop
+// API prices loop
+const pricesLoop = require('./api/pricesLoop')
+Crypto.findById('6151823848fe492bdae20310').then(cryptoObject => pricesLoop(cryptoObject))

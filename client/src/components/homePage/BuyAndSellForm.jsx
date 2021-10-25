@@ -74,9 +74,7 @@ export default function BuyAndSellForm() {
                     <input type="number" placeholder="0" />
                 </div>
 
-                <div className="equal-sign-container">
-                    <span>=</span>
-                </div>
+                <div className="equal-sign-container sign-container"><span>=</span></div>
 
                 <div className="input-container">
                     <div className="selected">
@@ -89,7 +87,11 @@ export default function BuyAndSellForm() {
                     <input type="number" placeholder="0" />
                 </div>
 
-                <div className="input-container border-top">
+                <div className="down-arrow-container sign-container">
+                    <span><svg width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M17.25 13.75L12 19.25L6.75 13.75"></path><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 18.25V4.75"></path></svg></span>
+                </div>
+                
+                <div className="input-container to-input-container">
                     <Select options={cryptoList} type="toCrypto" />
                     <input type="number" placeholder="0" />
                 </div>

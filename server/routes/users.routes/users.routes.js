@@ -13,7 +13,7 @@ const usersBuyRoute = require('./users.buy.routes')
 const usersSellRoute = require('./users.sell.routes')
 const usersCreateRoute = require('./users.create.routes')
 
-router.post('/create', usersCreateRoute)
+router.post('/', usersCreateRoute)
 router.post('/buy', usersBuyRoute)
 router.post('/sell', usersSellRoute)
 

@@ -18,7 +18,7 @@ export default function RegisterForm() {
             password: data.password
         }
 
-        await fetch('/api/users/create', { method: 'POST', body: JSON.stringify(user) })
+        await fetch('/api/users/', { method: 'POST', body: JSON.stringify(user) })
         .then(response => response.json())
         .then(result => {
             if (result.usernameError) {
