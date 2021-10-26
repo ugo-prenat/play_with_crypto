@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import Select from './Select';
+import CryptoListSelect from './CryptoListSelect';
+import WalletSelect from './WalletSelect';
 
 async function setBuyData() {
     await fetch('/api/users/buy', {
@@ -53,7 +54,7 @@ export default function BuyAndSellForm() {
         .then(userWallet => setUserWallet(userWallet))
     }
     async function getCryptoList() {
-        await fetch('/api/crypto/list')
+        await fetch('/api/crypto/prices')
         .then(res => res.json())
         .then(cryptoList => setCryptoList(cryptoList))
     }
@@ -70,7 +71,7 @@ export default function BuyAndSellForm() {
         <div>
             <form className="buy-and-sell-form">
                 <div className="input-container border-bottom">
-                    <Select options={userWallet} type="fromCrypto" className="border-bottom" />
+                    <WalletSelect options={userWallet} className="border-bottom" />
                     <input type="number" placeholder="0" />
                 </div>
 
@@ -92,7 +93,7 @@ export default function BuyAndSellForm() {
                 </div>
                 
                 <div className="input-container to-input-container">
-                    <Select options={cryptoList} type="toCrypto" />
+                    <CryptoListSelect options={cryptoList} />
                     <input type="number" placeholder="0" />
                 </div>
                 <button>Confirmer</button>
