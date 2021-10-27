@@ -3,12 +3,13 @@ import React, { useState } from 'react'
 export default function CryptoListSelect(props) {
     const [selected, setSelected] = useState(props.options[1])
     const [showOptionList, setShowOptionList] = useState(false)
-    
+
     function handleSelect(e) {
         setShowOptionList(false)
         const optionIndex = e.target.getAttribute('index')
-
         setSelected(props.options[optionIndex])
+        // Send to parent the new selected crypto base
+        props.newSelect(props.options[optionIndex].base)
     }
 
     return (
@@ -35,7 +36,7 @@ export default function CryptoListSelect(props) {
                             </div>
                         </div>
                         <div className="crypto-price-container">
-                            <p className="crypto-price">1 {crypto.base} = {crypto.amount.substring(0, 8)}{crypto.symbol}</p>
+                            <p className="crypto-price" index={index}>1 {crypto.base} = {crypto.amount.substring(0, 8)}{crypto.symbol}</p>
                         </div>
                     </div>
                     })}

@@ -226,13 +226,15 @@ input[type=number] {
     opacity: .5;
 }
 form button {
-    background-color: var(--light-bg-color);
-    border-radius: 10px;
-    border: 2px solid var(--main-color);
-    color: var(--main-color);
-    padding: 15px 0;
-    font-size: 18px;
-    font-weight: 600;
+    /* background-color: var(--light-bg-color); */
+    background-color: var(--main-color);
+    border-radius: 8px;
+    border: none;
+    /* border: 2px solid var(--main-color); */
+    /* color: var(--main-color); */
+    color: white;
+    padding: 10px 0;
+    font-size: 16px;
     cursor: pointer;
     margin-top: 30px;
 }

@@ -7,8 +7,9 @@ export default function WalletSelect(props) {
     function handleSelect(e) {
         setShowOptionList(false)
         const optionIndex = e.target.getAttribute('index')
-
         setSelected(props.options[optionIndex])
+        // Send to parent the new selected crypto symbol
+        props.newSelect(props.options[optionIndex].symbol)
     }
 
     return (

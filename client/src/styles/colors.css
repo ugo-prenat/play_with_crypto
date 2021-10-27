@@ -1,5 +1,6 @@
 :root {
-    --main-color: rgb(251, 174, 60);
+    /* --main-color: rgb(251, 174, 60); */
+    --main-color: #3974f5;
     --main-color-low-opacity: rgba(251, 174, 60, .4);
     --bg-color: rgb(27, 27, 27);
     --light-bg-color: rgb(32, 32, 32);
