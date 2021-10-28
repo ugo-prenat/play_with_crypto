@@ -4,7 +4,7 @@
     display: flex;
     flex-direction: column;
     padding: 50px;
-    border-radius: 7px;
+    border-radius: 15px;
     background-color: var(--light-bg-color);
 }
 form {
@@ -29,7 +29,7 @@ form .input-group {
     border: 2px solid;
     border-color: var(--light-white);
     border-radius: 7px;
-    transition: border-color .2s;
+    transition: border-color .1s;
 }
 form .active-input-group {
     border: 2px solid;
@@ -63,7 +63,7 @@ form .error-input-group .input-label {
     color: var(--error-color);
 }
 
- form .show-password-container {
+form .show-password-container {
     position: absolute;
     display: flex;
     align-items: center;
@@ -82,15 +82,15 @@ form .show-password-container svg {
 form .show-password-container .password-eye {
     display: none;
 }
-form .input-submit {
+form .input-submit, .guest-button {
     font-family: 'poppins', sans-serif;
     border: none;
     outline: none;
     background-color: var(--main-color);
     border-radius: 5px;
-    padding: 5% 0;
+    padding: 5%;
     color: var(--bg-color);
-    font-weight: 700;
+    font-weight: 600;
     font-size: 15px;
     cursor: pointer;
     margin: 5% 0 1% 0;

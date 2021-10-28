@@ -9,6 +9,7 @@ export default function RegisterForm() {
     const { isSubmitting } = formState
     const [ showPassword, setShowPassword ] = useState(false)
     const [showSuccesMsg, setShowSuccesMsg] = useState(false)
+    const [focus, setFocus] = useState('username')
     let history = useHistory()
 
     const onSubmit = async data => {
@@ -39,12 +40,11 @@ export default function RegisterForm() {
         })
     }
 
-
     return (
             <form className="register-form" onSubmit={handleSubmit(onSubmit)}>
                 <p className="form-title">Inscription</p>
     
-                <div style={errors.username && {borderColor: 'var(--error-color)'}} className="input-group username-input-group active-input-group" group="username">
+                <div style={errors.username && {borderColor: 'var(--error-color)'}} className={focus === 'username' ? 'input-group username-input-group active-input-group' : 'input-group username-input-group'} group="username">
                     <label style={errors.username && {color: 'var(--error-color)'}} htmlFor="username" className="input-label">Nom d'utilisateur</label>
                     <input {...register('username',
                         {
@@ -55,6 +55,8 @@ export default function RegisterForm() {
                         type="text"
                         name="username"
                         className="input-field"
+                        onFocus={() => setFocus('username')}
+                        onBlur={() => setFocus()}
                     />
                 </div>
                     {errors.username &&
@@ -64,7 +66,7 @@ export default function RegisterForm() {
                         </div>
                     }
 
-                <div style={errors.mail && {borderColor: 'var(--error-color)'}} className="input-group mail-input-group" group="mail">
+                <div style={errors.mail && {borderColor: 'var(--error-color)'}} className={focus === 'mail' ? 'input-group mail-input-group active-input-group' : 'input-group mail-input-group'} group="mail">
                     <label style={errors.mail && {color: 'var(--error-color)'}} htmlFor="mail" className="input-label">Mail</label>
                     <input
                         {...register('mail',
@@ -75,6 +77,8 @@ export default function RegisterForm() {
                         type="email"
                         name="mail"
                         className="input-field"
+                        onFocus={() => setFocus('mail')}
+                        onBlur={() => setFocus()}
                     />
                 </div>
                     {errors.mail &&
@@ -84,7 +88,7 @@ export default function RegisterForm() {
                         </div>
                     }
 
-                <div style={errors.password && {borderColor: 'var(--error-color)'}} className="input-group password-input-group" group="password">
+                <div style={errors.password && {borderColor: 'var(--error-color)'}} className={focus === 'password' ? 'input-group password-input-group active-input-group' : 'input-group password-input-group'} group="password">
                     <label style={errors.password && {color: 'var(--error-color)'}} htmlFor="password" className="input-label">Mot de passe</label>
                     <input
                         {...register('password',
@@ -95,6 +99,8 @@ export default function RegisterForm() {
                         type={showPassword ? "text" : "password"}
                         name="password"
                         className="input-field"
+                        onFocus={() => setFocus('password')}
+                        onBlur={() => setFocus()}
                     />
                 
                     <div className="show-password-container">

@@ -10,6 +10,9 @@ function Login() {
     
     return (
         <div className="component login-component">
+            <div className="guest-container">
+                <button className="guest-button">Continuer en tant qu'invité</button>
+            </div>
             <div className="form-container">
                 {showForm === 'login' ? <LoginForm /> : <RegisterForm />}
                 {showForm === 'login' ?

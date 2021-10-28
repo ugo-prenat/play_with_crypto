@@ -226,12 +226,14 @@ input[type=number] {
     opacity: .5;
 }
 form button {
+    font-family: 'poppins', sans-serif;
     background-color: var(--main-color);
     border-radius: 8px;
     border: none;
     color: var(--bg-color);
     padding: 10px 0;
     font-size: 16px;
+    font-weight: 500;
     cursor: pointer;
     margin-top: 30px;
 }
