@@ -13,3 +13,16 @@ header {
     align-items: center;
     padding: 0 2%;
 }
+button {
+    font-family: 'poppins', sans-serif;
+    border: none;
+    outline: none;
+    background-color: var(--main-color);
+    border-radius: 5px;
+    padding: 5%;
+    color: var(--bg-color);
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    margin: 5% 0 1% 0;
+}

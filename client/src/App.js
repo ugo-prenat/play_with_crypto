@@ -7,6 +7,7 @@ import './styles/app.css';
 import './styles/header.css';
 import './styles/menu.css';
 import './styles/mainComponent.css';
+import './styles/generics.css';
 
 import Menu from './components/Menu'
 import Header from './components/Header'
@@ -25,8 +26,7 @@ import Wallet from './components/pages/Wallet'
 import ProtectedRoute from './protectedRoute';
 
 function App() {
-  //const [isAuth, setIsAuth] = useState(true)
-  const isAuth = useState(true)
+  const [isAuth, setIsAuth] = useState(false)
   const [ user, setUser ] = useState({})
 
   async function getUser() {
@@ -40,7 +40,7 @@ function App() {
   useEffect(() => {
     getUser()
   }, [])
-
+  console.log(isAuth);
   return (
     <div className="App">
       <Router>

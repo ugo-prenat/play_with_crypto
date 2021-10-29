@@ -39,7 +39,7 @@ form .input-group .input-field {
     border: none;
     outline: none;
     font-family: poppins, sans-serif;
-    background-color: var(--bg-color);
+    background-color: var(--light-bg-color);
     color: var(--light-white);
 }
 form .input-group .input-label {
@@ -48,7 +48,7 @@ form .input-group .input-label {
     font-size: 14px;
     font-weight: 500;
     color: var(--light-white);
-    background-color: var(--bg-color);
+    background-color: var(--light-bg-color);
     padding: 0 5px;
     transition: color .2s;
 }
@@ -72,7 +72,7 @@ form .show-password-container {
     right: 2px;
     top: 0;
     padding: 0 3%;
-    background-color: var(--bg-color);
+    background-color: var(--light-bg-color);
 }
 form .show-password-container svg {
     fill: var(--light-white);

@@ -1,3 +1,5 @@
+import { useHistory } from "react-router-dom"
+
 import RegisterForm from "../loginPage/RegisterForm"
 import LoginForm from "../loginPage/LoginForm"
 
@@ -7,11 +9,17 @@ import { useState } from "react"
 
 function Login() {
     const [ showForm, setShowForm ] = useState('login')
-    
+    let history = useHistory()
+
+    const createGuestAccount = () => {
+        console.log('Create gust account');
+        history.push('/')
+    }
+
     return (
         <div className="component login-component">
             <div className="guest-container">
-                <button className="guest-button">Continuer en tant qu'invité</button>
+                <button className="guest-button" onClick={createGuestAccount}>Continuer en tant qu'invité</button>
             </div>
             <div className="form-container">
                 {showForm === 'login' ? <LoginForm /> : <RegisterForm />}

@@ -19,7 +19,7 @@ export default function RegisterForm() {
             password: data.password
         }
 
-        await fetch('/api/users/', { method: 'POST', body: JSON.stringify(user) })
+        /* await fetch('/api/users/', { method: 'POST', body: JSON.stringify(user) })
         .then(response => response.json())
         .then(result => {
             if (result.usernameError) {
@@ -37,7 +37,8 @@ export default function RegisterForm() {
                 localStorage.setItem('token', result.userId)
                 history.push('/')
             }
-        })
+        }) */
+        history.push('/')
     }
 
     return (

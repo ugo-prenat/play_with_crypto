@@ -17,8 +17,8 @@ export default function RegisterForm() {
             mail: data.mail.toLowerCase(),
             password: data.password
         }
-
-        await fetch('/api/users/connection', { method: 'POST', body: JSON.stringify(userLogs) })
+        console.log(userLogs);
+        /* await fetch('/api/users/connection', { method: 'POST', body: JSON.stringify(userLogs) })
         .then(response=> response.json())
         .then(result => {
             if (result.mailError) {
@@ -35,7 +35,8 @@ export default function RegisterForm() {
                 setShowSuccesMsg(true)
                 history.push('/')
             }
-        })
+        }) */
+        history.push('/')
     }
 
     return (
