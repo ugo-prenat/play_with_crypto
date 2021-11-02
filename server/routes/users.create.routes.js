@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const db = require('../../database/export.database')
+const db = require('../database/export.database')
 const Users = db.models.users
 const Logs = db.models.logs
 

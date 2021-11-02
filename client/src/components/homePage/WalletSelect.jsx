@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 export default function WalletSelect(props) {
-    const [selected, setSelected] = useState(props.options[1])
+    const [selected, setSelected] = useState(props.options.length > 1 ? props.options[1] : props.options[0])
     const [showOptionList, setShowOptionList] = useState(false)
     
     function handleSelect(e) {
@@ -37,7 +37,7 @@ export default function WalletSelect(props) {
                             </div>
                             <div className="crypto-price-container">
                                 {crypto.cryptoAmount && <p className="currency-price">{crypto.cryptoAmount} {crypto.symbol}</p>}
-                                <p className="crypto-price">{crypto.currencyAmount}€</p>
+                                <p className="crypto-price"><span>=</span>{crypto.currencyAmount}€</p>
                             </div>
                         </div>
                     })}

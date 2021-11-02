@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router()
-const db = require('../../database/export.database')
+const db = require('../database/export.database')
 const Users = db.models.users
 
-router.post('/sell', async (req, res) => {
+/* router.post('/sell', async (req, res) => {
     foundError = false
 
     // Get request data
@@ -46,7 +46,7 @@ router.post('/sell', async (req, res) => {
         await user.save().then(res.send({ success: 'Votre transaction a été effectuée' }))
     }
     console.log(foundError ? 'Unable to do the transaction' : 'Transaction done');
-})
+}) */
 function creditWallet(walletElement, cryptoAmount, currencyAmount) {
     if (cryptoAmount) walletElement.cryptoAmount += cryptoAmount
     walletElement.currencyAmount += currencyAmount

@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router()
-const CRYPTO_LIST = require('../../api/currencies.data')
-const db = require('../../database/export.database')
+const CRYPTO_LIST = require('../api/currencies.data')
+const db = require('../database/export.database')
 const Users = db.models.users
-
+/*
 router.post('/buy', async (req, res) => {
     // Get request data
     const reqData = JSON.parse(req.body)
@@ -78,5 +78,5 @@ function getCryptoFromName(cryptoName) {
 async function updateUserActivity() {
     
 }
-
+*/
 module.exports = router

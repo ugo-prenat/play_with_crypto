@@ -26,7 +26,7 @@ import Wallet from './components/pages/Wallet'
 import ProtectedRoute from './protectedRoute';
 
 function App() {
-  const [isAuth, setIsAuth] = useState(false)
+  const [isAuth, setIsAuth] = useState(true)
   const [ user, setUser ] = useState({})
 
   async function getUser() {
@@ -40,7 +40,7 @@ function App() {
   useEffect(() => {
     getUser()
   }, [])
-  console.log(isAuth);
+
   return (
     <div className="App">
       <Router>

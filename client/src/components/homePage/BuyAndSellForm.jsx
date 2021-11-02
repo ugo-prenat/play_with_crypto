@@ -17,14 +17,14 @@ export default function BuyAndSellForm() {
 
     const euro = { symbol: 'EUR', name: 'Euro', icon: 'https://s2.coinmarketcap.com/static/cloud/img/fiat-flags/EUR.svg' }
 
-    async function getUserWallet() {
-        const userId = 1
+    const userId = 1
 
-        await fetch(`/api/users/${userId}/wallet`)
+    async function getUserWallet() {
+        await fetch(`/api/users/wallet/${userId}`)
         .then(res => res.json())
         .then(userWallet => {
             setUserWallet(userWallet)
-            setFromCrypto(userWallet[1].symbol)
+            setFromCrypto(userWallet.length > 1 ? userWallet[1].symbol : userWallet[0].symbol)
         })
     }
     async function cryptoPricesLoop() {
@@ -53,20 +53,28 @@ export default function BuyAndSellForm() {
         cryptoPricesLoop()
     }, [])
 
-    const handleSubmit = e => {
+    const handleSubmit = async e => {
         e.preventDefault()
 
         const data = {
             from: {
-                crypto: fromCrypto,
-                amount: parseFloat(fromCryptoAmount)
+                symbol: fromCrypto,
+                currencyAmount: parseFloat(currencyAmount),
+                cryptoAmount: parseFloat(fromCryptoAmount)
             },
             to : {
-                crypto: toCrypto,
-                amount: parseFloat(toCryptoAmount)
+                symbol: toCrypto,
+                currencyAmount: parseFloat(currencyAmount),
+                cryptoAmount: parseFloat(toCryptoAmount)
             }
         }
-        console.log(data);
+        await fetch(`/api/users/wallet/${userId}`, { method: 'POST', body: JSON.stringify(data)})
+        .then(res => res.json())
+        .then(result => {
+            if (result.error) console.log(result.error)
+            else console.log(result.success);
+        })
+
     }
     const handleFromCryptoAmount = e => {
         const newAmount = e.target.value
@@ -75,7 +83,6 @@ export default function BuyAndSellForm() {
         const fromCryptoPrice = getCryptoPrice(fromCrypto, cryptoList)
         const toCryptoPrice = getCryptoPrice(toCrypto, cryptoList)
 
-        // Conversion fromCrypto-Euro
         if (fromCrypto !== 'EUR') {
             const newCurrecnyAmount = newAmount * fromCryptoPrice
 
@@ -120,6 +127,7 @@ export default function BuyAndSellForm() {
     }
     
     if (isLoading) { return <div className="loading-container"><p>Chargement...</p></div> }
+
     return (
         <div>
             <form className="buy-and-sell-form" onSubmit={handleSubmit}>
@@ -164,7 +172,7 @@ function getCryptoPrice(symbol, cryptoList) {
     return toReturn
 }
 
-async function setBuyData() {
+/* async function setBuyData() {
     await fetch('/api/users/buy', {
         method: 'POST',
         body: JSON.stringify({
@@ -174,10 +182,10 @@ async function setBuyData() {
             userId: 1
         })
     })
-}
+} */
 
-async function setSellData() {
-    await fetch('/api/users/sell', {
+async function setSellData(userId, data) {
+    await fetch(`/api/users/wallet/${userId}`, {
         method: 'POST',
         body: JSON.stringify({
             from: {

@@ -225,6 +225,10 @@ input[type=number] {
     font-size: 14px;
     opacity: .5;
 }
+.crypto-price-container .crypto-price span {
+    margin-right: 5px;
+    font-size: 10px;
+}
 form button {
     font-family: 'poppins', sans-serif;
     background-color: var(--main-color);
