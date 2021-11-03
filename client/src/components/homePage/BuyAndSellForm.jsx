@@ -1,11 +1,22 @@
 import React, { useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form'
 import CryptoListSelect from './CryptoListSelect';
 import WalletSelect from './WalletSelect';
 
+import Lottie from "react-lottie"
+import successAnim from '../../anim/success.json'
+
 export default function BuyAndSellForm() {
+    const { handleSubmit } = useForm({
+        mode: 'onTouched'
+    })
+
     const [ userWallet, setUserWallet ] = useState([])
     const [cryptoList, setCryptoList] = useState([])
     const [isLoading, setIsLoading] = useState(true)
+
+    const [error, setError] = useState()
+    const [successTransaction, setSuccessTransaction] = useState(false)
 
     const [fromCryptoAmount, setFromCryptoAmount] = useState('')
     const [fromCrypto, setFromCrypto] = useState('')
@@ -53,9 +64,7 @@ export default function BuyAndSellForm() {
         cryptoPricesLoop()
     }, [])
 
-    const handleSubmit = async e => {
-        e.preventDefault()
-
+    const onSubmit = async e => {
         const data = {
             from: {
                 symbol: fromCrypto,
@@ -70,9 +79,15 @@ export default function BuyAndSellForm() {
         }
         await fetch(`/api/users/wallet/${userId}`, { method: 'POST', body: JSON.stringify(data)})
         .then(res => res.json())
-        .then(result => {
-            if (result.error) console.log(result.error)
-            else console.log(result.success);
+        .then(response => {
+            if (response.code === 400) setError(response.msg)
+            else {
+                setSuccessTransaction(true)
+
+                setTimeout(() => {
+                    setSuccessTransaction(false)
+                }, 3000);
+            }
         })
 
     }
@@ -130,10 +145,16 @@ export default function BuyAndSellForm() {
 
     return (
         <div>
-            <form className="buy-and-sell-form" onSubmit={handleSubmit}>
+            <form className="buy-and-sell-form" onSubmit={handleSubmit(onSubmit)}>
                 <div className="input-container border-bottom">
                     <WalletSelect newSelect={data => setFromCrypto(data)} options={userWallet} className="border-bottom" />
-                    <input type="number" step="0.0000000001" min="0" value={fromCryptoAmount.toString().substring(0, 12)} onChange={handleFromCryptoAmount} placeholder="0" />
+                    <input
+                        type="number"
+                        min="0"
+                        step="0.0000000001"
+                        placeholder="0"
+                        value={parseFloat(fromCryptoAmount).toString().substring(0, 8)}
+                        onChange={handleFromCryptoAmount} />
                 </div>
 
                 <div className="equal-sign-container sign-container"><span>=</span></div>
@@ -146,7 +167,7 @@ export default function BuyAndSellForm() {
                             <p className="symbol">{euro.symbol}</p>
                         </div>
                     </div>
-                    <input type="number" step="0.0000000001" min="0" value={currencyAmount.toString().substring(0, 12)} onChange={handleCurrencyAmount} placeholder="0" />
+                    <input type="number" step="0.0000000001" min="0" value={currencyAmount.toString().substring(0, 8)} onChange={handleCurrencyAmount} placeholder="0" />
                 </div>
 
                 <div className="down-arrow-container sign-container">
@@ -155,9 +176,44 @@ export default function BuyAndSellForm() {
                 
                 <div className="input-container to-input-container">
                     <CryptoListSelect newSelect={data => setToCrypto(data)} options={cryptoList} />
-                    <input type="number" step="0.0000000001" min="0" value={toCryptoAmount.toString().substring(0, 12)} onChange={handleToCryptoAmount} placeholder="0" />
+                    <input
+                        type="number"
+                        min="0"
+                        step="0.0000000001"
+                        placeholder="0"
+                        value={parseFloat(toCryptoAmount).toString().substring(0, 8)}
+                        onChange={handleToCryptoAmount} />
                 </div>
-                <button>Confirmer</button>
+                <button>
+                    { successTransaction ?
+                        <div className="success-transaction">
+                            <div className="lottie-container">
+                                <Lottie
+                                    options={{
+                                        loop: false,
+                                        autoplay: true,
+                                        animationData: successAnim,
+                                        rendererSettings: {
+                                            preserveAspectRatio: "xMidYMid slice"
+                                        }
+                                    }}
+                                    width={25}
+                                    height={25}
+                                />
+                            </div>
+                            <p>Transaction effectuée</p>
+                        </div>
+                        :
+                        'Confirmer'
+                    }
+                </button>
+                
+                { error &&
+                    <div className="error-msg">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"><path className="prefix__n-info-tri" strokeWidth="1.5" d="M11.134 6.844a1 1 0 011.732 0l5.954 10.312a1 1 0 01-.866 1.5H6.046a1 1 0 01-.866-1.5l5.954-10.312z"/><g className="prefix__n-info-tri"><path strokeLinecap="round" strokeWidth="1.5" d="M12 10.284v3.206"/><circle cx="12" cy="15.605" r=".832"/></g></svg>
+                        <p>{error}</p>
+                    </div>
+                }
             </form>
         </div>
     )
@@ -170,42 +226,4 @@ function getCryptoPrice(symbol, cryptoList) {
         if (crypto.base === symbol) toReturn = crypto.amount
     })
     return toReturn
-}
-
-/* async function setBuyData() {
-    await fetch('/api/users/buy', {
-        method: 'POST',
-        body: JSON.stringify({
-            cryptoName: 'Dogecoin',
-            cryptoAmount: 10,
-            currencyAmount: 10,
-            userId: 1
-        })
-    })
-} */
-
-async function setSellData(userId, data) {
-    await fetch(`/api/users/wallet/${userId}`, {
-        method: 'POST',
-        body: JSON.stringify({
-            from: {
-                type: 'crypto', // crypto or currency
-                name: 'Bitcoin',
-                cryptoAmount: 9,
-                currencyAmount: 9,
-            },
-            to: {
-                type: 'currency', // crypto or currency
-                name: 'Euro',
-                cryptoAmount: 9,
-                currencyAmount: 9
-            },
-            userId: 1
-        })
-    })
-    .then(res => res.json())
-    .then(result => {
-        if (result.error) console.log(result.error)
-        else console.log(result.success);
-    })
 }

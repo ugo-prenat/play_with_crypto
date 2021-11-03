@@ -241,3 +241,34 @@ form button {
     cursor: pointer;
     margin-top: 30px;
 }
+.buy-and-sell-form .error-msg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 3px;
+    color: var(--error-color);
+    font-size: 13px;
+    width: calc(100% - 40px);
+}
+.buy-and-sell-form .error-msg svg path {
+    stroke: var(--error-color);
+}
+.buy-and-sell-form .error-msg svg g {
+    fill: var(--error-color);
+}
+.prefix__n-info-tri {
+    animation:n-info-tri 1s cubic-bezier(.455,.03,.515,.955);
+}
+@keyframes n-info-tri {0%,to{transform:rotate(0deg);transform-origin:center}10%,90%{transform:rotate(2deg)}20%,40%,60%{transform:rotate(-6deg)}30%,50%,70%{transform:rotate(6deg)}80%{transform:rotate(-2deg)}}
+
+.buy-and-sell-form .success-transaction {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.buy-and-sell-form .lottie-container {
+    overflow: hidden;
+    width: 25px;
+    margin-right: 5px;
+}

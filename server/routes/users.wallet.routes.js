@@ -5,10 +5,6 @@ const db = require('../database/export.database')
 const Users = db.models.users
 
 
-router.get('/', (req, res) => {
-    res.send('ouais')
-})
-
 router.get('/:id', (req, res) => {
     // Get the wallet if the specified user
 
@@ -18,7 +14,7 @@ router.get('/:id', (req, res) => {
 router.post('/:id', async (req, res) => {
     // Make a transaction between 2 crypto in the user wallet
 
-    foundError = false
+    let foundError = false
 
     // Get request data
     const reqData = JSON.parse(req.body)
@@ -35,7 +31,7 @@ router.post('/:id', async (req, res) => {
         userWallet[from.walletIndex] = debitWallet(userWallet[from.walletIndex], reqData.from.cryptoAmount, reqData.from.currencyAmount)
     } else {
         foundError = true
-        res.send({ error: `Vous avez ${from.cryptoAmount ? from.cryptoAmount + ' ' + from.symbol : from.currencyAmount + from.symbol} dans votre protefeuille` })
+        res.send({ code: 400, msg: `Vous avez ${from.cryptoAmount ? from.cryptoAmount.toString().substring(0, 8) + ' ' + from.symbol : from.currencyAmount + from.symbol} dans votre protefeuille` })
     }
 
     // CREDIT
@@ -50,21 +46,26 @@ router.post('/:id', async (req, res) => {
             newCrypto = createNewCrypto(reqData.to)
             userWallet.push(newCrypto)
         }
-        await user.save().then(res.send({ success: 'Votre transaction a été effectuée' }))
+        await user.save()
+        res.send({ code: 200, msg: 'Transaction effectuée' })
     }
-    console.log(foundError ? 'Unable to do the transaction' : 'Transaction done');
 })
-
 
 function creditWallet(walletElement, cryptoAmount, currencyAmount) {
     walletElement.cryptoAmount += cryptoAmount
     walletElement.currencyAmount += currencyAmount
     
+    walletElement.cryptoAmount
+    walletElement.currencyAmount
+
     return walletElement
 }
 function debitWallet(walletElement, cryptoAmount, currencyAmount) {
     walletElement.cryptoAmount -= cryptoAmount
     walletElement.currencyAmount -= currencyAmount
+
+    walletElement.cryptoAmount
+    walletElement.currencyAmount
 
     return walletElement
 }

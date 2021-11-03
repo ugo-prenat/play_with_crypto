@@ -36,8 +36,8 @@ export default function WalletSelect(props) {
                                 </div>
                             </div>
                             <div className="crypto-price-container">
-                                {crypto.cryptoAmount && <p className="currency-price">{crypto.cryptoAmount} {crypto.symbol}</p>}
-                                <p className="crypto-price"><span>=</span>{crypto.currencyAmount}€</p>
+                                {crypto.cryptoAmount && <p className="currency-price">{crypto.cryptoAmount.toString().substring(0, 8)} {crypto.symbol}</p>}
+                                <p className="crypto-price"><span>=</span>{crypto.currencyAmount.toString().substring(0, 8)}€</p>
                             </div>
                         </div>
                     })}
