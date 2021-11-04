@@ -19,9 +19,20 @@ const userModel = new mongoose.Schema({
     activity: [
         {
             date: Date,
-            type: String, // Deposit or withdraw
-            cryptoAmount: Number,
-            cryptoBase: String
+            from: {
+                name: String,
+                symbol: String,
+                icon: String,
+                cryptoAmount: String,
+                currencyAmount: String,
+            },
+            to: {
+                name: String,
+                symbol: String,
+                icon: String,
+                cryptoAmount: String,
+                currencyAmount: String,
+            },
         }
     ]
 },{ timestamps: true })

@@ -15,12 +15,19 @@ const usersWalletRoute = require('./users.wallet.routes')
 router.use('/', usersCreateRoute)
 router.use('/wallet', usersWalletRoute)
 
+router.get('/:id/activity', (req, res) => {
+    // Send the user's activity
+
+    Users.findOne({ id: req.params.id })
+    .then(user => res.send(user.activity))
+})
+
 
 router.get('/:id', (req,res) => {
     // Get a specified user
 
-    Users.find({ id: req.params.id })
-    .then(user => res.send(user[0]))
+    Users.findOne({ id: req.params.id })
+    .then(user => res.send(user))
 })
 
 module.exports = router

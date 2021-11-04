@@ -3,6 +3,7 @@ const router = express.Router()
 const CRYPTO_LIST = require('../api/currencies.data')
 const db = require('../database/export.database')
 const Users = db.models.users
+const euro = { symbol: 'EUR', name: 'Euro', icon: 'https://s2.coinmarketcap.com/static/cloud/img/fiat-flags/EUR.svg' }
 
 
 router.get('/:id', (req, res) => {
@@ -36,7 +37,6 @@ router.post('/:id', async (req, res) => {
 
     // CREDIT
     if (!foundError) {
-        console.log(reqData);
         if (isCryptoAlreadyInWallet(userWallet, reqData.to.symbol)) {
             // Credit the wallet
             toIndex = getToCryptoIndex(userWallet, reqData.to.symbol)
@@ -46,6 +46,11 @@ router.post('/:id', async (req, res) => {
             newCrypto = createNewCrypto(reqData.to)
             userWallet.push(newCrypto)
         }
+
+        // Update the user's activity
+        newActivity = newActivityEntry(reqData)
+        user.activity.push(newActivity)
+
         await user.save()
         res.send({ code: 200, msg: 'Transaction effectuée' })
     }
@@ -117,6 +122,31 @@ function getCryptoFromSymbol(cryptoSymbol) {
             return CRYPTO
         }
     }
+}
+function newActivityEntry(data) {
+    // Get from and to crypto
+    fromCrypto = data.from.symbol === 'EUR' ? euro : getCryptoFromSymbol(data.from.symbol)
+    toCrypto = data.to.symbol === 'EUR' ? euro : getCryptoFromSymbol(data.to.symbol)
+
+    // Create the new activity entry
+    const newEntry = {
+        date: new Date(),
+        from: {
+            name: fromCrypto.name,
+            symbol: fromCrypto.symbol,
+            icon: fromCrypto.icon,
+            cryptoAmount: data.from.cryptoAmount,
+            currencyAmount: data.from.currencyAmount
+        },
+        to: {
+            name: toCrypto.name,
+            symbol: toCrypto.symbol,
+            icon: toCrypto.icon,
+            cryptoAmount: data.to.cryptoAmount,
+            currencyAmount: data.to.currencyAmount
+        },
+    }
+    return newEntry
 }
 
 module.exports = router
