@@ -26,7 +26,7 @@ export default function BuyAndSellForm() {
 
     const [currencyAmount, setCurrencyAmount] = useState('')
 
-    const euro = { symbol: 'EUR', name: 'Euro', icon: 'https://s2.coinmarketcap.com/static/cloud/img/fiat-flags/EUR.svg' }
+    const euro = { base: 'EUR', symbol: '€',name: 'Euro', amount: '1', icon: 'https://s2.coinmarketcap.com/static/cloud/img/fiat-flags/EUR.svg' }
 
     const userId = 1
 
@@ -43,7 +43,11 @@ export default function BuyAndSellForm() {
         const interval = setInterval(() => {
             fetch('/api/crypto/prices')
             .then(response => response.json())
-            .then(data => setCryptoList(data))
+            .then(data => {
+                // Add euro to the crypto list
+                data.splice(0, 0, euro)
+                setCryptoList(data)
+            })
         }, 10000)
         return () => clearInterval(interval)
     }
@@ -55,6 +59,9 @@ export default function BuyAndSellForm() {
         await fetch('/api/crypto/prices')
         .then(response => response.json())
         .then(data => {
+            // Add euro to the crypto list
+            data.splice(0, 0, euro)
+
             setCryptoList(data)
             setToCrypto(data[1].base)
             setIsLoading(false)
@@ -89,7 +96,6 @@ export default function BuyAndSellForm() {
                 }, 3000);
             }
         })
-
     }
     const handleFromCryptoAmount = e => {
         const newAmount = e.target.value
@@ -164,7 +170,7 @@ export default function BuyAndSellForm() {
                         <img src={euro.icon} alt={euro.name + '-icon'} />
                         <div className="crypto-name">
                             <p className="name">{euro.name.charAt(0).toUpperCase() + euro.name.slice(1)}</p>
-                            <p className="symbol">{euro.symbol}</p>
+                            <p className="symbol">{euro.base}</p>
                         </div>
                     </div>
                     <input type="number" step="0.0000000001" min="0" value={currencyAmount.toString().substring(0, 8)} onChange={handleCurrencyAmount} placeholder="0" />

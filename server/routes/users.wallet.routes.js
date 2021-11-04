@@ -36,7 +36,7 @@ router.post('/:id', async (req, res) => {
 
     // CREDIT
     if (!foundError) {
-
+        console.log(reqData);
         if (isCryptoAlreadyInWallet(userWallet, reqData.to.symbol)) {
             // Credit the wallet
             toIndex = getToCryptoIndex(userWallet, reqData.to.symbol)

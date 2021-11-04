@@ -36,7 +36,7 @@ export default function CryptoListSelect(props) {
                             </div>
                         </div>
                         <div className="crypto-price-container">
-                            <p className="crypto-price" index={index}>1 {crypto.base} = {crypto.amount.substring(0, 8)}{crypto.symbol}</p>
+                            {crypto.base !== 'EUR' && <p className="crypto-price" index={index}>1 {crypto.base} = {crypto.amount.substring(0, 8)}{crypto.symbol}</p>}
                         </div>
                     </div>
                     })}

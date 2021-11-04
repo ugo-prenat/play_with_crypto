@@ -35,9 +35,9 @@ export default function WalletSelect(props) {
                                     <p className="symbol" index={index}>{crypto.symbol}</p>
                                 </div>
                             </div>
-                            <div className="crypto-price-container">
-                                {crypto.cryptoAmount && <p className="currency-price">{crypto.cryptoAmount.toString().substring(0, 8)} {crypto.symbol}</p>}
-                                <p className="crypto-price"><span>=</span>{crypto.currencyAmount.toString().substring(0, 8)}€</p>
+                            <div className="crypto-price-container" index={index}>
+                                <p className="currency-price" index={index}>{crypto.cryptoAmount.toString().substring(0, 8)} {crypto.symbol}</p>
+                                {crypto.symbol !== 'EUR' && <p className="crypto-price" index={index}><span>=</span>{crypto.currencyAmount.toString().substring(0, 8)}€</p>}
                             </div>
                         </div>
                     })}
