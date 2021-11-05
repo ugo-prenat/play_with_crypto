@@ -103,12 +103,13 @@ export default function BuyAndSellForm() {
     const handleFromCryptoAmount = e => {
         const newAmount = e.target.value
         setFromCryptoAmount(newAmount)
-        
+
         const fromCryptoPrice = getCryptoPrice(fromCrypto, cryptoList)
         const toCryptoPrice = getCryptoPrice(toCrypto, cryptoList)
 
         if (fromCrypto !== 'EUR') {
             const newCurrecnyAmount = newAmount * fromCryptoPrice
+            
 
             setCurrencyAmount(newCurrecnyAmount)
             setToCryptoAmount(newCurrecnyAmount / toCryptoPrice)

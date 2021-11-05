@@ -2,7 +2,7 @@ import { withRouter } from "react-router"
 import { Link } from "react-router-dom"
 
 function Menu(props) {
-
+  
     return (
         <div className="menu">
 

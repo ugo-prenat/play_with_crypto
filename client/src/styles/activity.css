@@ -1,0 +1,54 @@
+.activity-component {
+    height: 100%;
+    overflow: auto;
+}
+.activity-list {
+    width: 50%;
+}
+.activity {
+    display: flex;
+    margin: 20px 0;
+}
+.activity .activity-left-part {
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.activity-list img {
+    width: 30px;
+    margin-right: 10px;
+}
+.activity-left-part .hour {
+    font-size: 14px;
+}
+.activity-left-part img:last-child {
+    margin-left: -24px;
+}
+
+.activity-list .activity-card {
+    background-color: var(--light-bg-color);
+    width: calc(100% - 100px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 15px;
+    padding: 15px 20px;
+}
+.activity-card div {
+    width: 33%;
+}
+.activity-card .from, .activity-card .to {
+    display: flex;
+    align-items: center;
+}
+.activity-card .to {
+    justify-content: end;
+}
+.activity-card .price {
+    line-height: 17px;
+}
+.activity-card .price p:last-child {
+    font-size: 13px;
+    opacity: .5;
+}

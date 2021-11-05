@@ -23,15 +23,15 @@ const userModel = new mongoose.Schema({
                 name: String,
                 symbol: String,
                 icon: String,
-                cryptoAmount: String,
-                currencyAmount: String,
+                cryptoAmount: Number,
+                currencyAmount: Number,
             },
             to: {
                 name: String,
                 symbol: String,
                 icon: String,
-                cryptoAmount: String,
-                currencyAmount: String,
+                cryptoAmount: Number,
+                currencyAmount: Number,
             },
         }
     ]
