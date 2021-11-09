@@ -5,13 +5,6 @@ const db = require('../database/export.database')
 const Users = db.models.users
 const euro = { symbol: 'EUR', name: 'Euro', icon: 'https://s2.coinmarketcap.com/static/cloud/img/fiat-flags/EUR.svg' }
 
-
-router.get('/:id', (req, res) => {
-    // Get the wallet if the specified user
-
-    Users.findOne({ id: req.params.id })
-    .then(user => res.send(user.wallet))
-})
 router.post('/:id', async (req, res) => {
     // Make a transaction between 2 crypto in the user wallet
 

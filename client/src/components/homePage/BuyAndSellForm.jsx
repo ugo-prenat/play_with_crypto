@@ -31,7 +31,7 @@ export default function BuyAndSellForm() {
     const userId = 1
 
     async function getUserWallet() {
-        await fetch(`/api/users/wallet/${userId}`)
+        await fetch(`/api/users/${userId}/wallet`)
         .then(res => res.json())
         .then(userWallet => {
             setUserWallet(userWallet)
@@ -52,9 +52,9 @@ export default function BuyAndSellForm() {
         return () => clearInterval(interval)
     }
     
-    useEffect(() => {
-        getUserWallet()
-        fetchData()
+    useEffect(async () => {
+        await getUserWallet()
+        await fetchData()
     }, [])
 
     async function fetchData() {

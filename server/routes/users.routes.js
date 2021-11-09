@@ -22,6 +22,13 @@ router.get('/:id/activity', (req, res) => {
     .then(user => res.send(user.activity))
 })
 
+router.get('/:id/wallet', (req, res) => {
+    // Send the user's wallet
+
+    Users.findOne({ id: req.params.id })
+    .then(user => res.send(user.wallet))
+})
+
 
 router.get('/:id', (req,res) => {
     // Get a specified user
