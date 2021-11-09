@@ -1,44 +1,59 @@
 .activity-component {
-    height: 100%;
     overflow: auto;
 }
 .activity-list {
+    display: flex;
+    flex-direction: column;
     width: 50%;
+    height: max-content;
 }
 .activity {
     display: flex;
-    margin: 20px 0;
+    margin: 40px 0;
 }
 .activity .activity-left-part {
-    width: 100px;
-    display: flex;
+    position: relative;
+    display: inline-flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+    margin-right: 40px;
 }
 .activity-list img {
     width: 30px;
     margin-right: 10px;
 }
 .activity-left-part .hour {
-    font-size: 14px;
+    font-size: 13px;
+    opacity: .7;
 }
-.activity-left-part img:last-child {
-    margin-left: -24px;
+.activity .vertical-bar {
+    position: absolute;
+    top: -75%;
+    width: 1px;
+    height: 100%;
+    background-color: white;
+    opacity: .4;
+}
+.activity-list .date {
+    padding-bottom: 10px;
+    margin-bottom: -30px;
+    background-color: var(--bg-color);
+    position: relative;
+    z-index: +1;
 }
 
 .activity-list .activity-card {
     background-color: var(--light-bg-color);
-    width: calc(100% - 100px);
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     border-radius: 15px;
-    padding: 15px 20px;
-}
-.activity-card div {
-    width: 33%;
+    padding: 20px 25px;
 }
 .activity-card .from, .activity-card .to {
+    width: calc(50% - 12px);
     display: flex;
     align-items: center;
 }

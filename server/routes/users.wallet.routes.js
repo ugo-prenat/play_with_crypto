@@ -49,7 +49,15 @@ router.post('/:id', async (req, res) => {
 
         // Update the user's activity
         newActivity = newActivityEntry(reqData)
-        user.activity.push(newActivity)
+        
+        if (isLastActivityToday(user.activity)) {
+            user.activity[user.activity.length - 1].list.push(newActivity)
+        } else {
+            user.activity.push({
+                date: new Date(),
+                list: [newActivity]
+            })
+        }
 
         await user.save()
         res.send({ code: 200, msg: 'Transaction effectuée' })
@@ -147,6 +155,15 @@ function newActivityEntry(data) {
         },
     }
     return newEntry
+}
+function isLastActivityToday(userActivity) {
+    if (userActivity.length !== 0) {
+        lastActivityDate = userActivity[userActivity.length - 1].date.toDateString()
+
+        if (lastActivityDate === new Date().toDateString()) return true
+        else return false
+    }
+    else return false
 }
 
 module.exports = router

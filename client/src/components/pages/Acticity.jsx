@@ -23,16 +23,18 @@ export default function Activity() {
     return (
         <div className="component activity-component">
             <div className="activity-list">
-                {activityList.map((activity, index) => {
-                    return <div className="activity" key={index} >
-                        <div className="activity-left-part">
-                            <p className="hour">{getHour(activity.date)}</p>
-                            <div className="icons">
-                                <img src={activity.from.icon} alt={activity.from.symbol + '-icon'} />
-                                <img src={activity.to.icon} alt={activity.to.symbol + '-icon'} />
+                {activityList.map((activityParent, indexParent) => {
+                    return <div key={indexParent}>
+                        <p className="date">{getDate(activityParent.date)}</p>
+                        {activityParent.list.slice(0).reverse().map((activity, index) => {
+                            return <div className="activity" key={index}>
+                                <div className="activity-left-part">
+                                    <span className="vertical-bar"></span>
+                                    <p className="hour">{getHour(activity.date)}</p>
+                                </div>
+                                <ActivityCard data={activity}/>
                             </div>
-                        </div>
-                        <ActivityCard data={activity}/>
+                        })}
                     </div>
                 })}
             </div>
@@ -47,4 +49,14 @@ function getHour(d) {
     const minutes = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()
 
     return `${hours}:${minutes}`
+}
+function getDate(d) {
+    const date = new Date(d)
+    const months = [ 'janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre' ]
+
+    const day = date.getDate()
+    const month = months[date.getMonth()]
+    const year = date.getFullYear()
+
+    return `${day} ${month} ${year}`
 }

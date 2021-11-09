@@ -19,20 +19,25 @@ const userModel = new mongoose.Schema({
     activity: [
         {
             date: Date,
-            from: {
-                name: String,
-                symbol: String,
-                icon: String,
-                cryptoAmount: Number,
-                currencyAmount: Number,
-            },
-            to: {
-                name: String,
-                symbol: String,
-                icon: String,
-                cryptoAmount: Number,
-                currencyAmount: Number,
-            },
+            list: [
+                {
+                    date: Date,
+                    from: {
+                        name: String,
+                        symbol: String,
+                        icon: String,
+                        cryptoAmount: Number,
+                        currencyAmount: Number,
+                    },
+                    to: {
+                        name: String,
+                        symbol: String,
+                        icon: String,
+                        cryptoAmount: Number,
+                        currencyAmount: Number,
+                    },
+                }
+            ]
         }
     ]
 },{ timestamps: true })

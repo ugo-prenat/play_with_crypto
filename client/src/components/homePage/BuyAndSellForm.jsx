@@ -53,26 +53,26 @@ export default function BuyAndSellForm() {
     }
     
     useEffect(() => {
-        async function fetchData() {
-            await getUserWallet()
-    
-            // Get the crypto prices
-            await fetch('/api/crypto/prices')
-            .then(response => response.json())
-            .then(data => {
-                // Add euro to the crypto list
-                data.splice(0, 0, euro)
-    
-                setCryptoList(data)
-                setToCrypto(data[1].base)
-                setIsLoading(false)
-            })
-    
-            // Function who get the new prices every 10 seconds
-            cryptoPricesLoop()
-        }
+        getUserWallet()
         fetchData()
     }, [])
+
+    async function fetchData() {
+        // Get the crypto prices
+        fetch('/api/crypto/prices')
+        .then(response => response.json())
+        .then(data => {
+            // Add euro to the crypto list
+            data.splice(0, 0, euro)
+
+            setCryptoList(data)
+            setToCrypto(data[1].base)
+            setIsLoading(false)
+        })
+
+        // Function who get the new prices every 10 seconds
+        cryptoPricesLoop()
+    }
 
     const onSubmit = async e => {
         const data = {
