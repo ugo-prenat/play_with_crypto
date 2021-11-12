@@ -6,7 +6,7 @@ export default function Wallet() {
     const [wallet, setWallet] = useState()
     const [isLoading, setIsLoading] = useState(true)
 
-    const userId = 1
+    const userId = localStorage.getItem('userId')
 
     useEffect(() => {
         fetch(`/api/users/${userId}/wallet`)

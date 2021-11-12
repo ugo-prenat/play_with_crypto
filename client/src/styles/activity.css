@@ -25,18 +25,18 @@
 }
 .activity-left-part .hour {
     font-size: 13px;
-    opacity: .7;
+    opacity: .6;
 }
 .activity .vertical-bar {
     position: absolute;
-    top: -75%;
+    top: -90%;
     width: 1px;
     height: 100%;
     background-color: white;
-    opacity: .4;
+    opacity: .2;
 }
 .activity-list .date {
-    padding-bottom: 10px;
+    padding: 10px 0;
     margin-bottom: -30px;
     background-color: var(--bg-color);
     position: relative;
@@ -44,13 +44,12 @@
 }
 
 .activity-list .activity-card {
-    background-color: var(--light-bg-color);
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     border-radius: 15px;
-    padding: 20px 25px;
+    padding: 10px 15px;
 }
 .activity-card .from, .activity-card .to {
     width: calc(50% - 12px);

@@ -7,7 +7,7 @@ export default function Activity() {
     const [activityList, setActivityList] = useState()
     const [isLoading, setIsLoading] = useState(true)
 
-    const userId = 1
+    const userId = localStorage.getItem('userId')
 
     useEffect(() => {
         fetch(`/api/users/${userId}/activity`)
@@ -19,11 +19,12 @@ export default function Activity() {
     }, [])
 
     if (isLoading) { return <div className="loading-container"><p>Chargement de l'activité...</p></div> }
+    if (!isLoading && activityList.length === 0) { return <div className="loading-container"><p>Aucune activité détectée</p></div> }
 
     return (
         <div className="component activity-component">
             <div className="activity-list">
-                {activityList.map((activityParent, indexParent) => {
+                {activityList.slice(0).reverse().map((activityParent, indexParent) => {
                     return <div key={indexParent}>
                         <p className="date">{getDate(activityParent.date)}</p>
                         {activityParent.list.slice(0).reverse().map((activity, index) => {

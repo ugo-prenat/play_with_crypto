@@ -8,7 +8,6 @@ export default function RegisterForm() {
     })
     const { isSubmitting } = formState
     const [ showPassword, setShowPassword ] = useState(false)
-    const [showSuccesMsg, setShowSuccesMsg] = useState(false)
     const [focus, setFocus] = useState('mail')
     let history = useHistory()
 
@@ -105,12 +104,6 @@ export default function RegisterForm() {
             }
 
             <button className="input-submit" disabled={isSubmitting}>Connexion</button>
-
-            {showSuccesMsg && 
-                <div className="success-msg-container">
-                    <p className="success-msg">Connexion réussie !</p>
-                </div>
-            }
 
         </form>
     )

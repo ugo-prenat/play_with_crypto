@@ -28,7 +28,7 @@ export default function BuyAndSellForm() {
 
     const euro = { base: 'EUR', symbol: '€',name: 'Euro', amount: '1', icon: 'https://s2.coinmarketcap.com/static/cloud/img/fiat-flags/EUR.svg' }
 
-    const userId = 1
+    const userId = localStorage.getItem('userId')
 
     async function getUserWallet() {
         await fetch(`/api/users/${userId}/wallet`)
@@ -52,9 +52,11 @@ export default function BuyAndSellForm() {
         return () => clearInterval(interval)
     }
     
-    useEffect(async () => {
-        await getUserWallet()
-        await fetchData()
+    useEffect(() => {
+        (async() => {
+            await getUserWallet()
+            await fetchData()
+        })()
     }, [])
 
     async function fetchData() {
