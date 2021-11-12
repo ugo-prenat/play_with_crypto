@@ -104,8 +104,8 @@ form .form-links-container span {
     color: var(--main-color);
 }
 form .password-error-msg-container svg {
-    align-self: normal;
-    margin-top: 1%;
+    /* align-self: normal; */
+    /* margin-top: 1%; */
 }
 /* MESSAGES */
  form .error-msg-container {

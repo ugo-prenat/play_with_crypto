@@ -1,20 +1,30 @@
 import { useHistory } from "react-router-dom"
+import { useEffect, useState } from "react"
 
 import RegisterForm from "../loginPage/RegisterForm"
 import LoginForm from "../loginPage/LoginForm"
 
 import '../../styles/form.css'
 import '../../styles/login.css'
-import { useState } from "react"
 
 function Login() {
     const [ showForm, setShowForm ] = useState('login')
     let history = useHistory()
 
-    const createGuestAccount = () => {
-        console.log('Create gust account');
-        history.push('/')
+    const createGuestAccount = async () => {
+        await fetch('/api/auth/guest', { method: 'POST' })
+        .then(res => res.json())
+        .then(res => {
+            sessionStorage.setItem('accessToken', res.data.accessToken)
+            sessionStorage.setItem('userId', res.data.id)
+            history.push('/')
+        })
     }
+
+    useEffect(() => {
+        localStorage.clear()
+        sessionStorage.clear()
+    })
 
     return (
         <div className="component login-component">

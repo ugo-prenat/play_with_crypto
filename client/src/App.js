@@ -26,7 +26,7 @@ import Wallet from './components/pages/Wallet'
 import ProtectedRoute from './protectedRoute';
 
 function App() {
-  const [isAuth, setIsAuth] = useState(true)
+  const [isAuth, setIsAuth] = useState(false)
   const [ user, setUser ] = useState({})
 
   async function getUser() {

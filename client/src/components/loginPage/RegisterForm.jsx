@@ -19,26 +19,30 @@ export default function RegisterForm() {
             password: data.password
         }
 
-        /* await fetch('/api/users/', { method: 'POST', body: JSON.stringify(user) })
-        .then(response => response.json())
-        .then(result => {
-            if (result.usernameError) {
-                setError('username', {
-                    type: 'manual',
-                    message: result.usernameError
-                })
-            } else if (result.mailError) {
-                setError('mail', {
-                    type: 'manual',
-                    message: result.mailError
-                })
-            } else {
-                setShowSuccesMsg(true)
-                localStorage.setItem('token', result.userId)
+        await fetch('/api/auth/register', { method: 'POST', body: JSON.stringify(user) })
+        .then(res => res.json())
+        .then(res => {
+            if (res.code === 400) handleError(res)
+            else {
+                localStorage.setItem('accessToken', res.data.accessToken)
+                localStorage.setItem('userId', res.data.id)
                 history.push('/')
             }
-        }) */
-        history.push('/')
+        })
+
+        function handleError(error) {
+            if (error.type === 'username') {
+                setError('username', {
+                    type: 'manual',
+                    message: error.msg
+                })
+            } else if (error.type === 'mail') {
+                setError('mail', {
+                    type: 'manual',
+                    message: error.msg
+                })
+            }
+        }
     }
 
     return (
