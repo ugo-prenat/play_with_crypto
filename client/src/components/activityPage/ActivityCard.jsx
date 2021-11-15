@@ -2,14 +2,15 @@ import React from 'react'
 
 export default function ActivityCard(props) {
     const activity = props.data
-
     return (
         <div className="activity-card">
             <div className="from">
                 <img src={activity.from.icon} alt={activity.from.symbol + '-icon'} />
                 <div className="price">
                     <p>{activity.from.cryptoAmount.toString().substring(0, 6)} {activity.from.symbol}</p>
-                    <p>{activity.from.currencyAmount}€</p>
+                    {activity.from.symbol !== 'EUR' &&
+                        <p className="currency-price">{activity.from.currencyAmount}€</p>
+                    }
                 </div>
             </div>
 

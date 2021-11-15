@@ -29,7 +29,7 @@ export default function CryptoList() {
     if (isLoading) return <div className="loding-msg"><p>Chargement des cryptomonnaies...</p></div>
     
     return (
-        <div>
+        <div className="crypto-list">
             {cryptoList.map(crypto => (
                 <CryptoCard key={crypto.base} data={crypto} />
             ))}

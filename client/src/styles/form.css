@@ -12,6 +12,7 @@ form {
     flex-direction: column;
     width: 100%;
     position: relative;
+    box-shadow: var(--box-shadow);
 }
 form .form-title {
     font-weight: 700;

@@ -21,6 +21,7 @@ export default function Wallet() {
 
     return (
         <div className="component wallet-component">
+            <h3>Portefeuille</h3>
             <div className="crypto-list">
                 {wallet.map((crypto, index) => {
                     return <div className="crypto" key={index}>

@@ -7,8 +7,8 @@ import BuyAndSellForm from '../homePage/BuyAndSellForm'
 
 function Home() {
     return (
-        <div className="component">
-            <div className="crypto-list">
+        <div className="component home-component">
+            <div className="crypto-list-container">
                 <CryptoList />
             </div>
             <div className="buy-and-sell-form-container">
