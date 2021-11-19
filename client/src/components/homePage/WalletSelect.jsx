@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 export default function WalletSelect(props) {
     const [selected, setSelected] = useState(props.options.length > 1 ? props.options[1] : props.options[0])
@@ -10,6 +10,16 @@ export default function WalletSelect(props) {
         setSelected(props.options[optionIndex])
         // Send to parent the new selected crypto symbol
         props.newSelect(props.options[optionIndex].symbol)
+    }
+
+    function getCurrencyPrice(base, cryptoAmount) {
+        let toReturn
+        props.cryptoPrices.forEach(crypto => {
+            if (crypto.base === base) {
+                toReturn = crypto.amount * cryptoAmount
+            }
+        });
+        return toReturn.toString().substring(0, 6)
     }
 
     return (
@@ -37,7 +47,7 @@ export default function WalletSelect(props) {
                             </div>
                             <div className="crypto-price-container" index={index}>
                                 <p className="currency-price" index={index}>{crypto.cryptoAmount.toString().substring(0, 8)} {crypto.symbol}</p>
-                                {crypto.symbol !== 'EUR' && <p className="crypto-price" index={index}><span>=</span>{crypto.currencyAmount.toString().substring(0, 8)}€</p>}
+                                {crypto.symbol !== 'EUR' && <p className="crypto-price" index={index}><span>=</span>{getCurrencyPrice(crypto.symbol, crypto.cryptoAmount)}€</p>}
                             </div>
                         </div>
                     })}

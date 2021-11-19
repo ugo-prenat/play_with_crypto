@@ -159,7 +159,7 @@ export default function BuyAndSellForm() {
         <div>
             <form className="buy-and-sell-form" onSubmit={handleSubmit(onSubmit)}>
                 <div className="input-container border-bottom">
-                    <WalletSelect newSelect={data => setFromCrypto(data)} options={userWallet} className="border-bottom" />
+                    <WalletSelect newSelect={data => setFromCrypto(data)} options={userWallet} cryptoPrices={cryptoList} className="border-bottom" />
                     <input
                         type="number"
                         min="0"

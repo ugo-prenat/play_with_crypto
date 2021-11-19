@@ -1,8 +1,10 @@
 :root {
     --main-color: rgb(251, 174, 60);
     --main-color-low-opacity: rgba(251, 174, 60, .4);
-    --bg-color: rgb(27, 27, 27);
-    --light-bg-color: rgb(32, 32, 32);
+    /* --bg-color: rgb(27, 27, 27); */
+    --bg-color: rgb(21, 22, 23);
+    /* --light-bg-color: rgb(32, 32, 32); */
+    --light-bg-color: rgb(25, 26, 27);
     --light-white: rgb(209, 209, 209);
     --error-color: rgb(255, 85, 78);
     --success-color: green;
