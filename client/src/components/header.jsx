@@ -5,17 +5,30 @@ import { Link } from "react-router-dom"
 
 function Header() {
   const [user, setUser] = useState('')
+  const [cryptoPrices, setCryptoPrices] = useState()
   const [isLoading, setIsLoading] = useState(true)
   const userId = localStorage.getItem('userId')
 
   useEffect(() => {
-      fetch(`/api/users/${userId}`)
+    (async() => {
+        await getUserWallet()
+        await getCryptoPrices()
+    })()
+  }, [])
+
+  async function getUserWallet() {
+      await fetch(`/api/users/${userId}`)
+      .then(res => res.json())
+      .then(data => setUser(data))
+  }
+  async function getCryptoPrices() {
+      await fetch('/api/crypto/prices')
       .then(res => res.json())
       .then(data => {
-        setUser(data)
-        setIsLoading(false)
+          setCryptoPrices(data)
+          setIsLoading(false)
       })
-  }, [])
+  }
 
   if (isLoading) { return <div>Chargement...</div> }
 
@@ -26,15 +39,27 @@ function Header() {
           <img src={user.profilImg} alt="profile-img" />
         </Link>
       </div>
-      <p>Portefeuille : {getWalletAmount(user.wallet)}€</p>
+      <p>Portefeuille : {getWalletAmount(user.wallet, cryptoPrices)}€</p>
     </div>
   )
 }
 
-function getWalletAmount(wallet) {
+function getWalletAmount(wallet, cryptoPrices) {
   let amount = 0
-  wallet.forEach(crypto => amount += crypto.currencyAmount)
-  return amount
+  wallet.forEach(crypto => {
+    if (crypto.symbol !== 'EUR') {
+      const x = getCurrencyPrice(cryptoPrices, crypto.symbol, crypto.cryptoAmount)
+      amount += x
+    } else amount += crypto.cryptoAmount
+    })
+  return amount.toString().substring(0,6)
+}
+function getCurrencyPrice(cryptoPrices, base, cryptoAmount) {
+  let toReturn
+  cryptoPrices.forEach(crypto => {
+    if (crypto.base === base) toReturn = crypto.amount * cryptoAmount
+  })
+  return toReturn
 }
 
 export default withRouter(Header)

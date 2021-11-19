@@ -4,18 +4,38 @@ import '../../styles/wallet.css'
 
 export default function Wallet() {
     const [wallet, setWallet] = useState()
+    const [cryptoPrices, setCryptoPrices] = useState()
     const [isLoading, setIsLoading] = useState(true)
 
     const userId = localStorage.getItem('userId')
 
     useEffect(() => {
-        fetch(`/api/users/${userId}/wallet`)
+        (async() => {
+            await getUserWallet()
+            await getCryptoPrices()
+        })()
+    }, [])
+    
+    async function getUserWallet() {
+        await fetch(`/api/users/${userId}/wallet`)
+        .then(res => res.json())
+        .then(data => setWallet(data))
+    }
+    async function getCryptoPrices() {
+        await fetch('/api/crypto/prices')
         .then(res => res.json())
         .then(data => {
-            setWallet(data)
+            setCryptoPrices(data)
             setIsLoading(false)
         })
-    }, [])
+    }
+    function getCurrencyPrice(base, cryptoAmount) {
+        let toReturn
+        cryptoPrices.forEach(crypto => {
+            if (crypto.base === base) toReturn = crypto.amount * cryptoAmount
+        })
+        return toReturn.toString().substring(0,6)
+    }
 
     if (isLoading) { return <div className="loading-container"><p>Chargement du portefeuille...</p></div> }
 
@@ -34,7 +54,7 @@ export default function Wallet() {
                         </div>
                         <div className="prices">
                             <p className="crypto-amount">{crypto.cryptoAmount.toString().substring(0, 8)} {crypto.symbol}</p>
-                            <p className="currency-amount">{crypto.currencyAmount.toString().substring(0, 8)}€</p>
+                            {crypto.symbol !== 'EUR' && <p className="currency-amount">{getCurrencyPrice(crypto.symbol, crypto.cryptoAmount)}€</p>}
                         </div>
                     </div>
                 })}

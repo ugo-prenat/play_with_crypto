@@ -13,7 +13,6 @@ const userModel = new mongoose.Schema({
             base: String,
             icon: String,
             cryptoAmount: Number,
-            currencyAmount: Number
         }
     ],
     activity: [

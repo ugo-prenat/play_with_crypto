@@ -21,11 +21,14 @@ router.post('/:id', async (req, res) => {
     from = getFromCrypto(userWallet, reqData.from.symbol)
 
     // Check if user has enough crypto in his wallet
-    if (from.cryptoAmount >= reqData.from.cryptoAmount || from.currencyAmount >= reqData.from.currencyAmount) {
-        userWallet[from.walletIndex] = debitWallet(userWallet[from.walletIndex], reqData.from.cryptoAmount, reqData.from.currencyAmount)
+    if (from.cryptoAmount >= reqData.from.cryptoAmount) {
+        userWallet[from.walletIndex] = debitWallet(userWallet[from.walletIndex], reqData.from.cryptoAmount)
+
+        // If the crypto amount is below 0, delete it from the wallet
+        if (userWallet[from.walletIndex].cryptoAmount < 0.001) userWallet.splice(from.walletIndex, 1)
     } else {
         foundError = true
-        res.send({ code: 400, msg: `Vous avez ${from.cryptoAmount ? from.cryptoAmount.toString().substring(0, 8) + ' ' + from.symbol : from.currencyAmount + from.symbol} dans votre protefeuille` })
+        res.send({ code: 400, msg: `Insuffisant dans votre protefeuille` })
     }
 
     // CREDIT
@@ -33,7 +36,7 @@ router.post('/:id', async (req, res) => {
         if (isCryptoAlreadyInWallet(userWallet, reqData.to.symbol)) {
             // Credit the wallet
             toIndex = getToCryptoIndex(userWallet, reqData.to.symbol)
-            userWallet[toIndex] = creditWallet(userWallet[toIndex], reqData.to.cryptoAmount, reqData.to.currencyAmount)
+            userWallet[toIndex] = creditWallet(userWallet[toIndex], reqData.to.cryptoAmount)
         } else {
             // Create the new crypto in wallet and credit it    
             newCrypto = createNewCrypto(reqData.to)
@@ -57,23 +60,21 @@ router.post('/:id', async (req, res) => {
     }
 })
 
-function creditWallet(walletElement, cryptoAmount, currencyAmount) {
+function creditWallet(walletElement, cryptoAmount) {
     walletElement.cryptoAmount += cryptoAmount
-    walletElement.currencyAmount += currencyAmount
-    
     walletElement.cryptoAmount
-    walletElement.currencyAmount
 
     return walletElement
 }
-function debitWallet(walletElement, cryptoAmount, currencyAmount) {
+function debitWallet(walletElement, cryptoAmount) {
     walletElement.cryptoAmount -= cryptoAmount
-    walletElement.currencyAmount -= currencyAmount
-
     walletElement.cryptoAmount
-    walletElement.currencyAmount
 
     return walletElement
+}
+deleteCryptoFromWallet('618e8abbde26190205f9cd1b')
+function deleteCryptoFromWallet(id) {
+    
 }
 function getToCryptoIndex(userWallet, cryptoSymbol) {
     for (let i = 0; i < userWallet.length; i++) {
@@ -111,7 +112,6 @@ function createNewCrypto(data) {
         symbol: crypto.symbol,
         icon: crypto.icon,
         cryptoAmount: data.cryptoAmount,
-        currencyAmount: data.currencyAmount
     }
     return newCrypto
 }
