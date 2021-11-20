@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { useHistory } from "react-router-dom"
+
 import CryptoListSelect from './CryptoListSelect';
 import WalletSelect from './WalletSelect';
+
+import { AUTH_HEADERS } from '../../authHeaders'
 
 import Lottie from "react-lottie"
 import successAnim from '../../anim/success.json'
@@ -29,13 +33,17 @@ export default function BuyAndSellForm() {
     const euro = { base: 'EUR', symbol: '€',name: 'Euro', amount: '1', icon: 'https://s2.coinmarketcap.com/static/cloud/img/fiat-flags/EUR.svg' }
 
     const userId = localStorage.getItem('userId')
+    let history = useHistory()
 
     async function getUserWallet() {
-        await fetch(`/api/users/${userId}/wallet`)
+        await fetch(`/api/users/${userId}/wallet`, { headers: setAuthHeaders() })
         .then(res => res.json())
-        .then(userWallet => {
-            setUserWallet(userWallet)
-            setFromCrypto(userWallet.length > 1 ? userWallet[1].symbol : userWallet[0].symbol)
+        .then(data => {
+            if (data.code) history.push('/login')
+            else {
+                setUserWallet(data)
+                setFromCrypto(data.length > 1 ? data[1].symbol : data[0].symbol)
+            }
         })
     }
     async function cryptoPricesLoop() {
@@ -89,7 +97,7 @@ export default function BuyAndSellForm() {
                 cryptoAmount: parseFloat(toCryptoAmount)
             }
         }
-        await fetch(`/api/users/wallet/${userId}`, { method: 'POST', body: JSON.stringify(data)})
+        await fetch(`/api/users/wallet/${userId}`, { method: 'POST', headers: AUTH_HEADERS, body: JSON.stringify(data)})
         .then(res => res.json())
         .then(response => {
             if (response.code === 400) setError(response.msg)
@@ -238,4 +246,8 @@ function getCryptoPrice(symbol, cryptoList) {
         if (crypto.base === symbol) toReturn = crypto.amount
     })
     return toReturn
+}
+function setAuthHeaders() {
+    const token = localStorage.getItem('accessToken')
+    return {'authorization': `Bearer ${token ? token : ''}`}
 }

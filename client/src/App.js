@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 
 import './styles/colors.css';
@@ -17,17 +17,12 @@ import About from './components/pages/About'
 import Activity from './components/pages/Acticity'
 import Settings from './components/pages/Settings'
 import PageNotFound from './components/pages/PageNotFound'
-import Profile from './components/pages/Profile'
 import Login from './components/pages/Login'
 import IssueReport from './components/pages/IssueReport'
 import NeedFunds from './components/pages/NeedFunds'
 import Wallet from './components/pages/Wallet'
 
-import ProtectedRoute from './protectedRoute';
-
 function App() {
-  const [isAuth, setIsAuth] = useState(true)
-
   return (
     <div className="App">
       <Router>
@@ -42,15 +37,14 @@ function App() {
 
           <div className="main-component-container">
             <Switch>
-              <Route path='/login' exact component={Login} />
-              <ProtectedRoute path='/' component={Home} isAuth={isAuth} exact />
-              <ProtectedRoute path='/about' component={About} isAuth={isAuth} exact />
-              <ProtectedRoute path='/wallet' component={Wallet} isAuth={isAuth} exact />
-              <ProtectedRoute path='/issue' component={IssueReport} isAuth={isAuth} exact />
-              <ProtectedRoute path='/settings' component={Settings} isAuth={isAuth} exact />
-              <ProtectedRoute path='/activity' component={Activity} isAuth={isAuth} exact />
-              <ProtectedRoute path='/need-funds' component={NeedFunds} isAuth={isAuth} exact />
-              <ProtectedRoute path='/profile/:name' component={Profile} isAuth={isAuth} exact />
+              <Route path='/' component={Home} exact />
+              <Route path='/login' component={Login} exact />
+              <Route path='/about' component={About} exact />
+              <Route path='/wallet' component={Wallet} exact />
+              <Route path='/issue' component={IssueReport} exact />
+              <Route path='/settings' component={Settings} exact />
+              <Route path='/activity' component={Activity} exact />
+              <Route path='/need-funds' component={NeedFunds} exact />
               <Route path='*' exact component={PageNotFound} />
             </Switch>
           </div>

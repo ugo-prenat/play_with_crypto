@@ -7,7 +7,7 @@ import LoginForm from "../loginPage/LoginForm"
 import '../../styles/form.css'
 import '../../styles/login.css'
 
-function Login() {
+export default function Login() {
     const [ showForm, setShowForm ] = useState('login')
     let history = useHistory()
 
@@ -15,16 +15,19 @@ function Login() {
         await fetch('/api/auth/guest', { method: 'POST' })
         .then(res => res.json())
         .then(res => {
-            sessionStorage.setItem('accessToken', res.data.accessToken)
-            sessionStorage.setItem('userId', res.data.id)
+            localStorage.setItem('accessToken', res.data.accessToken)
+            localStorage.setItem('userId', res.data.id)
             history.push('/')
         })
     }
 
     useEffect(() => {
-        localStorage.clear()
-        sessionStorage.clear()
-    })
+        fetch('/api/auth', { headers: setAuthHeaders() })
+        .then(res => res.json())
+        .then(res => {
+            if (res.code === 200) history.push('/')
+        })
+    }, [])
 
     return (
         <div className="component login-component">
@@ -41,5 +44,7 @@ function Login() {
         </div>
     )
 }
-
-export default Login
+function setAuthHeaders() {
+    const token = localStorage.getItem('accessToken')
+    return {'authorization': `Bearer ${token ? token : ''}`}
+}

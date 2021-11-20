@@ -1,7 +1,11 @@
+require('dotenv').config()
+
 const express = require('express')
 const router = express.Router()
-require('dotenv').config()
+
 const jwt = require('jsonwebtoken')
+const authenticateToken = require('../middleware/authenticateToken')
+
 const db = require('../database/export.database')
 const Users = db.models.users
 const Logs = db.models.logs
@@ -50,30 +54,15 @@ router.post('/guest', async (req, res) => {
     // Register a new user as a guest
     const userId = await generateUserId()
     await createGuest(userId)
-    await createLogs(userId, null, null, null)
+    await createLogs(userId, `Invité ${userId}`, null, null)
     .then(logs => {
         const accessToken = generateAccessToken(logs)
         res.status(200).send({ code: 200, data: {id: logs.id, accessToken }})
     })
 })
-
-// Middleware
-function authenticateToken(req, res, next) {
-    const authHeader = req.headers.authorization
-    const token = authHeader && authHeader.split(' ')[1]
-
-    if (!token) {
-        return res.status(401).send({ code: 401, msg: 'Le token d\'authentification est manquant' })
-    }
-
-    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-        if (err) {
-            return res.status(401).send({ code: 401, msg: 'Token d\'authentification invalide' })
-        }
-        req.user = user
-        next()
-    })
-}
+router.get('/', authenticateToken, (req, res) => {
+    res.status(200).send({code: 200})
+})
 
 
 async function createUser(id, username, mail, password) {

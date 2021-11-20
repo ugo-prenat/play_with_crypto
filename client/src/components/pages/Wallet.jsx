@@ -1,4 +1,7 @@
 import { useEffect, useState } from "react"
+import { useHistory } from "react-router-dom"
+
+import { AUTH_HEADERS } from '../../authHeaders'
 
 import '../../styles/wallet.css'
 
@@ -8,26 +11,32 @@ export default function Wallet() {
     const [isLoading, setIsLoading] = useState(true)
 
     const userId = localStorage.getItem('userId')
+    let history = useHistory()
 
     useEffect(() => {
-        (async() => {
-            await getUserWallet()
-            await getCryptoPrices()
-        })()
+        fetch('/api/auth', { headers: AUTH_HEADERS })
+        .then(res => res.json())
+        .then(res => {
+            if (res.code !== 200) history.push('/login')
+            else {
+                (async() => {
+                    await getUserWallet()
+                    await getCryptoPrices()
+                    setIsLoading(false)
+                })()
+            }
+        })
     }, [])
     
     async function getUserWallet() {
-        await fetch(`/api/users/${userId}/wallet`)
+        await fetch(`/api/users/${userId}/wallet`, { headers: AUTH_HEADERS })
         .then(res => res.json())
         .then(data => setWallet(data))
     }
     async function getCryptoPrices() {
         await fetch('/api/crypto/prices')
         .then(res => res.json())
-        .then(data => {
-            setCryptoPrices(data)
-            setIsLoading(false)
-        })
+        .then(data => setCryptoPrices(data))
     }
     function getCurrencyPrice(base, cryptoAmount) {
         let toReturn

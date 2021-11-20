@@ -5,7 +5,7 @@ import '../../styles/home.css'
 import CryptoList from '../homePage/CryptoList'
 import BuyAndSellForm from '../homePage/BuyAndSellForm'
 
-function Home() {
+export default function Home() {
     return (
         <div className="component home-component">
             <div className="crypto-list-container">
@@ -17,5 +17,3 @@ function Home() {
         </div>
     )
 }
-
-export default Home

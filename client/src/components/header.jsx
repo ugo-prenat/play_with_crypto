@@ -1,57 +1,62 @@
 import React, { useEffect, useState } from 'react';
 import { withRouter } from "react-router"
-import { Link } from "react-router-dom"
+import { AUTH_HEADERS } from '../authHeaders'
 
 
-function Header() {
+function Header(props) {
   const [user, setUser] = useState('')
   const [cryptoPrices, setCryptoPrices] = useState()
+  const [showHeader, setShowHeader] = useState(true)
   const [isLoading, setIsLoading] = useState(true)
+
   const userId = localStorage.getItem('userId')
 
   useEffect(() => {
-    (async() => {
-        await getUserWallet()
-        await getCryptoPrices()
-    })()
-  }, [])
+    fetch('/api/auth', { headers: AUTH_HEADERS })
+    .then(res => res.json())
+    .then(res => {
+        if (res.code !== 200) setShowHeader(false)
+        else {
+            (async() => {
+                await getUser()
+                await getCryptoPrices()
+                setIsLoading(false)
+            })()
+        }
+    })
+  }, [userId])
 
-  async function getUserWallet() {
-      await fetch(`/api/users/${userId}`)
+  async function getUser() {
+      await fetch(`/api/users/${userId}`, { headers: AUTH_HEADERS })
       .then(res => res.json())
       .then(data => setUser(data))
   }
   async function getCryptoPrices() {
       await fetch('/api/crypto/prices')
       .then(res => res.json())
-      .then(data => {
-          setCryptoPrices(data)
-          setIsLoading(false)
-      })
+      .then(data => setCryptoPrices(data))
   }
 
   if (isLoading) { return <div>Chargement...</div> }
 
-  return (
-    <div className="header">
-      <div className="profile-img-container">
-        <Link to={`/profile/${user.username}`}>
-          <img src={user.profilImg} alt="profile-img" />
-        </Link>
-      </div>
-      <p>Portefeuille : {getWalletAmount(user.wallet, cryptoPrices)}€</p>
-    </div>
-  )
+  if (props.location.pathname !== '/login') {
+    return (
+        <div className="header">
+            <div className="profile-img-container">
+            <img src={user.profilImg} alt="profile-img" />
+            </div>
+            <p>Portefeuille : {getWalletAmount(user.wallet, cryptoPrices)}€</p>
+        </div>
+    )
+  } else { return <div></div> }
 }
 
 function getWalletAmount(wallet, cryptoPrices) {
   let amount = 0
   wallet.forEach(crypto => {
-    if (crypto.symbol !== 'EUR') {
-      const x = getCurrencyPrice(cryptoPrices, crypto.symbol, crypto.cryptoAmount)
-      amount += x
-    } else amount += crypto.cryptoAmount
-    })
+    if (crypto.symbol !== 'EUR') amount += getCurrencyPrice(cryptoPrices, crypto.symbol, crypto.cryptoAmount)
+    else amount += crypto.cryptoAmount
+  })
   return amount.toString().substring(0,6)
 }
 function getCurrencyPrice(cryptoPrices, base, cryptoAmount) {

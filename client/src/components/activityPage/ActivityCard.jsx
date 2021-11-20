@@ -9,7 +9,7 @@ export default function ActivityCard(props) {
                 <div className="price">
                     <p>{activity.from.cryptoAmount.toString().substring(0, 6)} {activity.from.symbol}</p>
                     {activity.from.symbol !== 'EUR' &&
-                        <p className="currency-price">{activity.from.currencyAmount}€</p>
+                        <p className="currency-price">{activity.from.currencyAmount.toString().substring(0, 6)}€</p>
                     }
                 </div>
             </div>

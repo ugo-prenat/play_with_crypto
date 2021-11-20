@@ -1,4 +1,7 @@
 import { useEffect, useState } from "react"
+import { useHistory } from "react-router-dom"
+
+import { AUTH_HEADERS } from '../../authHeaders'
 
 import '../../styles/activity.css'
 import ActivityCard from "../activityPage/ActivityCard"
@@ -8,13 +11,17 @@ export default function Activity() {
     const [isLoading, setIsLoading] = useState(true)
 
     const userId = localStorage.getItem('userId')
+    let history = useHistory()
 
     useEffect(() => {
-        fetch(`/api/users/${userId}/activity`)
+        fetch(`/api/users/${userId}/activity`, { headers: AUTH_HEADERS })
         .then(res => res.json())
         .then(data => {
-            setActivityList(data)
-            setIsLoading(false)
+            if (data.code) history.push('/login')
+            else {
+                setActivityList(data)
+                setIsLoading(false)
+            }
         })
     }, [])
 
