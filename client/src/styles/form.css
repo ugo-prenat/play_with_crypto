@@ -6,6 +6,7 @@
     padding: 50px;
     border-radius: 15px;
     background-color: var(--light-bg-color);
+    box-shadow: var(--box-shadow);
 }
 form {
     display: flex;

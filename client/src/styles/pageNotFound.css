@@ -8,4 +8,17 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-image: url('../img/blob-bg.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.content-container {
+    background-color: var(--light-bg-color);
+    border-radius: 15px;
+    padding: 20px;
+}
+button {
+    padding: 10px 15px;
+    border-radius: 15px;
 }
