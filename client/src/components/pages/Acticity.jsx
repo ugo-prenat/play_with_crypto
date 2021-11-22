@@ -30,7 +30,6 @@ export default function Activity() {
 
     return (
         <div className="component activity-component">
-            <h3>Activité</h3>
             <div className="activity-list">
                 {activityList.slice(0).reverse().map((activityParent, indexParent) => {
                     return <div key={indexParent}>
