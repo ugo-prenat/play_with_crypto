@@ -1,5 +1,8 @@
 require('dotenv').config()
 
+const bcrypt = require('bcrypt')
+const saltRounds = 10;
+
 const express = require('express')
 const router = express.Router()
 
@@ -18,10 +21,12 @@ router.post('/login', async (req, res) => {
     const password = body.password
     const user = await Logs.findOne({mail})
 
+    const isPasswordCorrect = bcrypt.compareSync(password, user.password)
+
     if (!user) {
         return res.status(400).send({ code: 400, type: 'mail', msg: 'Ce mail n\'est rattaché à aucun compte' })
     }
-    else if (user.password !== password) {
+    else if (!isPasswordCorrect) {
         return res.status(400).send({ code: 400, type: 'password', msg: 'Mot de passe incorrect' })
     }
 
@@ -33,7 +38,7 @@ router.post('/register', async (req, res) => {
     const body = JSON.parse(req.body)
     const username = body.username
     const mail = body.mail
-    const password = body.password
+    const password = bcrypt.hashSync(body.password, saltRounds)
 
     if (await Logs.findOne({username})) {
         return res.status(400).send({ code: 400, type: 'username', msg: 'Nom d\'utilisateur déjà pris' })
@@ -84,6 +89,7 @@ async function createUser(id, username, mail, password) {
         ],
         activity: []
     })
+    bcrypt.compareSync('21422142Prenut&', user.password)
     await user.save()
 }
 async function createGuest(id) {
