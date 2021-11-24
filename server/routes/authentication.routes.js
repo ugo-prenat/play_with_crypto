@@ -68,6 +68,29 @@ router.post('/guest', async (req, res) => {
 router.get('/', authenticateToken, (req, res) => {
     res.status(200).send({code: 200})
 })
+router.patch('/user/:id', authenticateToken, async (req, res) => {
+    const body = JSON.parse(req.body)
+    const oldPassword = body.oldPassword
+    const newPassword = body.newPassword
+    //const newPassword = bcrypt.hashSync(body.newPassword, saltRounds)
+
+    const user = await Users.findOne({ id: req.params.id })
+    const log = await Logs.findOne({ id: req.params.id })
+
+    const isPasswordCorrect = bcrypt.compareSync(oldPassword, user.password)
+
+    if (!isPasswordCorrect) res.status(400).send({ code: 400, msg: 'Mot de passe incorrect' })
+    else {
+        // Update password
+        user.password = newPassword
+        log.password = newPassword
+
+        await user.save()
+        await log.save()
+
+        res.status(200).send({ code: 200, msg: 'Mot de passe mis à jour' })
+    }
+})
 
 
 async function createUser(id, username, mail, password) {
@@ -89,7 +112,6 @@ async function createUser(id, username, mail, password) {
         ],
         activity: []
     })
-    bcrypt.compareSync('21422142Prenut&', user.password)
     await user.save()
 }
 async function createGuest(id) {

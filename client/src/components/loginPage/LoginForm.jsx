@@ -57,6 +57,7 @@ export default function RegisterForm() {
                     type="email"
                     name="mail"
                     className="input-field"
+                    autoFocus
                     onFocus={() => setFocus('mail')}
                     onBlur={() => setFocus()}
                 />

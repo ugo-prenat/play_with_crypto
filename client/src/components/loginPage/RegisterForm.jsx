@@ -59,6 +59,7 @@ export default function RegisterForm() {
                     type="text"
                     name="username"
                     className="input-field"
+                    autoFocus
                     onFocus={() => setFocus('username')}
                     onBlur={() => setFocus()}
                 />
