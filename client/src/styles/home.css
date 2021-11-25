@@ -1,5 +1,5 @@
 /* Hide scrollbar for Chrome, Safari and Opera */
-.home-component .crypto-list-container, .option-list::-webkit-scrollbar {
+.home-component .crypto-list-container::-webkit-scrollbar, .buy-and-sell-form-container::-webkit-scrollbar, .option-list::-webkit-scrollbar {
     display: none;
 }
 /* Hide scrollbar for IE, Edge and Firefox */
