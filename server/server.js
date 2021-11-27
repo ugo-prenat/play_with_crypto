@@ -3,11 +3,7 @@ const app = express()
 require('dotenv').config()
 const Crypto = require('./database/export.database').models.crypto
 
-const rp = require('request-promise')
-const cryptoList = require('./api/currencies.data')
-
 API_PATH = 'https://api.coinbase.com/v2/prices'
-
 
 PORT = process.env.PORT
 

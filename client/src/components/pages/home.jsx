@@ -5,7 +5,7 @@ import '../../styles/home.css'
 import CryptoList from '../homePage/CryptoList'
 import BuyAndSellForm from '../homePage/BuyAndSellForm'
 
-export default function Home() {
+export default function Home(props) {
     return (
         <div className="component home-component">
             <div className="crypto-list-container">

@@ -1,3 +1,4 @@
+import { useHistory } from "react-router-dom"
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 
@@ -37,15 +38,15 @@ function App() {
 
           <div className="main-component-container">
             <Switch>
-              <Route path='/' component={Home} exact />
-              <Route path='/login' component={Login} exact />
-              <Route path='/about' component={About} exact />
-              <Route path='/wallet' component={Wallet} exact />
-              <Route path='/issue' component={IssueReport} exact />
-              <Route path='/settings' component={Settings} exact />
-              <Route path='/activity' component={Activity} exact />
+              <Route path='/'           component={Home} exact />
+              <Route path='/about'      component={About} exact />
+              <Route path='/login'      component={Login} exact />
+              <Route path='/wallet'     component={Wallet} exact />
+              <Route path='/settings'   component={Settings} exact />
+              <Route path='/activity'   component={Activity} exact />
               <Route path='/need-funds' component={NeedFunds} exact />
-              <Route path='*' exact component={PageNotFound} />
+              <Route path='/issue'      component={IssueReport} exact />
+              <Route path='*' component={PageNotFound} exact />
             </Switch>
           </div>
         </div>

@@ -6,25 +6,25 @@ import { AUTH_HEADERS } from '../authHeaders'
 function Header(props) {
   const [user, setUser] = useState('')
   const [cryptoPrices, setCryptoPrices] = useState()
-  const [showHeader, setShowHeader] = useState(true)
   const [isLoading, setIsLoading] = useState(true)
 
   const userId = localStorage.getItem('userId')
 
   useEffect(() => {
-    fetch('/api/auth', { headers: AUTH_HEADERS })
-    .then(res => res.json())
-    .then(res => {
-        if (res.code !== 200) setShowHeader(false)
-        else {
-            (async() => {
-                await getUser()
-                await getCryptoPrices()
-                setIsLoading(false)
-            })()
-        }
-    })
-  }, [userId])
+      if (props.location.pathname !== '/login') {
+        fetch('/api/auth', { headers: setAuthHeaders() })
+        .then(res => res.json())
+        .then(res => {
+            if (res.code === 200) {
+                (async() => {
+                    await getUser()
+                    await getCryptoPrices()
+                    setIsLoading(false)
+                })()
+            }
+        })
+      }
+  }, [props.location.pathname])
 
   async function getUser() {
       await fetch(`/api/users/${userId}`, { headers: AUTH_HEADERS })
@@ -65,6 +65,10 @@ function getCurrencyPrice(cryptoPrices, base, cryptoAmount) {
     if (crypto.base === base) toReturn = crypto.amount * cryptoAmount
   })
   return toReturn
+}
+function setAuthHeaders() {
+    const token = localStorage.getItem('accessToken')
+    return {'authorization': `Bearer ${token ? token : ''}`}
 }
 
 export default withRouter(Header)
