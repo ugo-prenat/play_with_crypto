@@ -263,12 +263,12 @@ form button {
 }
 @keyframes n-info-tri {0%,to{transform:rotate(0deg);transform-origin:center}10%,90%{transform:rotate(2deg)}20%,40%,60%{transform:rotate(-6deg)}30%,50%,70%{transform:rotate(6deg)}80%{transform:rotate(-2deg)}}
 
-.buy-and-sell-form .success-transaction {
+.input-submit .success {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.buy-and-sell-form .lottie-container {
+.input-submit .success .lottie-container {
     overflow: hidden;
     width: 25px;
     margin-right: 5px;

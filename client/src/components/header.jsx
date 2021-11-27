@@ -8,8 +8,6 @@ function Header(props) {
   const [cryptoPrices, setCryptoPrices] = useState()
   const [isLoading, setIsLoading] = useState(true)
 
-  const userId = localStorage.getItem('userId')
-
   useEffect(() => {
       if (props.location.pathname !== '/login') {
         fetch('/api/auth', { headers: setAuthHeaders() })
@@ -17,7 +15,8 @@ function Header(props) {
         .then(res => {
             if (res.code === 200) {
                 (async() => {
-                    await getUser()
+                    const userId = localStorage.getItem('userId')
+                    await getUser(userId)
                     await getCryptoPrices()
                     setIsLoading(false)
                 })()
@@ -26,7 +25,7 @@ function Header(props) {
       }
   }, [props.location.pathname])
 
-  async function getUser() {
+  async function getUser(userId) {
       await fetch(`/api/users/${userId}`, { headers: AUTH_HEADERS })
       .then(res => res.json())
       .then(data => setUser(data))
@@ -37,7 +36,7 @@ function Header(props) {
       .then(data => setCryptoPrices(data))
   }
 
-  if (isLoading) { return <div>Chargement...</div> }
+  if (isLoading) { return <div className="loading-container">Chargement de l'en-tête...</div> }
 
   if (props.location.pathname !== '/login') {
     return (
@@ -45,7 +44,10 @@ function Header(props) {
             <div className="profile-img-container">
             <img src={user.profilImg} alt="profile-img" />
             </div>
-            <p>Portefeuille : {getWalletAmount(user.wallet, cryptoPrices)}€</p>
+            <div className="total-balance-container">
+                <p>Solde total</p>
+                <p>{getWalletAmount(user.wallet, cryptoPrices)}€</p>
+            </div>
         </div>
     )
   } else { return <div></div> }

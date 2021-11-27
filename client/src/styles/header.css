@@ -20,3 +20,13 @@
     width: 100%;
     height: 100%;
 }
+.header-container .total-balance-container {
+    line-height: 17px;
+}
+.header-container .total-balance-container p:first-of-type {
+    font-size: 13px;
+    opacity: .4;
+}
+.header-container .total-balance-container p:last-of-type {
+    font-weight: 500;
+}

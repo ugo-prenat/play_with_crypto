@@ -71,8 +71,7 @@ router.get('/', authenticateToken, (req, res) => {
 router.patch('/user/:id', authenticateToken, async (req, res) => {
     const body = JSON.parse(req.body)
     const oldPassword = body.oldPassword
-    const newPassword = body.newPassword
-    //const newPassword = bcrypt.hashSync(body.newPassword, saltRounds)
+    const newPassword = bcrypt.hashSync(body.newPassword, saltRounds)
 
     const user = await Users.findOne({ id: req.params.id })
     const log = await Logs.findOne({ id: req.params.id })

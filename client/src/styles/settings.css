@@ -17,22 +17,6 @@
 .user-data-container .hide p {
     opacity: .3;
 }
-.user-data-container .edit-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: var(--light-bg-color);
-    box-shadow: var(--box-shadow);
-    cursor: pointer;
-}
-.user-data-container svg {
-    width: 24px;
-    height: 24px;
-    stroke: var(--main-color);
-}
 .user-data-container .element input {
     width: 40%;
     padding: 9px;
@@ -41,6 +25,10 @@
     border: none;
     color: white;
     border-radius: 3px;
+}
+.user-data-container .element button {
+    padding: 5px 10px;
+    font-weight: 500;
 }
 
 
@@ -57,7 +45,7 @@
     background-color: rgba(0, 0, 0, .5);
 }
 .change-password-form {
-    width: auto;
+    width: 320px;
     position: relative;
     background-color: var(--bg-color);
     padding: 40px;

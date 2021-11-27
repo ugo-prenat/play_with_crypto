@@ -204,9 +204,9 @@ export default function BuyAndSellForm() {
                         value={parseFloat(toCryptoAmount).toString().substring(0, 8)}
                         onChange={handleToCryptoAmount} />
                 </div>
-                <button>
+                <button className="input-submit">
                     { successTransaction ?
-                        <div className="success-transaction">
+                        <div className="success">
                             <div className="lottie-container">
                                 <Lottie
                                     options={{

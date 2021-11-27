@@ -26,3 +26,4 @@ app.use('/api/auth/', routes.auth)
 // API prices loop
 const pricesLoop = require('./api/pricesLoop')
 Crypto.findById('6151823848fe492bdae20310').then(cryptoObject => pricesLoop(cryptoObject))
+

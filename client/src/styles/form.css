@@ -30,6 +30,7 @@ form .input-group {
     padding: 4%;
     border: 2px solid;
     border-color: var(--light-white);
+    background-color: var(--light-bg-color);
     border-radius: 7px;
     transition: border-color .1s;
 }
@@ -90,7 +91,7 @@ form .input-submit, .guest-button {
     outline: none;
     background-color: var(--main-color);
     border-radius: 5px;
-    padding: 5%;
+    padding: 3%;
     color: var(--bg-color);
     font-weight: 600;
     font-size: 15px;

@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 export default function WalletSelect(props) {
     const [selected, setSelected] = useState(props.options.length > 1 ? props.options[1] : props.options[0])
     const [showOptionList, setShowOptionList] = useState(false)
     
-    function handleSelect(e) {
+    function handleSelect(index) {
         setShowOptionList(false)
-        const optionIndex = e.target.getAttribute('index')
-        setSelected(props.options[optionIndex])
+        setSelected(props.options[index])
         // Send to parent the new selected crypto symbol
-        props.newSelect(props.options[optionIndex].symbol)
+        props.newSelect(props.options[index].symbol)
     }
 
     function getCurrencyPrice(base, cryptoAmount) {
@@ -37,17 +36,17 @@ export default function WalletSelect(props) {
             {showOptionList && 
                 <div className="option-list">
                     {props.options.map((crypto, index) => {
-                        return <div className="option" key={index} index={index} onClick={handleSelect}>
+                        return <div className="option" key={index} onClick={() => handleSelect(index)}>
                             <div className="crypto-name-container">
-                                <img src={crypto.icon} index={index} alt={crypto.symbol.toLowerCase() + '-icon'} />
-                                <div className="crypto-name" index={index}>
-                                    <p className="name" index={index}>{crypto.name.charAt(0).toUpperCase() + crypto.name.slice(1)}</p>
-                                    <p className="symbol" index={index}>{crypto.symbol}</p>
+                                <img src={crypto.icon} alt={crypto.symbol.toLowerCase() + '-icon'} />
+                                <div className="crypto-name">
+                                    <p className="name">{crypto.name.charAt(0).toUpperCase() + crypto.name.slice(1)}</p>
+                                    <p className="symbol">{crypto.symbol}</p>
                                 </div>
                             </div>
-                            <div className="crypto-price-container" index={index}>
-                                <p className="currency-price" index={index}>{crypto.cryptoAmount.toString().substring(0, 8)} {crypto.symbol}</p>
-                                {crypto.symbol !== 'EUR' && <p className="crypto-price" index={index}><span>=</span>{getCurrencyPrice(crypto.symbol, crypto.cryptoAmount)}€</p>}
+                            <div className="crypto-price-container">
+                                <p className="currency-price">{crypto.cryptoAmount.toString().substring(0, 8)} {crypto.symbol}</p>
+                                {crypto.symbol !== 'EUR' && <p className="crypto-price"><span>=</span>{getCurrencyPrice(crypto.symbol, crypto.cryptoAmount)}€</p>}
                             </div>
                         </div>
                     })}
