@@ -13,6 +13,8 @@ const db = require('../database/export.database')
 const Users = db.models.users
 const Logs = db.models.logs
 
+const mailer = require('../middleware/mailer')
+
 
 
 router.post('/login', async (req, res) => {
@@ -65,8 +67,23 @@ router.post('/guest', async (req, res) => {
         res.status(200).send({ code: 200, data: {id: logs.id, accessToken }})
     })
 })
+router.post('/mail', async (req, res) => {
+    // Check if the given mail is associated to an account
+    // Method called from the reset password form
+    const mail = JSON.parse(req.body).mail
+    const user = await Logs.findOne({mail})
+
+    if (!user) {
+        return res.status(400).send({ code: 400, msg: 'Ce mail n\'est rattaché à aucun compte' })
+    } else {
+        // Send the reset password email
+        mailer.resetPassword(user.mail, generateAccessToken(user))
+    }
+
+})
 router.get('/', authenticateToken, (req, res) => {
-    res.status(200).send({code: 200})
+    // check if the user if authenticated
+    res.status(200).send({ code: 200, user: req.user })
 })
 router.patch('/user/:id', authenticateToken, async (req, res) => {
     const body = JSON.parse(req.body)

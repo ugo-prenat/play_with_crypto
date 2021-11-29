@@ -43,7 +43,7 @@ export default function RegisterForm() {
     }
 
     return (
-        <form className="register-form" onSubmit={handleSubmit(onSubmit)}>
+        <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
             <p className="form-title">Connexion</p>
 
             <div style={errors.mail && {borderColor: 'var(--error-color)'}} className={focus === 'mail' ? 'input-group mail-input-group active-input-group' : 'input-group mail-input-group'} group="mail">

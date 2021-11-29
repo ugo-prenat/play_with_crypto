@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 
 import RegisterForm from "../loginPage/RegisterForm"
 import LoginForm from "../loginPage/LoginForm"
+import ResetPasswordForm from "../loginPage/ResetPasswordForm"
 
 import '../../styles/form.css'
 import '../../styles/login.css'
@@ -35,9 +36,13 @@ export default function Login() {
                 <button className="guest-button" onClick={createGuestAccount}>Continuer en tant qu'invité</button>
             </div>
             <div className="form-container">
-                {showForm === 'login' ? <LoginForm /> : <RegisterForm />}
+                {showForm === 'login' ? <LoginForm /> : showForm === 'register' ? <RegisterForm /> : <ResetPasswordForm />}
                 {showForm === 'login' ?
-                    <p className="form-bottom-link">Pas de compte ?<span onClick={() => setShowForm('register')}>S'inscire</span></p>:
+                    <div className="form-bottom-link-container">
+                        <p className="form-bottom-link" onClick={() => setShowForm('resetPassword')}><span>Mot de passe oublié</span></p>
+                        <p className="form-bottom-link">Pas de compte ?<span onClick={() => setShowForm('register')}>S'inscire</span></p>
+                    </div>
+                    :
                     <p className="form-bottom-link">Déjà inscrit ?<span onClick={() => setShowForm('login')}>Se connecter</span></p>    
                 }
             </div>

@@ -2,26 +2,27 @@ import { useHistory } from "react-router-dom"
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 
-import './styles/colors.css';
-import './styles/fonts.css';
 import './styles/app.css';
-import './styles/header.css';
 import './styles/menu.css';
-import './styles/mainComponent.css';
+import './styles/fonts.css';
+import './styles/colors.css';
+import './styles/header.css';
 import './styles/generics.css';
+import './styles/mainComponent.css';
 
 import Menu from './components/Menu'
 import Header from './components/Header'
 
 import Home from './components/pages/Home'
-import About from './components/pages/About'
-import Activity from './components/pages/Acticity'
-import Settings from './components/pages/Settings'
-import PageNotFound from './components/pages/PageNotFound'
 import Login from './components/pages/Login'
-import IssueReport from './components/pages/IssueReport'
-import NeedFunds from './components/pages/NeedFunds'
+import About from './components/pages/About'
 import Wallet from './components/pages/Wallet'
+import Settings from './components/pages/Settings'
+import Activity from './components/pages/Acticity'
+import NeedFunds from './components/pages/NeedFunds'
+import IssueReport from './components/pages/IssueReport'
+import PageNotFound from './components/pages/PageNotFound'
+import PasswordReset from "./components/pages/passwordReset";
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
               <Route path='/activity'   component={Activity} exact />
               <Route path='/need-funds' component={NeedFunds} exact />
               <Route path='/issue'      component={IssueReport} exact />
+              <Route path='/password/reset/:accessToken' component={PasswordReset} exact />
               <Route path='*' component={PageNotFound} exact />
             </Switch>
           </div>

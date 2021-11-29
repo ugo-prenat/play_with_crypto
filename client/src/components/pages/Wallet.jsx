@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import { useHistory } from "react-router-dom"
 
-import AnimatedNumber from "animated-number-react"
 import { AUTH_HEADERS } from '../../authHeaders'
 
 import '../../styles/wallet.css'

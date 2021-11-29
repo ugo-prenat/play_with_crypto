@@ -6,7 +6,6 @@
     "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
-    "animated-number-react": "^0.1.2",
     "colorthief": "^2.3.2",
     "immer": "^9.0.6",
     "nth-check": "^2.0.1",

@@ -140,6 +140,12 @@ form .success-msg {
     font-size: 14px;
     font-weight: 500;
 }
+.form-bottom-link-container {
+    text-align: center;
+}
+.form-bottom-link-container p.form-bottom-link:last-of-type {
+    margin-top: 0;
+}
 .form-bottom-link {
     font-size: 13px;
     display: inline-flex;
