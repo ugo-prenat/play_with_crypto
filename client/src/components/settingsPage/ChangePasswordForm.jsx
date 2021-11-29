@@ -29,7 +29,7 @@ export default function ChangePasswordForm(props) {
             if (res.code !== 200) handleError(res.msg)
             else {
                 setShowSuccessMsg(true)
-                setTimeout(() => props.hideForm(), 2000)
+                setTimeout(() => props.hideForm(), 1500)
             }
         })
     }

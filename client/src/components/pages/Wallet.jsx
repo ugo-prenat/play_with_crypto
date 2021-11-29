@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useHistory } from "react-router-dom"
 
+import AnimatedNumber from "animated-number-react"
 import { AUTH_HEADERS } from '../../authHeaders'
 
 import '../../styles/wallet.css'
@@ -50,6 +51,14 @@ export default function Wallet() {
 
     return (
         <div className="component wallet-component">
+
+            <div className="wallet-amount-container">
+                <div className="wallet-amount">
+                    <p className="total-balance">Solde total</p>
+                    <p className="amount">{getWalletAmount(wallet, cryptoPrices)}€</p>
+                </div>
+            </div>
+
             <div className="crypto-list">
                 {wallet.map((crypto, index) => {
                     return <div className="crypto" key={index}>
@@ -69,4 +78,19 @@ export default function Wallet() {
             </div>
         </div>
     )
+}
+function getWalletAmount(wallet, cryptoPrices) {
+    let amount = 0
+    wallet.forEach(crypto => {
+      if (crypto.symbol !== 'EUR') amount += getCurrencyPrice(cryptoPrices, crypto.symbol, crypto.cryptoAmount)
+      else amount += crypto.cryptoAmount
+    })
+    return amount.toString().substring(0,6)
+}
+function getCurrencyPrice(cryptoPrices, base, cryptoAmount) {
+    let toReturn
+    cryptoPrices.forEach(crypto => {
+      if (crypto.base === base) toReturn = crypto.amount * cryptoAmount
+    })
+    return toReturn
 }
