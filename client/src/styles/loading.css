@@ -1,0 +1,26 @@
+.loading-component {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.loading-component svg {
+    width: 100%;
+    height: 100%;
+}
+.loading-component path {
+    fill: white;
+    animation: loader 1s cubic-bezier(.63,-.71,.32,1.28) infinite both;
+    transform-origin: center center
+}
+
+@keyframes loader {
+    0% {
+        -webkit-transform: rotate(0);
+        transform: rotate(0)
+    } to {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}

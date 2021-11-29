@@ -6,7 +6,7 @@
     /* --light-bg-color: rgb(32, 32, 32); */
     --light-bg-color: rgb(25, 26, 27);
     --light-white: rgb(209, 209, 209);
-    --error-color: rgb(255, 85, 78);
+    --error-color: #ff3333;
     --success-color: green;
     --box-shadow: 0 0 30px 0 #00000014;
 }

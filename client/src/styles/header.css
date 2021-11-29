@@ -1,5 +1,5 @@
 .header-container {
-    height: 10vh;
+    height: 90px;
     width: 97%;
     padding-right: 3%;
 }
@@ -11,7 +11,8 @@
     flex-direction: row-reverse;
 }
 .header-container .profile-img-container {
-    height: 50%;
+    height: 45px;
+    width: 45px;
     border-radius: 50%;
     overflow: hidden;
     margin-left: 2%;

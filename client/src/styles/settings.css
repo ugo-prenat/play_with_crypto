@@ -10,15 +10,21 @@
 .user-data-container .element {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     border-bottom: 1px solid #80808027;
-    margin: 20px 0;
-    padding-bottom: 20px;
+    padding: 20px 0;
 }
 .user-data-container .hide p {
     opacity: .3;
 }
-.user-data-container .element input {
+.user-data-container .change-profile-img-container {
+    position: relative;
     width: 40%;
+    height: 33px;
+    display: flex;
+}
+.user-data-container .change-profile-img-container input {
+    width: calc(100% - 18px);
     padding: 9px;
     outline: none;
     background-color: #303030;
@@ -26,6 +32,32 @@
     color: white;
     border-radius: 3px;
 }
+.user-data-container .change-profile-img-container .input-error {
+    color: var(--error-color);
+}
+.user-data-container .change-profile-img-container .link-error-msg {
+    position: absolute;
+    bottom: -21px;
+    color: var(--error-color);
+    font-size: 13px;
+}
+.user-data-container .loading-component {
+    position: absolute;
+    left: -35px;
+}
+.success-change-anim {
+    position: absolute;
+    left: -35px;
+    width: 30px;
+    height: 100%;
+}
+.success-change-anim path {
+    animation:check 1s forwards cubic-bezier(.99,-.1,.01,1.02);
+    stroke: white;
+}
+@keyframes check {to {stroke-dashoffset: 0;}}
+
+
 .user-data-container .element button {
     padding: 5px 10px;
     font-weight: 500;
