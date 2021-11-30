@@ -16,7 +16,6 @@ const Logs = db.models.logs
 const mailer = require('../middleware/mailer')
 
 
-
 router.post('/login', async (req, res) => {
     const body = JSON.parse(req.body)
     const mail = body.mail
@@ -78,6 +77,7 @@ router.post('/mail', async (req, res) => {
     } else {
         // Send the reset password email
         mailer.resetPassword(user.mail, generateAccessToken(user))
+        res.status(200).send({ code: 200, msg: 'Email envoyé' })
     }
 
 })

@@ -1,6 +1,7 @@
 require('dotenv').config()
 const nodemailer = require('nodemailer')
 
+const templates = require('./mailerTemplates')
 
 
 var transporter = nodemailer.createTransport({
@@ -19,12 +20,9 @@ const resetPassword = (recipientMail, accessToken) => {
         from: process.env.MAIL_USER,
         to: recipientMail,
         subject: 'Mot de passe oublié',
-        html: `<a href="${process.env.APP_DOMAIN}/password/reset/${accessToken}">Reset your password</p>`
+        html: templates.resetPassword(accessToken)
     }
-    transporter.sendMail(options, function (err, info) {
-        if(err) console.log(err)
-        else console.log('Email sent');
-    })
+    transporter.sendMail(options, (err, info) => console.log(err ? err : info.envelope))
 }
 const changePasswordConfirmation = (user) => {
     const options = {
@@ -33,10 +31,7 @@ const changePasswordConfirmation = (user) => {
         subject: 'Toc toc',
         html: '<p>Changed your password</p>'
     }
-    transporter.sendMail(options, function (err, info) {
-        if(err) console.log(err)
-        else console.log('Email sent');
-    })
+    transporter.sendMail(options, (err, info) => console.log(err ? err : info.envelope))
 }
 const registerConfirmation = (user) => {
     const options = {
@@ -45,10 +40,7 @@ const registerConfirmation = (user) => {
         subject: 'Toc toc',
         html: '<p>You are registered</p>'
     }
-    transporter.sendMail(options, function (err, info) {
-        if(err) console.log(err)
-        else console.log('Email sent');
-    })
+    transporter.sendMail(options, (err, info) => console.log(err ? err : info.envelope))
 }
 
 module.exports = { resetPassword, changePasswordConfirmation, registerConfirmation }

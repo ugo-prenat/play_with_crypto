@@ -3,9 +3,12 @@ const router = express.Router()
 
 const authenticateToken = require('../middleware/authenticateToken')
 
-// Models
+const bcrypt = require('bcrypt')
+const saltRounds = 10;
+
 const db = require('../database/export.database')
 const Users = db.models.users
+const Logs = db.models.logs
 
 // Redirection
 const usersWalletRoute = require('./users.wallet.routes')
@@ -27,6 +30,21 @@ router.get('/:id', authenticateToken, (req,res) => {
     // Get a specified user
     Users.findOne({ id: req.params.id })
     .then(user => res.send(user))
+})
+router.patch('/:id', authenticateToken, async (req, res) => {
+    // Set new user's password
+    const reqPassword = JSON.parse(req.body).newPassword
+    const newPassword = bcrypt.hashSync(reqPassword, saltRounds)
+
+    const user = await Users.findOne({ id: req.params.id })
+    const userLogs = await Logs.findOne({ id: req.params.id })
+
+    user.password = newPassword
+    userLogs.password = newPassword
+
+    await user.save()
+    await userLogs.save()
+    .then(() => res.status(200).send({ code: 200, msg: 'Mot de passe mis à jour' }))
 })
 router.patch('/:id', authenticateToken, async (req, res) => {
     // Update the profile image of the user

@@ -2,23 +2,23 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useHistory } from "react-router-dom"
 
+import Lottie from "react-lottie"
+import successAnim from '../../anim/success.json'
+
 export default function ResetPasswordForm() {
     const { register, handleSubmit, formState: {errors}, formState, setError } = useForm({
         mode: 'onTouched'
     })
     const { isSubmitting } = formState
+    const [isMailSent, setIsMailSent] = useState(false)
 
     const onSubmit = async data => {
         // check if the given mail is associated to an account
         fetch('/api/auth/mail', { method: 'POST', body: JSON.stringify({ mail: data.mail }) })
         .then(res => res.json())
         .then(res => {
-            if (res.code === 400) {
-                handleError(res)
-            }
-            else {
-                console.log('email sent');
-            }
+            if (res.code === 400) handleError(res)
+            else setIsMailSent(true)
         })
     }
     function handleError(error) {
@@ -55,7 +55,29 @@ export default function ResetPasswordForm() {
                 </div>
             }
 
-            <button className="input-submit" disabled={isSubmitting}>Réinitialiser mon mot de passe</button>
+            <button className="input-submit" disabled={isSubmitting}>
+                { isMailSent ?
+                    <div className="success">
+                        <div className="lottie-container">
+                            <Lottie
+                                options={{
+                                    loop: false,
+                                    autoplay: true,
+                                    animationData: successAnim,
+                                    rendererSettings: {
+                                        preserveAspectRatio: "xMidYMid slice"
+                                    }
+                                }}
+                                width={25}
+                                height={25}
+                            />
+                        </div>
+                        <p>Email envoyé</p>
+                    </div>
+                    : 
+                    'Réinitialiser mon mot de passe'
+                }
+            </button>
         </form>
     )
 }

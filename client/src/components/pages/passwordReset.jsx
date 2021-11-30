@@ -10,16 +10,18 @@ export default function PasswordReset(props) {
     })
     const { isSubmitting } = formState
     const [ showPassword, setShowPassword ] = useState(false)
-    let history = useHistory()
-    
+    const [accessToken, setAccessToken] = useState()
     const [user, setUser] = useState()
     const [isLoading, setIsLoading] = useState(true)
 
+    let history = useHistory()
+
     useEffect(() => {
-        const accessToken = props.match.params.accessToken
-        
+        const token = props.match.params.accessToken
+        setAccessToken(token)
+
         // Get user from access token
-        fetch('/api/auth', { headers: {'authorization': `Bearer ${accessToken}`} })
+        fetch('/api/auth', { headers: setAuthHeaders(token) })
         .then(res => res.json())
         .then(res => {
             // If access token is invalid, redirect to the "page not found"
@@ -32,7 +34,21 @@ export default function PasswordReset(props) {
     }, [])
 
     const onSubmit = async data => {
-        console.log(data.password);
+        // Set the new password
+        fetch(`/api/users/${user.id}`, {
+            method: 'PATCH',
+            headers: setAuthHeaders(accessToken),
+            body: JSON.stringify({ newPassword: data.password })
+        })
+        .then(res => res.json())
+        .then(res => {
+            if (res.code === 200) {
+                localStorage.setItem('accessToken', accessToken)
+                localStorage.setItem('userId', user.id)
+                
+                history.push('/login')
+            }
+        })
     }
 
     if (isLoading) { return <div className="reset-password-component"><div className="loading-container"><p>Chargement...</p></div></div> }
@@ -83,4 +99,7 @@ export default function PasswordReset(props) {
             </div>
         </div>
     )
+}
+function setAuthHeaders(accessToken) {
+    return {'authorization': `Bearer ${accessToken}`}
 }
