@@ -11,6 +11,7 @@ export default function About() {
         .then(res => {
             if (res.code !== 200) history.push('/login')
         })
+        // eslint-disable-next-line
     }, [])
 
     return (

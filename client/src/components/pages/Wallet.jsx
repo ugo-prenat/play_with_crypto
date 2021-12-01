@@ -26,6 +26,7 @@ export default function Wallet() {
                 })()
             }
         })
+        // eslint-disable-next-line
     }, [])
     
     async function getUserWallet() {

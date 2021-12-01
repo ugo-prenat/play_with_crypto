@@ -28,6 +28,7 @@ export default function Login() {
         .then(res => {
             if (res.code === 200) history.push('/')
         })
+        // eslint-disable-next-line
     }, [])
 
     return (

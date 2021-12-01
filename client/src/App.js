@@ -1,5 +1,3 @@
-import { useHistory } from "react-router-dom"
-import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 
 import './styles/app.css';

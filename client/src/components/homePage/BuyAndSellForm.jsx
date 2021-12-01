@@ -65,6 +65,7 @@ export default function BuyAndSellForm() {
             await getUserWallet()
             await fetchData()
         })()
+    // eslint-disable-next-line
     }, [])
 
     async function fetchData() {

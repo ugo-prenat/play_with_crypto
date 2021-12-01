@@ -22,6 +22,7 @@ export default function Settings() {
                 getUser(userId).then(() => setIsLoading(false))
             }
         })
+        // eslint-disable-next-line
     }, [])
 
     async function getUser() {

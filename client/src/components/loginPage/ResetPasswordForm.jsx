@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useHistory } from "react-router-dom"
 
 import Lottie from "react-lottie"
 import successAnim from '../../anim/success.json'

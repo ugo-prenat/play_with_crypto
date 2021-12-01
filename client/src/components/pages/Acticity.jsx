@@ -23,6 +23,7 @@ export default function Activity() {
                 setIsLoading(false)
             }
         })
+        // eslint-disable-next-line
     }, [])
 
     if (isLoading) { return <div className="loading-container"><p>Chargement de l'activité...</p></div> }

@@ -8,7 +8,7 @@ import successAnim from '../../anim/success.json'
 
 
 export default function ChangePasswordForm(props) {
-    const { register, handleSubmit, formState: {errors}, formState, setError } = useForm({
+    const { register, handleSubmit, formState: {errors}, setError } = useForm({
         mode: 'onTouched'
     })
     const [ showOldPassword, setShowOldPassword ] = useState(false)

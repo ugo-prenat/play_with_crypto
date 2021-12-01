@@ -22,7 +22,7 @@ const resetPassword = (recipientMail, accessToken) => {
         subject: 'Mot de passe oublié',
         html: templates.resetPassword(accessToken)
     }
-    transporter.sendMail(options, (err, info) => console.log(err ? err : info.envelope))
+    transporter.sendMail(options, (err, info) => { if (err) console.log(err) })
 }
 const changePasswordConfirmation = (recipientMail, accessToken) => {
     const options = {
@@ -31,7 +31,7 @@ const changePasswordConfirmation = (recipientMail, accessToken) => {
         subject: 'Votre mot de passe a bien été modifié',
         html: templates.changePasswordConfirmation(accessToken)
     }
-    transporter.sendMail(options, (err, info) => console.log(err ? err : info.envelope))
+    transporter.sendMail(options, (err, info) => { if (err) console.log(err) })
 }
 const registerConfirmation = (recipientMail) => {
     const options = {
@@ -40,7 +40,7 @@ const registerConfirmation = (recipientMail) => {
         subject: 'Bienvenue chez Play With Crypto !',
         html: templates.registerConfirmation()
     }
-    transporter.sendMail(options, (err, info) => console.log(err ? err : info.envelope))
+    transporter.sendMail(options, (err, info) => { if (err) console.log(err) })
 }
 
 module.exports = { resetPassword, changePasswordConfirmation, registerConfirmation }

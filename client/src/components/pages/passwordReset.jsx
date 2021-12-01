@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom"
 import '../../styles/resetPassword.css'
 
 export default function PasswordReset(props) {
-    const { register, handleSubmit, formState: {errors}, formState, setError } = useForm({
+    const { register, handleSubmit, formState: {errors}, formState } = useForm({
         mode: 'onTouched'
     })
     const { isSubmitting } = formState
@@ -31,6 +31,7 @@ export default function PasswordReset(props) {
                 setIsLoading(false)
             }
         })
+        // eslint-disable-next-line
     }, [])
 
     const onSubmit = async data => {
