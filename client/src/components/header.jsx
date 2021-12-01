@@ -26,7 +26,7 @@ function Header(props) {
   }, [props.location.pathname])
 
   async function getUser(userId) {
-      await fetch(`/api/users/${userId}`, { headers: AUTH_HEADERS })
+      await fetch(`/api/users/${userId}`, { headers: setAuthHeaders() })
       .then(res => res.json())
       .then(data => setUser(data))
   }

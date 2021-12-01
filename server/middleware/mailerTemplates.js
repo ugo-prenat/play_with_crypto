@@ -15,17 +15,31 @@ module.exports = {
             </div>
         `
     },
-    changePasswordConfirmation: () => {
+    changePasswordConfirmation: accessToken => {
         return `
             <div style="text-align: center;font-family: 'poppins', sans-serif;">
-                <p>Confirmation de changement de mot de passe</p>
+                <h1 style="font-weight: 600;">Confirmation de modification de mot de passe</h1>
+
+                <p style="margin-bottom:0;margin-top: 20px;">Le mot de passe de votre compte Play With Crypto a changé.</p>
+                <p style="margin-top:0;">Si vous n'êtes pas l'auteur de ce changement, merci de réinitialiser votre mot de passe en cliquant sur le lien ci-dessous :</p>
+
+                <a href="${process.env.APP_DOMAIN}/password/reset/${accessToken}" style="font-family: 'poppins', sans-serif;">
+                    Réinitialiser mon mot de passe
+                </a>
             </div>
         `
     },
     registerConfirmation: () => {
         return `
             <div style="text-align: center;font-family: 'poppins', sans-serif;">
-                <p>Confirmer votre addresse mail lo</p>
+                <h1 style="font-weight: 600;">Bienvenue chez Play With Crypto !</h1>
+
+                <p style="margin-bottom:0;margin-top: 20px;">Merci d'avoir créé un compte sur notre plateforme</p>
+                <p style="margin-top:0;">Vous trouverez ci-dessous un bouton pour vous connecter :</p>
+
+                <a href="${process.env.APP_DOMAIN}" style="font-family: 'poppins', sans-serif;font-size:15px;border-radius: 5px;display: inline-block;padding: 10px 15px;background-color: rgb(251, 174, 60);color: rgb(21, 22, 23);text-decoration:none;margin-top: 25px;font-weight: 500;">
+                    Accéder au site
+                </a>
             </div>
         `
     }

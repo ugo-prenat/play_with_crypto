@@ -19,7 +19,6 @@ import About from './components/pages/About'
 import Wallet from './components/pages/Wallet'
 import Settings from './components/pages/Settings'
 import Activity from './components/pages/Acticity'
-import NeedFunds from './components/pages/NeedFunds'
 import IssueReport from './components/pages/IssueReport'
 import PageNotFound from './components/pages/PageNotFound'
 import PasswordReset from "./components/pages/passwordReset";
@@ -45,7 +44,6 @@ function App() {
               <Route path='/wallet'     component={Wallet} exact />
               <Route path='/settings'   component={Settings} exact />
               <Route path='/activity'   component={Activity} exact />
-              <Route path='/need-funds' component={NeedFunds} exact />
               <Route path='/issue'      component={IssueReport} exact />
               <Route path='/password/reset/:accessToken' component={PasswordReset} exact />
               <Route path='*' component={PageNotFound} exact />

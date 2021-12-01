@@ -50,7 +50,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-radius: 15px;
+    border-radius: 10px;
     padding: 20px 25px;
     box-shadow: var(--box-shadow);
 }

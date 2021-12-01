@@ -22,12 +22,11 @@ router.post('/login', async (req, res) => {
     const password = body.password
     const user = await Logs.findOne({mail})
 
-    const isPasswordCorrect = bcrypt.compareSync(password, user.password)
-
     if (!user) {
         return res.status(400).send({ code: 400, type: 'mail', msg: 'Ce mail n\'est rattaché à aucun compte' })
     }
-    else if (!isPasswordCorrect) {
+    // Check if the given password is correct
+    else if (!bcrypt.compareSync(password, user.password)) {
         return res.status(400).send({ code: 400, type: 'password', msg: 'Mot de passe incorrect' })
     }
 
@@ -53,6 +52,9 @@ router.post('/register', async (req, res) => {
     await createLogs(userId, username, mail, password)
     .then(logs => {
         const accessToken = generateAccessToken(logs)
+        // Send the register confirmation email
+        mailer.registerConfirmation(logs.mail)
+
         res.status(200).send({ code: 200, data: {id: logs.id, accessToken }})
     })
 })
@@ -86,6 +88,8 @@ router.get('/', authenticateToken, (req, res) => {
     res.status(200).send({ code: 200, user: req.user })
 })
 router.patch('/user/:id', authenticateToken, async (req, res) => {
+    // Change password function
+    // Called from the "changePasswordForm" component
     const body = JSON.parse(req.body)
     const oldPassword = body.oldPassword
     const newPassword = bcrypt.hashSync(body.newPassword, saltRounds)
@@ -103,6 +107,10 @@ router.patch('/user/:id', authenticateToken, async (req, res) => {
 
         await user.save()
         await log.save()
+
+        // Send the change confirmation email
+        const accessToken = generateAccessToken(log)
+        mailer.changePasswordConfirmation(log.mail, accessToken)
 
         res.status(200).send({ code: 200, msg: 'Mot de passe mis à jour' })
     }

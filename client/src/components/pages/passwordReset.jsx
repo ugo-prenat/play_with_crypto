@@ -47,6 +47,8 @@ export default function PasswordReset(props) {
                 localStorage.setItem('userId', user.id)
                 
                 history.push('/login')
+                // Refresh the page to apply localstorage changes
+                window.location.reload(false)
             }
         })
     }

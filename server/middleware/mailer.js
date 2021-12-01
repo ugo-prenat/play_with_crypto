@@ -24,21 +24,21 @@ const resetPassword = (recipientMail, accessToken) => {
     }
     transporter.sendMail(options, (err, info) => console.log(err ? err : info.envelope))
 }
-const changePasswordConfirmation = (user) => {
+const changePasswordConfirmation = (recipientMail, accessToken) => {
     const options = {
         from: process.env.MAIL_USER,
-        to: user.mail,
-        subject: 'Toc toc',
-        html: '<p>Changed your password</p>'
+        to: recipientMail,
+        subject: 'Votre mot de passe a bien été modifié',
+        html: templates.changePasswordConfirmation(accessToken)
     }
     transporter.sendMail(options, (err, info) => console.log(err ? err : info.envelope))
 }
-const registerConfirmation = (user) => {
+const registerConfirmation = (recipientMail) => {
     const options = {
         from: process.env.MAIL_USER,
-        to: user.mail,
-        subject: 'Toc toc',
-        html: '<p>You are registered</p>'
+        to: recipientMail,
+        subject: 'Bienvenue chez Play With Crypto !',
+        html: templates.registerConfirmation()
     }
     transporter.sendMail(options, (err, info) => console.log(err ? err : info.envelope))
 }
