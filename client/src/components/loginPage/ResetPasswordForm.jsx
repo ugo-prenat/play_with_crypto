@@ -4,20 +4,29 @@ import { useForm } from 'react-hook-form'
 import Lottie from "react-lottie"
 import successAnim from '../../anim/success.json'
 
+import FormButton from '../FormButton'
+
+
 export default function ResetPasswordForm() {
     const { register, handleSubmit, formState: {errors}, formState, setError } = useForm({
         mode: 'onTouched'
     })
     const { isSubmitting } = formState
     const [isMailSent, setIsMailSent] = useState(false)
+    const [buttonStatus, setButtonStatus] = useState('default') // default, loading or done
 
     const onSubmit = async data => {
+        setButtonStatus('loading')
+
         // check if the given mail is associated to an account
         fetch('/api/auth/mail', { method: 'POST', body: JSON.stringify({ mail: data.mail }) })
         .then(res => res.json())
         .then(res => {
-            if (res.code === 400) handleError(res)
-            else setIsMailSent(true)
+            if (res.code === 400) {
+                handleError(res)
+                setButtonStatus('default')
+            }
+            else setButtonStatus('done')
         })
     }
     function handleError(error) {
@@ -54,7 +63,7 @@ export default function ResetPasswordForm() {
                 </div>
             }
 
-            <button className="input-submit" disabled={isSubmitting}>
+            {/* <button className="input-submit" disabled={isSubmitting}>
                 { isMailSent ?
                     <div className="success">
                         <div className="lottie-container">
@@ -76,7 +85,8 @@ export default function ResetPasswordForm() {
                     : 
                     'Réinitialiser mon mot de passe'
                 }
-            </button>
+            </button> */}
+            <FormButton status={buttonStatus} doneText="Email envoyé">Réinitialiser mon mot de passe</FormButton>
         </form>
     )
 }

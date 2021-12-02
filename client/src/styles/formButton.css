@@ -1,0 +1,18 @@
+.input-submit .success-anim {
+    width: 28px;
+    height: 28px;
+    margin-right: 5px;
+}
+.input-submit .success-anim path {
+    stroke: var(--bg-color);
+    animation:check 2s forwards cubic-bezier(.99,-.1,.01,1.02)
+}
+.input-submit .success-anim circle {
+    stroke: var(--bg-color)
+}
+
+@keyframes check {
+    to {
+        stroke-dashoffset: 0;
+    }
+}

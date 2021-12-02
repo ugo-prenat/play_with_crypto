@@ -87,6 +87,10 @@ form .show-password-container .password-eye {
 }
 form .input-submit, .guest-button {
     font-family: 'poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 48px;
     border: none;
     outline: none;
     background-color: var(--main-color);

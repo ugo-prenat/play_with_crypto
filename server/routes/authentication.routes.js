@@ -79,7 +79,8 @@ router.post('/mail', async (req, res) => {
     } else {
         // Send the reset password email
         mailer.resetPassword(user.mail, generateAccessToken(user))
-        res.status(200).send({ code: 200, msg: 'Email envoyé' })
+        //res.status(200).send({ code: 200, msg: 'Email envoyé' })
+        setTimeout(() => res.status(200).send({ code: 200, msg: 'Email envoyé' }), 2000)
     }
 
 })

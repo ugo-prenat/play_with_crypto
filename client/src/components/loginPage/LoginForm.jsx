@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useHistory } from "react-router-dom"
+import FormButton from '../FormButton'
 
 export default function RegisterForm() {
     const { register, handleSubmit, formState: {errors}, formState, setError } = useForm({

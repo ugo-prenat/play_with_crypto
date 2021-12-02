@@ -14,6 +14,9 @@
     animation: loader 1s cubic-bezier(.63,-.71,.32,1.28) infinite both;
     transform-origin: center center
 }
+.input-submit .loading-component path {
+    fill: var(--bg-color);
+}
 
 @keyframes loader {
     0% {
