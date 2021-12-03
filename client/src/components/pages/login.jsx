@@ -19,6 +19,8 @@ export default function Login() {
             localStorage.setItem('accessToken', res.data.accessToken)
             localStorage.setItem('userId', res.data.id)
             history.push('/')
+            // Refresh the page to apply localstorage changes
+            window.location.reload(false)
         })
     }
 

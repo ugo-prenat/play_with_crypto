@@ -11,8 +11,6 @@ export default function ResetPasswordForm() {
     const { register, handleSubmit, formState: {errors}, formState, setError } = useForm({
         mode: 'onTouched'
     })
-    const { isSubmitting } = formState
-    const [isMailSent, setIsMailSent] = useState(false)
     const [buttonStatus, setButtonStatus] = useState('default') // default, loading or done
 
     const onSubmit = async data => {

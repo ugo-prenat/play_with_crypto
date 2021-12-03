@@ -7,12 +7,14 @@ export default function RegisterForm() {
     const { register, handleSubmit, formState: {errors}, formState, setError } = useForm({
         mode: 'onTouched'
     })
-    const { isSubmitting } = formState
+    const [buttonStatus, setButtonStatus] = useState('default')
     const [ showPassword, setShowPassword ] = useState(false)
     const [focus, setFocus] = useState('mail')
     let history = useHistory()
 
     const onSubmit = async data => {
+        setButtonStatus('loading')
+
         const userLogs = {
             mail: data.mail.toLowerCase(),
             password: data.password
@@ -20,10 +22,16 @@ export default function RegisterForm() {
         await fetch('/api/auth/login', { method: 'POST', body: JSON.stringify(userLogs) })
         .then(res => res.json())
         .then(res => {
-            if (res.code === 400) handleError(res)
+            if (res.code === 400) {
+                setButtonStatus('default')
+                handleError(res)
+            }
             else {
                 localStorage.setItem('accessToken', res.data.accessToken)
                 localStorage.setItem('userId', res.data.id)
+
+                setButtonStatus('done')
+
                 history.push('/')
                 // Refresh the page to apply localstorage changes
                 window.location.reload(false)
@@ -107,7 +115,8 @@ export default function RegisterForm() {
                 </div>
             }
 
-            <button className="input-submit" disabled={isSubmitting}>Connexion</button>
+            {/* <button className="input-submit" disabled={isSubmitting}>Connexion</button> */}
+            <FormButton status={buttonStatus} doneText="Connexion réussie">Connexion</FormButton>
 
         </form>
     )

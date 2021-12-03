@@ -6,6 +6,7 @@ const authenticateToken = require('../middleware/authenticateToken')
 
 const db = require('../database/export.database')
 const Users = db.models.users
+const Cryptos = db.models.crypto
 
 const euro = { symbol: 'EUR', name: 'Euro', icon: 'https://s2.coinmarketcap.com/static/cloud/img/fiat-flags/EUR.svg' }
 
@@ -28,8 +29,10 @@ router.post('/:id',authenticateToken, async (req, res) => {
     if (from.cryptoAmount >= reqData.from.cryptoAmount) {
         userWallet[from.walletIndex] = debitWallet(userWallet[from.walletIndex], reqData.from.cryptoAmount)
 
-        // If the crypto amount is below 0, delete it from the wallet
-        if (userWallet[from.walletIndex].cryptoAmount < 0.001) userWallet.splice(from.walletIndex, 1)
+        // If the crypto price is below 0.001€, delete it from the wallet
+        const cryptoPrice = await getCryptoPrice(userWallet[from.walletIndex])
+
+        if (cryptoPrice < 0.001) userWallet.splice(from.walletIndex, 1)
     } else {
         foundError = true
         res.send({ code: 400, msg: `Insuffisant dans votre protefeuille` })
@@ -161,6 +164,20 @@ function isLastActivityToday(userActivity) {
         else return false
     }
     else return false
+}
+async function getCryptoPrice(cryptoWallet) {
+    // Return the price of a crypto
+    const cryptoList = await Cryptos.findById('6151823848fe492bdae20310')
+    let toReturn
+
+    cryptoList.prices.forEach(crypto => {
+        if (crypto.base === cryptoWallet.symbol) {
+            toReturn = crypto.amount * cryptoWallet.cryptoAmount
+        } else if (cryptoWallet.symbol === 'EUR') {
+            toReturn = cryptoWallet.cryptoAmount
+        }
+    })
+    return toReturn
 }
 
 module.exports = router

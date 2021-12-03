@@ -86,11 +86,14 @@ form .show-password-container .password-eye {
     display: none;
 }
 form .input-submit, .guest-button {
+    position: relative;
     font-family: 'poppins', sans-serif;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 48px;
+    height: 48px;
+    overflow: hidden;
     border: none;
     outline: none;
     background-color: var(--main-color);
@@ -102,6 +105,33 @@ form .input-submit, .guest-button {
     cursor: pointer;
     margin: 5% 0 1% 0;
 }
+.guest-button {
+    padding: 10px 20px;
+    height: auto;
+    width: 200px;
+}
+form .input-submit .state-container {
+    position: absolute;
+    top: 0px;
+}
+form .input-submit span {
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+@keyframes show-default {
+    from { top: -96px }
+    to { top: 0px }
+}
+@keyframes show-loading {
+    from { top: 0 }
+    to { top: -48px }
+}
+@keyframes show-done {
+    from { top: -48px }
+    to { top: -96px }
+}
 form .form-links-container p {
     margin: 0;
     font-size: 13px;
@@ -109,10 +139,6 @@ form .form-links-container p {
 }
 form .form-links-container span {
     color: var(--main-color);
-}
-form .password-error-msg-container svg {
-    /* align-self: normal; */
-    /* margin-top: 1%; */
 }
 /* MESSAGES */
  form .error-msg-container {

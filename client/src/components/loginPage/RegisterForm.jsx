@@ -1,17 +1,20 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useHistory } from "react-router-dom"
+import FormButton from '../FormButton'
 
 export default function RegisterForm() {
     const { register, handleSubmit, formState: {errors}, formState, setError } = useForm({
         mode: 'onTouched'
     })
-    const { isSubmitting } = formState
     const [ showPassword, setShowPassword ] = useState(false)
     const [focus, setFocus] = useState('username')
+    const [buttonStatus, setButtonStatus] = useState('default')
     let history = useHistory()
 
     const onSubmit = async data => {
+        setButtonStatus('loading')
+
         const user = {
             username: data.username,
             mail: data.mail,
@@ -21,10 +24,16 @@ export default function RegisterForm() {
         await fetch('/api/auth/register', { method: 'POST', body: JSON.stringify(user) })
         .then(res => res.json())
         .then(res => {
-            if (res.code === 400) handleError(res)
+            if (res.code === 400) {
+                setButtonStatus('default')
+                handleError(res)
+            }
             else {
                 localStorage.setItem('accessToken', res.data.accessToken)
                 localStorage.setItem('userId', res.data.id)
+
+                setButtonStatus('done')
+
                 history.push('/')
                 // Refresh the page to apply localstorage changes
                 window.location.reload(false)
@@ -131,7 +140,8 @@ export default function RegisterForm() {
                 </div>
             }
 
-            <button className="input-submit" disabled={isSubmitting}>Inscription</button>
+            {/* <button className="input-submit" disabled={isSubmitting}>Inscription</button> */}
+            <FormButton status={buttonStatus} doneText="Inscription réussie">Inscription</FormButton>
         </form>
     )
 }
