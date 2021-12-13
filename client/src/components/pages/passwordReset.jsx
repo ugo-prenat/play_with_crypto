@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form'
 import { useHistory } from "react-router-dom"
 
 import '../../styles/resetPassword.css'
+import FormButton from '../FormButton'
 
 export default function PasswordReset(props) {
     const { register, handleSubmit, formState: {errors}, formState } = useForm({
@@ -36,7 +37,7 @@ export default function PasswordReset(props) {
 
     const onSubmit = async data => {
         // Set the new password
-        fetch(`/api/users/${user.id}`, {
+        fetch(`/api/users/${user.id}/password`, {
             method: 'PATCH',
             headers: setAuthHeaders(accessToken),
             body: JSON.stringify({ newPassword: data.password })

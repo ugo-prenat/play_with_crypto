@@ -12,7 +12,6 @@ const euro = { symbol: 'EUR', name: 'Euro', icon: 'https://s2.coinmarketcap.com/
 
 router.post('/:id',authenticateToken, async (req, res) => {
     // Make a transaction between 2 crypto in the user wallet
-
     let foundError = false
 
     // Get request data

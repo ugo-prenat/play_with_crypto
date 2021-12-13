@@ -4,11 +4,11 @@ import { useHistory } from "react-router-dom"
 
 import CryptoListSelect from './CryptoListSelect';
 import WalletSelect from './WalletSelect';
+import FormButton from '../FormButton';
 
 import { AUTH_HEADERS } from '../../authHeaders'
 
-import Lottie from "react-lottie"
-import successAnim from '../../anim/success.json'
+
 
 export default function BuyAndSellForm() {
     const { handleSubmit } = useForm({
@@ -20,7 +20,7 @@ export default function BuyAndSellForm() {
     const [isLoading, setIsLoading] = useState(true)
 
     const [error, setError] = useState()
-    const [successTransaction, setSuccessTransaction] = useState(false)
+    const [buttonStatus, setButtonStatus] = useState('default')
 
     const [fromCryptoAmount, setFromCryptoAmount] = useState('')
     const [fromCrypto, setFromCrypto] = useState('')
@@ -86,6 +86,8 @@ export default function BuyAndSellForm() {
     }
 
     const onSubmit = async e => {
+        setButtonStatus('loading')
+
         const data = {
             from: {
                 symbol: fromCrypto,
@@ -101,12 +103,15 @@ export default function BuyAndSellForm() {
         await fetch(`/api/users/wallet/${userId}`, { method: 'POST', headers: AUTH_HEADERS, body: JSON.stringify(data)})
         .then(res => res.json())
         .then(response => {
-            if (response.code === 400) setError(response.msg)
+            if (response.code === 400) {
+                setButtonStatus('default')
+                setError(response.msg)
+            }
             else {
-                setSuccessTransaction(true)
+                setButtonStatus('done')
 
                 setTimeout(() => {
-                    setSuccessTransaction(false)
+                    setButtonStatus('default')
                 }, 3000);
             }
         })
@@ -188,7 +193,7 @@ export default function BuyAndSellForm() {
                             <p className="symbol">{euro.base}</p>
                         </div>
                     </div>
-                    <input type="number" step="0.0000000001" min="0" value={currencyAmount.toString().substring(0, 8)} onChange={handleCurrencyAmount} placeholder="0" />
+                    <input type="number" min="0" step="0.0000000001" value={currencyAmount.toString().substring(0, 8)} onChange={handleCurrencyAmount} placeholder="0" />
                 </div>
 
                 <div className="down-arrow-container sign-container">
@@ -205,29 +210,8 @@ export default function BuyAndSellForm() {
                         value={parseFloat(toCryptoAmount).toString().substring(0, 8)}
                         onChange={handleToCryptoAmount} />
                 </div>
-                <button className="input-submit">
-                    { successTransaction ?
-                        <div className="success">
-                            <div className="lottie-container">
-                                <Lottie
-                                    options={{
-                                        loop: false,
-                                        autoplay: true,
-                                        animationData: successAnim,
-                                        rendererSettings: {
-                                            preserveAspectRatio: "xMidYMid slice"
-                                        }
-                                    }}
-                                    width={25}
-                                    height={25}
-                                />
-                            </div>
-                            <p>Transaction effectuée</p>
-                        </div>
-                        :
-                        'Confirmer'
-                    }
-                </button>
+
+                <FormButton status={buttonStatus} doneText="Transaction effectuée">Confirmer</FormButton>
                 
                 { error &&
                     <div className="error-msg">

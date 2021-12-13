@@ -60,30 +60,7 @@ export default function ResetPasswordForm() {
                     <p className="error-msg">{errors.mail && errors.mail.message}</p>
                 </div>
             }
-
-            {/* <button className="input-submit" disabled={isSubmitting}>
-                { isMailSent ?
-                    <div className="success">
-                        <div className="lottie-container">
-                            <Lottie
-                                options={{
-                                    loop: false,
-                                    autoplay: true,
-                                    animationData: successAnim,
-                                    rendererSettings: {
-                                        preserveAspectRatio: "xMidYMid slice"
-                                    }
-                                }}
-                                width={25}
-                                height={25}
-                            />
-                        </div>
-                        <p>Email envoyé</p>
-                    </div>
-                    : 
-                    'Réinitialiser mon mot de passe'
-                }
-            </button> */}
+            
             <FormButton status={buttonStatus} doneText="Email envoyé">Réinitialiser mon mot de passe</FormButton>
         </form>
     )

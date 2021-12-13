@@ -31,7 +31,8 @@ router.get('/:id', authenticateToken, (req,res) => {
     Users.findOne({ id: req.params.id })
     .then(user => res.send(user))
 })
-router.patch('/:id', authenticateToken, async (req, res) => {
+router.patch('/:id/password', authenticateToken, async (req, res) => {
+    console.log('good adress');
     // Set new user's password
     const reqPassword = JSON.parse(req.body).newPassword
     const newPassword = bcrypt.hashSync(reqPassword, saltRounds)

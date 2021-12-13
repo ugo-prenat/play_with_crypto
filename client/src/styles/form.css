@@ -113,24 +113,13 @@ form .input-submit, .guest-button {
 form .input-submit .state-container {
     position: absolute;
     top: 0px;
+    transition: top .5s ease-in-out;
 }
 form .input-submit span {
     height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-@keyframes show-default {
-    from { top: -96px }
-    to { top: 0px }
-}
-@keyframes show-loading {
-    from { top: 0 }
-    to { top: -48px }
-}
-@keyframes show-done {
-    from { top: -48px }
-    to { top: -96px }
 }
 form .form-links-container p {
     margin: 0;

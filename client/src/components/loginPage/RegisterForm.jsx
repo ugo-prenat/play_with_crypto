@@ -140,7 +140,6 @@ export default function RegisterForm() {
                 </div>
             }
 
-            {/* <button className="input-submit" disabled={isSubmitting}>Inscription</button> */}
             <FormButton status={buttonStatus} doneText="Inscription réussie">Inscription</FormButton>
         </form>
     )

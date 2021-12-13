@@ -115,7 +115,6 @@ export default function RegisterForm() {
                 </div>
             }
 
-            {/* <button className="input-submit" disabled={isSubmitting}>Connexion</button> */}
             <FormButton status={buttonStatus} doneText="Connexion réussie">Connexion</FormButton>
 
         </form>

@@ -3,8 +3,7 @@ import { useForm } from 'react-hook-form'
 
 import { AUTH_HEADERS } from '../../authHeaders'
 
-import Lottie from "react-lottie"
-import successAnim from '../../anim/success.json'
+import FormButton from '../FormButton'
 
 
 export default function ChangePasswordForm(props) {
@@ -13,10 +12,13 @@ export default function ChangePasswordForm(props) {
     })
     const [ showOldPassword, setShowOldPassword ] = useState(false)
     const [ showNewPassword, setShowNewPassword ] = useState(false)
-    const [showSuccessMsg, setShowSuccessMsg] = useState(false)
+    const [ buttonStatus, setButtonStatus ] = useState('default')
+
     const [focus, setFocus] = useState('oldPassword')
 
     const onSubmit = async data => {
+        setButtonStatus('loading')
+
         const passwords = {
             oldPassword: data.oldPassword,
             newPassword: data.newPassword,
@@ -26,9 +28,11 @@ export default function ChangePasswordForm(props) {
         await fetch(`/api/auth/user/${userId}`, { method: 'PATCH', body: JSON.stringify(passwords), headers: AUTH_HEADERS })
         .then(res => res.json())
         .then(res => {
-            if (res.code !== 200) handleError(res.msg)
-            else {
-                setShowSuccessMsg(true)
+            if (res.code !== 200) {
+                setButtonStatus('default')
+                handleError(res.msg)
+            } else {
+                setButtonStatus('done')
                 setTimeout(() => props.hideForm(), 1500)
             }
         })
@@ -122,28 +126,7 @@ export default function ChangePasswordForm(props) {
                     </div>
                 }
 
-                <button className="input-submit">
-                    { showSuccessMsg ?
-                        <div className="success">
-                            <div className="lottie-container">
-                                <Lottie
-                                    options={{
-                                        loop: false,
-                                        autoplay: true,
-                                        animationData: successAnim,
-                                        rendererSettings: {
-                                            preserveAspectRatio: "xMidYMid slice"
-                                        }
-                                    }}
-                                    width={25}
-                                    height={25}
-                                />
-                            </div>
-                            <p>Mot de passe modifié</p>
-                        </div>
-                        : 'Changer'
-                    }
-                </button>
+                <FormButton status={buttonStatus} doneText="Mot de passe modifié">Changer</FormButton>
             </form>
         </div>
     )

@@ -41,10 +41,10 @@
     color: var(--error-color);
     font-size: 13px;
 }
-.user-data-container .loading-component {
+/* .user-data-container .loading-component {
     position: absolute;
     left: -35px;
-}
+} */
 .success-change-anim {
     position: absolute;
     left: -35px;
