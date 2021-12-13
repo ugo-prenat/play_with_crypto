@@ -3,7 +3,6 @@ import { useForm } from 'react-hook-form'
 import { useHistory } from "react-router-dom"
 
 import '../../styles/resetPassword.css'
-import FormButton from '../FormButton'
 
 export default function PasswordReset(props) {
     const { register, handleSubmit, formState: {errors}, formState } = useForm({

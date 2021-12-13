@@ -1,14 +1,11 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
-import Lottie from "react-lottie"
-import successAnim from '../../anim/success.json'
-
 import FormButton from '../FormButton'
 
 
 export default function ResetPasswordForm() {
-    const { register, handleSubmit, formState: {errors}, formState, setError } = useForm({
+    const { register, handleSubmit, formState: {errors}, setError } = useForm({
         mode: 'onTouched'
     })
     const [buttonStatus, setButtonStatus] = useState('default') // default, loading or done

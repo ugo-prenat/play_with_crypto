@@ -106,6 +106,7 @@ export default function BuyAndSellForm() {
             if (response.code === 400) {
                 setButtonStatus('default')
                 setError(response.msg)
+                setTimeout(() => setError(), 5000)
             }
             else {
                 setButtonStatus('done')
@@ -176,9 +177,10 @@ export default function BuyAndSellForm() {
                     <WalletSelect newSelect={data => setFromCrypto(data)} options={userWallet} cryptoPrices={cryptoList} className="border-bottom" />
                     <input
                         type="number"
-                        min="0"
+                        min="0.000001"
                         step="0.0000000001"
                         placeholder="0"
+                        required="required"
                         value={parseFloat(fromCryptoAmount).toString().substring(0, 8)}
                         onChange={handleFromCryptoAmount} />
                 </div>
@@ -193,7 +195,7 @@ export default function BuyAndSellForm() {
                             <p className="symbol">{euro.base}</p>
                         </div>
                     </div>
-                    <input type="number" min="0" step="0.0000000001" value={currencyAmount.toString().substring(0, 8)} onChange={handleCurrencyAmount} placeholder="0" />
+                    <input type="number" min="0.000001" required="required" step="0.0000000001" value={currencyAmount.toString().substring(0, 8)} onChange={handleCurrencyAmount} placeholder="0" />
                 </div>
 
                 <div className="down-arrow-container sign-container">
@@ -204,9 +206,10 @@ export default function BuyAndSellForm() {
                     <CryptoListSelect newSelect={data => setToCrypto(data)} options={cryptoList} />
                     <input
                         type="number"
-                        min="0"
+                        min="0.000001"
                         step="0.0000000001"
                         placeholder="0"
+                        required="required"
                         value={parseFloat(toCryptoAmount).toString().substring(0, 8)}
                         onChange={handleToCryptoAmount} />
                 </div>

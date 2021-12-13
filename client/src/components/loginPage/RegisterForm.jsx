@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom"
 import FormButton from '../FormButton'
 
 export default function RegisterForm() {
-    const { register, handleSubmit, formState: {errors}, formState, setError } = useForm({
+    const { register, handleSubmit, formState: {errors}, setError } = useForm({
         mode: 'onTouched'
     })
     const [ showPassword, setShowPassword ] = useState(false)

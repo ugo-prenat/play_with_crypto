@@ -34,7 +34,7 @@ router.post('/:id',authenticateToken, async (req, res) => {
         if (cryptoPrice < 0.001) userWallet.splice(from.walletIndex, 1)
     } else {
         foundError = true
-        res.send({ code: 400, msg: `Insuffisant dans votre protefeuille` })
+        res.send({ code: 400, msg: `Vous avez ${from.cryptoAmount.toString().substring(0,8)} ${from.symbol} dans votre portefeuille` })
     }
 
     // CREDIT
