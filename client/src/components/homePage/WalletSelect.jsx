@@ -22,7 +22,7 @@ export default function WalletSelect(props) {
     }
 
     return (
-        <div>
+        <div className="select-container">
             <div className="select">
                 <div className="selected" onClick={() => setShowOptionList(!showOptionList)}>
                     <img src={selected.icon} alt={selected.name + '-icon'} />

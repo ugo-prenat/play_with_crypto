@@ -114,10 +114,16 @@
     justify-content: space-between;
     padding: 20px 0;
 }
+.input-container .select-container {
+    width: 50%;
+    float: left;
+}
+
 .input-container:first-child {
     padding-top: 0;
 }
 .input-container input {
+    width: 50%;
     background-color: transparent;
     color: white;
     border: none;
