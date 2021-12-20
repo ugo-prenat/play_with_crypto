@@ -4,12 +4,11 @@ export default function CryptoListSelect(props) {
     const [selected, setSelected] = useState(props.options[1])
     const [showOptionList, setShowOptionList] = useState(false)
 
-    function handleSelect(e) {
+    function handleSelect(index) {
         setShowOptionList(false)
-        const optionIndex = e.target.getAttribute('index')
-        setSelected(props.options[optionIndex])
+        setSelected(props.options[index])
         // Send to parent the new selected crypto base
-        props.newSelect(props.options[optionIndex].base)
+        props.newSelect(props.options[index].base)
     }
 
     return (
@@ -27,16 +26,16 @@ export default function CryptoListSelect(props) {
             {showOptionList && 
                 <div className="option-list">
                     {props.options.map((crypto, index) => {
-                        return <div className="option" key={index} index={index} onClick={handleSelect}>
+                        return <div className="option" key={index} onClick={() => handleSelect(index)}>
                         <div className="crypto-name-container">
-                            <img src={crypto.icon} index={index} alt={crypto.symbol.toLowerCase() + '-icon'} />
-                            <div className="crypto-name" index={index}>
-                                <p className="name" index={index}>{crypto.name.charAt(0).toUpperCase() + crypto.name.slice(1)}</p>
-                                <p className="symbol" index={index}>{crypto.base}</p>
+                            <img src={crypto.icon} alt={crypto.symbol.toLowerCase() + '-icon'} />
+                            <div className="crypto-name">
+                                <p className="name">{crypto.name.charAt(0).toUpperCase() + crypto.name.slice(1)}</p>
+                                <p className="symbol">{crypto.base}</p>
                             </div>
                         </div>
                         <div className="crypto-price-container">
-                            {crypto.base !== 'EUR' && <p className="crypto-price" index={index}>1 {crypto.base} = {crypto.amount.substring(0, 8)}{crypto.symbol}</p>}
+                            {crypto.base !== 'EUR' && <p className="crypto-price">1 {crypto.base} = {crypto.amount.substring(0, 8)}{crypto.symbol}</p>}
                         </div>
                     </div>
                     })}

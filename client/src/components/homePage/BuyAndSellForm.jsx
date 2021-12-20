@@ -9,7 +9,6 @@ import FormButton from '../FormButton';
 import { AUTH_HEADERS } from '../../authHeaders'
 
 
-
 export default function BuyAndSellForm() {
     const { handleSubmit } = useForm({
         mode: 'onTouched'
@@ -22,13 +21,13 @@ export default function BuyAndSellForm() {
     const [error, setError] = useState()
     const [buttonStatus, setButtonStatus] = useState('default')
 
-    const [fromCryptoAmount, setFromCryptoAmount] = useState('')
+    const [fromCryptoAmount, setFromCryptoAmount] = useState(0)
     const [fromCrypto, setFromCrypto] = useState('')
 
-    const [toCryptoAmount, setToCryptoAmount] = useState('')
+    const [toCryptoAmount, setToCryptoAmount] = useState(0)
     const [toCrypto, setToCrypto] = useState('')
 
-    const [currencyAmount, setCurrencyAmount] = useState('')
+    const [currencyAmount, setCurrencyAmount] = useState(0)
 
     const euro = { base: 'EUR', symbol: '€',name: 'Euro', amount: '1', icon: 'https://s2.coinmarketcap.com/static/cloud/img/fiat-flags/EUR.svg' }
 
@@ -117,16 +116,14 @@ export default function BuyAndSellForm() {
             }
         })
     }
-    const handleFromCryptoAmount = e => {
-        const newAmount = e.target.value
+    const handleFromCryptoAmount = (newAmount, newFromCrypto) => {
         setFromCryptoAmount(newAmount)
 
-        const fromCryptoPrice = getCryptoPrice(fromCrypto, cryptoList)
+        const fromCryptoPrice = getCryptoPrice(newFromCrypto, cryptoList)
         const toCryptoPrice = getCryptoPrice(toCrypto, cryptoList)
 
-        if (fromCrypto !== 'EUR') {
+        if (newFromCrypto !== 'EUR') {
             const newCurrecnyAmount = newAmount * fromCryptoPrice
-            
 
             setCurrencyAmount(newCurrecnyAmount)
             setToCryptoAmount(newCurrecnyAmount / toCryptoPrice)
@@ -150,12 +147,11 @@ export default function BuyAndSellForm() {
             setToCryptoAmount(newAmount / toCryptoPrice)
         }
     }
-    const handleToCryptoAmount = e => {
-        const newAmount = e.target.value
+    const handleToCryptoAmount = (newAmount, newToCrypto) => {
         setToCryptoAmount(newAmount)
 
         const fromCryptoPrice = getCryptoPrice(fromCrypto, cryptoList)
-        const toCryptoPrice = getCryptoPrice(toCrypto, cryptoList)
+        const toCryptoPrice = getCryptoPrice(newToCrypto, cryptoList)
 
         const newCurrecnyAmount = newAmount * toCryptoPrice
 
@@ -167,6 +163,14 @@ export default function BuyAndSellForm() {
             setFromCryptoAmount(newCurrecnyAmount)
         }
     }
+    const handleNewWalletSelect = async data => {
+        setFromCrypto(data)
+        handleFromCryptoAmount(fromCryptoAmount, data)
+    }
+    const handleNewCryptoListSelect = async data => {
+        setToCrypto(data)
+        handleToCryptoAmount(fromCryptoAmount, data)
+    }
     
     if (isLoading) { return <div className="loading-container"><p>Chargement...</p></div> }
 
@@ -174,7 +178,7 @@ export default function BuyAndSellForm() {
         <div>
             <form className="buy-and-sell-form" onSubmit={handleSubmit(onSubmit)}>
                 <div className="input-container border-bottom">
-                    <WalletSelect newSelect={data => setFromCrypto(data)} options={userWallet} cryptoPrices={cryptoList} className="border-bottom" />
+                    <WalletSelect newSelect={data => handleNewWalletSelect(data)} options={userWallet} cryptoPrices={cryptoList} className="border-bottom" />
                     <input
                         type="number"
                         min="0.000001"
@@ -182,7 +186,7 @@ export default function BuyAndSellForm() {
                         placeholder="0"
                         required="required"
                         value={parseFloat(fromCryptoAmount).toString().substring(0, 8)}
-                        onChange={handleFromCryptoAmount} />
+                        onChange={e => handleFromCryptoAmount(e.target.value, fromCrypto)} />
                 </div>
 
                 <div className="equal-sign-container sign-container"><span>=</span></div>
@@ -203,7 +207,7 @@ export default function BuyAndSellForm() {
                 </div>
                 
                 <div className="input-container to-input-container">
-                    <CryptoListSelect newSelect={data => setToCrypto(data)} options={cryptoList} />
+                    <CryptoListSelect newSelect={data => handleNewCryptoListSelect(data)} options={cryptoList} />
                     <input
                         type="number"
                         min="0.000001"
@@ -211,7 +215,7 @@ export default function BuyAndSellForm() {
                         placeholder="0"
                         required="required"
                         value={parseFloat(toCryptoAmount).toString().substring(0, 8)}
-                        onChange={handleToCryptoAmount} />
+                        onChange={e => handleToCryptoAmount(e.target.value, toCrypto)} />
                 </div>
 
                 <FormButton status={buttonStatus} doneText="Transaction effectuée">Confirmer</FormButton>
