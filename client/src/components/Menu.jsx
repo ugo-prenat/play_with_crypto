@@ -1,14 +1,20 @@
+import { useState } from "react"
 import { withRouter } from "react-router"
 import { Link } from "react-router-dom"
 
 function Menu(props) {
+    const [isRetract, setIsRetract] = useState(false)
   
     return (
-        <div className="menu">
+        <div className={isRetract ? "menu retracted-menu" : "menu"}>
 
-            <div className="logo-container">
-            <svg className="logo" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlnssvgjs="http://svgjs.com/svgjs"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-80 -20 640 640"><path d="M176 140c0-5.523-4.477-10-10-10s-10 4.477-10 10v70h-20v240h20v60c0 5.523 4.477 10 10 10s10-4.477 10-10v-60h20V210h-20zm140-40c0-5.523-4.477-10-10-10s-10 4.477-10 10v70h-20v240h20v60c0 5.523 4.477 10 10 10s10-4.477 10-10v-60h20V170h-20zM36 10c0-5.523-4.477-10-10-10S16 4.477 16 10v70H-4v240h20v60c0 5.523 4.477 10 10 10s10-4.477 10-10v-60h20V80H36zm440 280h-20v-70c0-5.523-4.477-10-10-10s-10 4.477-10 10v70h-20v240h20v60c0 5.523 4.477 10 10 10s10-4.477 10-10v-60h20zm0 0" className="color000 svgShape"/></svg></svg>
+          <div className="logo-container">
+            <svg className="logo" fill="red" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlnssvgjs="http://svgjs.com/svgjs"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-80 -20 640 640"><path d="M176 140c0-5.523-4.477-10-10-10s-10 4.477-10 10v70h-20v240h20v60c0 5.523 4.477 10 10 10s10-4.477 10-10v-60h20V210h-20zm140-40c0-5.523-4.477-10-10-10s-10 4.477-10 10v70h-20v240h20v60c0 5.523 4.477 10 10 10s10-4.477 10-10v-60h20V170h-20zM36 10c0-5.523-4.477-10-10-10S16 4.477 16 10v70H-4v240h20v60c0 5.523 4.477 10 10 10s10-4.477 10-10v-60h20V80H36zm440 280h-20v-70c0-5.523-4.477-10-10-10s-10 4.477-10 10v70h-20v240h20v60c0 5.523 4.477 10 10 10s10-4.477 10-10v-60h20zm0 0" className="color000 svgShape"/></svg></svg>
             <h1>Play with crypto</h1>
+          </div>
+
+          <div className="retract-menu-button" onClick={() => setIsRetract(!isRetract)}>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="48" d="M328 112L184 256l144 144"/></svg>
           </div>
 
           <div className="links-container">

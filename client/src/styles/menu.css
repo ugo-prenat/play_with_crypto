@@ -1,28 +1,58 @@
 .menu-container {
+    width: 250px;
+}
+.menu-container .menu {
     background-color: var(--light-bg-color);
     height: 100vh;
-    width: 17%;
-    min-width: 200px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+}
+.menu-container .retracted-menu {
+    width: 5%;
+    background-color: red;
 }
 .menu-container .logo-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 10vh;
-    margin-bottom: 15vh;
+    margin-top: 4vh;
 }
 .menu-container .logo-container .logo {
     fill: var(--main-color);
-    width: 40px;
-    height: 40px;
-    margin-right: 5%;
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
 }
-  
 .menu-container .logo-container h1 {
-    font-size: 17px;
+    font-size: 18px;
+    font-weight: 600;
+}
+.menu-container .retract-menu-button {
+    position: absolute;
+    top: 20vh;
+    right: -15px;
+    background-color: var(--light-bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+}
+.retracted-menu .retract-menu-button {
+    transform: rotate(180deg);
+}
+.menu-container .retract-menu-button svg {
+    width: 50%;
+    height: 50%;
 }
 .menu-container .links-container {
-    height: 60vh;
     display: flex;
     flex-direction: column;
 }
@@ -33,7 +63,6 @@
     text-decoration: none;
     padding: 1.5vh 0;
     padding-left: 5%;
-    transition: background-color .2s;
     position: relative;
 }
 .menu-container .links-container a.active {
@@ -64,11 +93,11 @@
     background-color: rgba(100, 100, 100, .1);
 }
 .menu-container .bottom-menu-container {
-    height: 15vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-left: 15%;
+    margin-left: 20px;
+    margin-bottom: 20px;
 }
 .menu-container .bottom-menu-container a {
     display: flex;

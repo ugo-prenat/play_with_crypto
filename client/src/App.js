@@ -19,7 +19,7 @@ import Settings from './components/pages/Settings'
 import Activity from './components/pages/Acticity'
 import IssueReport from './components/pages/IssueReport'
 import PageNotFound from './components/pages/PageNotFound'
-import PasswordReset from "./components/pages/passwordReset";
+import PasswordReset from "./components/pages/PasswordReset";
 
 function App() {
   return (
@@ -44,7 +44,7 @@ function App() {
               <Route path='/activity'   component={Activity} exact />
               <Route path='/issue'      component={IssueReport} exact />
               <Route path='/password/reset/:accessToken' component={PasswordReset} exact />
-              <Route path='*' component={PageNotFound} exact />
+              <Route path='*'           component={PageNotFound} exact />
             </Switch>
           </div>
         </div>

@@ -19,6 +19,7 @@ a {
   display: flex;
 }
 .header-and-main-component-container {
-  width: 83%;
+  /* width: calc(100% - 250px); */
+  width: -webkit-fill-available;
   height: 100vh;
 }
