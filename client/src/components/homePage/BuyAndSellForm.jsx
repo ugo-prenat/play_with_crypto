@@ -21,13 +21,13 @@ export default function BuyAndSellForm() {
     const [error, setError] = useState()
     const [buttonStatus, setButtonStatus] = useState('default')
 
-    const [fromCryptoAmount, setFromCryptoAmount] = useState(0)
+    const [fromCryptoAmount, setFromCryptoAmount] = useState('')
     const [fromCrypto, setFromCrypto] = useState('')
 
-    const [toCryptoAmount, setToCryptoAmount] = useState(0)
+    const [toCryptoAmount, setToCryptoAmount] = useState('')
     const [toCrypto, setToCrypto] = useState('')
 
-    const [currencyAmount, setCurrencyAmount] = useState(0)
+    const [currencyAmount, setCurrencyAmount] = useState('')
 
     const euro = { base: 'EUR', symbol: '€',name: 'Euro', amount: '1', icon: 'https://s2.coinmarketcap.com/static/cloud/img/fiat-flags/EUR.svg' }
 
