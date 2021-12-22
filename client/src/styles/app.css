@@ -19,7 +19,6 @@ a {
   display: flex;
 }
 .header-and-main-component-container {
-  /* width: calc(100% - 250px); */
-  width: -webkit-fill-available;
+  flex-grow: 1;
   height: 100vh;
 }

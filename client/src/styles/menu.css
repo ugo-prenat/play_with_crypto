@@ -1,20 +1,13 @@
-.menu-container {
+.menu-container, .retracted-menu {
     width: 250px;
-}
-.menu-container .menu {
     background-color: var(--light-bg-color);
     height: 100vh;
-    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     position: relative;
 }
-.menu-container .retracted-menu {
-    width: 5%;
-    background-color: red;
-}
-.menu-container .logo-container {
+.menu-container .logo-container, .retracted-menu .logo-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -31,7 +24,7 @@
     font-size: 18px;
     font-weight: 600;
 }
-.menu-container .retract-menu-button {
+.menu-container .retract-menu-button, .retracted-menu .retract-menu-button {
     position: absolute;
     top: 20vh;
     right: -15px;
@@ -45,18 +38,15 @@
     box-shadow: var(--box-shadow);
     cursor: pointer;
 }
-.retracted-menu .retract-menu-button {
-    transform: rotate(180deg);
-}
-.menu-container .retract-menu-button svg {
+.menu-container .retract-menu-button svg, .retracted-menu .retract-menu-button svg {
     width: 50%;
     height: 50%;
 }
-.menu-container .links-container {
+.menu-container .links-container, .retracted-menu .links-container {
     display: flex;
     flex-direction: column;
 }
-.menu-container .links-container a {
+.menu-container .links-container a, .retracted-menu .links-container a {
     display: flex;
     align-items: center;
     color: white;
@@ -64,6 +54,7 @@
     padding: 1.5vh 0;
     padding-left: 5%;
     position: relative;
+    transition: background-color .1s;
 }
 .menu-container .links-container a.active {
     color: var(--main-color);
@@ -78,15 +69,15 @@
     left: 0;
     border-radius: 0 5px 5px 0;
 }
-.menu-container .links-container svg {
+.links-container svg {
     width: 25px;
     height: 25px;
     margin-right: 2%;
 }
-.menu-container .links-container a.active svg path {
+.links-container a.active svg path {
     stroke: var(--main-color);
 }
-.menu-container .links-container svg path {
+.links-container svg path {
     stroke: white;
 }
 .menu-container .links-container a:hover {
@@ -99,7 +90,7 @@
     margin-left: 20px;
     margin-bottom: 20px;
 }
-.menu-container .bottom-menu-container a {
+.bottom-menu-container a {
     display: flex;
     align-items: center;
     color: white;
@@ -110,11 +101,60 @@
     margin-bottom: 10px;
     transition: opacity .2s;
 }
-.menu-container .bottom-menu-container svg {
+.bottom-menu-container svg {
     margin-right: 2%;
     width: 20px;
     height: 20px;
 }
-.menu-container .bottom-menu-container a:hover {
+.bottom-menu-container a:hover {
     opacity: .6;
+}
+
+
+/* RETRACTED MENU */
+.retracted-menu {
+    width: 50px;
+}
+.retracted-menu .retract-menu-button {
+    transform: rotate(180deg);
+}
+.retracted-menu .logo-container {
+    margin-top: 2vh;
+}
+.retracted-menu .logo-container h1 {
+    display: none;
+}
+.retracted-menu .logo-container .logo {
+    fill: var(--main-color);
+    width: 30px;
+    height: 30px;
+}
+.retracted-menu .links-container {
+    align-items: center;
+}
+.retracted-menu .links-container p {
+    display: none;
+}
+.retracted-menu .links-container a:hover {
+    background-color: rgba(100, 100, 100, .15);
+}
+.retracted-menu .links-container a {
+    width: 60%;
+    justify-content: center;
+    border-radius: 5px;
+    padding-left: 0;
+    padding: 5px 0;
+    margin: 10px 0;
+}
+.retracted-menu .bottom-menu-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2vh;
+}
+.retracted-menu .bottom-menu-container a {
+    margin: 10px 0;
+}
+.retracted-menu .bottom-menu-container p {
+    display: none;
 }

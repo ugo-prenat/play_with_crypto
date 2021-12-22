@@ -25,9 +25,7 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <div className="menu-container">
-          <Menu />
-        </div>
+        <Menu />
 
         <div className="header-and-main-component-container">
           <div className="header-container">
