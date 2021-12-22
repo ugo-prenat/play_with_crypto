@@ -1,0 +1,41 @@
+.about-component {
+    flex-direction: column;
+    width: 80% !important;
+    padding: 0 10%;
+}
+.creator {
+    display: flex;
+    margin: 10vh 0;
+}
+.creator img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+.creator .data {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 15px;
+}
+.creator .data p {
+    font-size: 13px;
+    opacity: .5;
+}
+.creator .data p a {
+    color: white;
+}
+.social-network {
+    margin-top: 5px;
+}
+.social-network svg {
+    width: 20px;
+    height: 20px;
+    fill: grey;
+    margin-right: 7px;
+    transition: fill .2s;
+}
+.social-network svg:hover {
+    fill: white;
+}
+

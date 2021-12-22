@@ -158,3 +158,8 @@
 .retracted-menu .bottom-menu-container p {
     display: none;
 }
+.retracted-menu .bottom-menu-container svg {
+    margin-right: 0;
+    width: 25px;
+    height: 25px;
+}
