@@ -63,6 +63,13 @@
     opacity: .3;
     font-size: 13px;
 }
+.home-loading-container {
+    background-color: var(--bg-color);
+    opacity: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
 .loding-msg {
     display: flex;
     justify-content: center;
@@ -278,4 +285,50 @@ form button {
     overflow: hidden;
     width: 25px;
     margin-right: 5px;
+}
+
+
+.first-connection-msg-component {
+    background-color: rgba(0, 0, 0, .6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100vh !important;
+    z-index: +1;
+    color: var(--bg-color);
+}
+.first-connection-msg-component .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+    background-color: var(--main-color);
+    padding: 25px 30px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 14px;
+    position: relative;
+}
+.first-connection-msg-component .title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+.first-connection-msg-component button {
+    background-color: var(--bg-color);
+    color: var(--main-color);
+    padding: 10px 17px;
+    border-radius: 10px;
+    font-weight: 500;
+    width: 100%;
+}
+.first-connection-msg-component .cross {
+    position: absolute;
+    top: 10px;
+    cursor: pointer;
+    right: 10px;
 }

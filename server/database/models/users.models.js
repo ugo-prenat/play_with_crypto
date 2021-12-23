@@ -6,6 +6,7 @@ const userModel = new mongoose.Schema({
     mail: String,
     password: String,
     profilImg: String,
+    showFirstConnectionMsg: Boolean,
     wallet: [
         {
             name: String,

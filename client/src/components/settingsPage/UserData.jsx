@@ -36,7 +36,7 @@ export default function UserData(props) {
         fetch(`/api/users/${userId}`, {
             method: 'PATCH',
             headers: AUTH_HEADERS,
-            body: JSON.stringify({ profileImg: link })
+            body: JSON.stringify({ profilImg: link })
         })
         .then(res => res.json())
         .then(res => {

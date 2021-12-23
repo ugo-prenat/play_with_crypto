@@ -48,14 +48,19 @@ router.patch('/:id/password', authenticateToken, async (req, res) => {
     .then(() => res.status(200).send({ code: 200, msg: 'Mot de passe mis à jour' }))
 })
 router.patch('/:id', authenticateToken, async (req, res) => {
-    // Update the profile image of the user
-    const user = await Users.findOne({ id: req.params.id })
-    const newProfileImg = JSON.parse(req.body).profileImg
+    // Update a specific user
+    const user = await Users.findOneAndUpdate(
+        { id: req.params.id },
+        JSON.parse(req.body),
+        { new: true }
+    )
+    //const user = await Users.findOne({ id: req.params.id })
+    //const newProfileImg = JSON.parse(req.body).profileImg
 
-    user.profilImg = newProfileImg
+    //user.profilImg = newProfileImg
 
     await user.save()
-    .then(() => res.status(200).send({ code: 200, msg: 'Image de profil mise à jour' }))
+    .then(() => res.status(200).send({ code: 200, msg: 'Utilisateur mis à jour' }))
 })
 
 module.exports = router

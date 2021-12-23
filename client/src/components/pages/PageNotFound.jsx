@@ -1,5 +1,5 @@
 import { useHistory } from "react-router-dom"
-import Lottie from "react-lottie"
+import Lottie from "lottie-react"
 import powerSocket from '../../anim/powerSocket.json'
 
 import '../../styles/pageNotFound.css'
@@ -11,16 +11,14 @@ export default function PageNotFound() {
         <div className="page-not-found-container component">
             <div className="bg-container">
                 <Lottie
-                    options={{
-                        loop: true,
-                        autoplay: true,
-                        animationData: powerSocket,
-                        rendererSettings: {
-                            preserveAspectRatio: "xMidYMid slice"
-                        }
+                    autoplay={true}
+                    animationData={powerSocket}
+                    rendererSettings={{preserveAspectRatio: "xMidYMid slice"}}
+                    style={{
+                        width: '100%',
+                        height: '100%',
+                        position: 'absolute',
                     }}
-                    width={100 + '%'}
-                    height={100 + '%'}
                 />
             </div>
             <div className="content-container">
