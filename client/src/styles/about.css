@@ -1,11 +1,40 @@
 .about-component {
     flex-direction: column;
-    width: 80% !important;
-    padding: 0 10%;
+    width: 70% !important;
+    padding: 0 15%;
+}
+.about p {
+    margin-bottom: 3vh;
+    opacity: .5;
+    font-size: 15px;
+    text-align: justify;
+}
+.about .mern-stack-link {
+    color: white;
+}
+.github-project-link {
+    display: inline-flex;
+    align-items: center;
+    width: max-content;
+    background-color: var(--main-color);
+    padding: 5px 10px;
+    border-radius: 7px;
+}
+.github-project-link svg {
+    width: 23px;
+    height: 23px;
+    fill: var(--bg-color);
+    margin-right: 7px;
+}
+.github-project-link p {
+    color: var(--bg-color);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
 }
 .creator {
     display: flex;
-    margin: 10vh 0;
+    margin-top: 20vh;
 }
 .creator img {
     width: 70px;
@@ -17,6 +46,7 @@
     flex-direction: column;
     justify-content: center;
     margin-left: 15px;
+    font-size: 15px;
 }
 .creator .data p {
     font-size: 13px;

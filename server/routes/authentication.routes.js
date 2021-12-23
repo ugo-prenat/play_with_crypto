@@ -130,8 +130,8 @@ async function createUser(id, username, mail, password) {
                 symbol: 'EUR',
                 base: '€',
                 icon: 'https://s2.coinmarketcap.com/static/cloud/img/fiat-flags/EUR.svg',
-                currencyAmount: 50,
-                cryptoAmount: 50
+                currencyAmount: 100,
+                cryptoAmount: 100
             }
         ],
         activity: []
@@ -149,8 +149,8 @@ async function createGuest(id) {
                 symbol: 'EUR',
                 base: '€',
                 icon: 'https://s2.coinmarketcap.com/static/cloud/img/fiat-flags/EUR.svg',
-                currencyAmount: 50,
-                cryptoAmount: 50
+                currencyAmount: 100,
+                cryptoAmount: 100
             }
         ],
         activity: []
