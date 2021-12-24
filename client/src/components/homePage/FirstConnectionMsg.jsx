@@ -20,8 +20,8 @@ export default function FirstConnectionMsg(props) {
                 />
 
                 <p className='title'>Bienvenue sur Play With Crypto !</p>
-                <p><span>100€</span> viennent d'être ajoutés à votre portefeuille, il est temps de commencer à jouer avec les échanges de cryptomonnaies</p>
-                <button onClick={() => props.hideMsg()}>C'est parti !</button>
+                <p>100€ viennent d'être ajoutés à votre portefeuille, il est temps de commencer à jouer avec les cryptomonnaies !</p>
+                <button onClick={() => props.hideMsg()}>C'est parti</button>
             </div>
         </div>
     )
