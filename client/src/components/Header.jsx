@@ -9,7 +9,6 @@ function Header(props) {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    console.log('from header :',URL);
       if (props.location.pathname !== '/login') {
         fetch(`${URL}/api/auth`, { headers: setAuthHeaders() })
         .then(res => res.json())

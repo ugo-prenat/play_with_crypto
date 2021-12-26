@@ -35,7 +35,6 @@ export default function Home() {
 
     const setFirstConnectionMsg = () => {
         // Get the user to see if we need to display the first connection msg
-        console.log('from home', URL);
         fetch(`${URL}/api/users/${userId}`, { headers: AUTH_HEADERS })
         .then(res => res.json())
         .then(user => {
