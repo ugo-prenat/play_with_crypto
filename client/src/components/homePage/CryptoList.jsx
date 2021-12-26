@@ -3,13 +3,15 @@ import { useState } from 'react'
 
 import CryptoCard from './CryptoCard'
 
+import { BACKEND_URL as URL } from '../../constants/constants';
+
 export default function CryptoList() {
     const [cryptoList, setCryptoList] = useState([])
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         // At load of the page, get prices
-        fetch('/api/crypto/prices')
+        fetch(`${URL}/api/crypto/prices`)
         .then(response => response.json())
         .then(data => {
             setCryptoList(data)
@@ -18,7 +20,7 @@ export default function CryptoList() {
         
         // Every 10 seconds, get the new prices
         const interval = setInterval(() => {
-            fetch('/api/crypto/prices')
+            fetch(`${URL}/api/crypto/prices`)
             .then(response => response.json())
             .then(data => setCryptoList(data))
         }, 10000)

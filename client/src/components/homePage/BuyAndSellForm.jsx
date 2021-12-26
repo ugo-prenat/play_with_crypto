@@ -7,6 +7,7 @@ import WalletSelect from './WalletSelect';
 import FormButton from '../FormButton';
 
 import { AUTH_HEADERS } from '../../authHeaders'
+import { BACKEND_URL as URL } from '../../constants/constants';
 
 
 export default function BuyAndSellForm() {
@@ -35,7 +36,7 @@ export default function BuyAndSellForm() {
     let history = useHistory()
 
     async function getUserWallet() {
-        await fetch(`/api/users/${userId}/wallet`, { headers: setAuthHeaders() })
+        await fetch(`${URL}/api/users/${userId}/wallet`, { headers: setAuthHeaders() })
         .then(res => res.json())
         .then(data => {
             if (data.code) history.push('/login')
@@ -48,7 +49,7 @@ export default function BuyAndSellForm() {
     async function cryptoPricesLoop() {
         // Every 10 seconds, get the new prices
         const interval = setInterval(() => {
-            fetch('/api/crypto/prices')
+            fetch(`${URL}/api/crypto/prices`)
             .then(response => response.json())
             .then(data => {
                 // Add euro to the crypto list
@@ -69,7 +70,7 @@ export default function BuyAndSellForm() {
 
     async function fetchData() {
         // Get the crypto prices
-        fetch('/api/crypto/prices')
+        fetch(`${URL}/api/crypto/prices`)
         .then(response => response.json())
         .then(data => {
             // Add euro to the crypto list
@@ -99,7 +100,7 @@ export default function BuyAndSellForm() {
                 cryptoAmount: parseFloat(toCryptoAmount)
             }
         }
-        await fetch(`/api/users/wallet/${userId}`, { method: 'POST', headers: AUTH_HEADERS, body: JSON.stringify(data)})
+        await fetch(`${URL}/api/users/wallet/${userId}`, { method: 'POST', headers: AUTH_HEADERS, body: JSON.stringify(data)})
         .then(res => res.json())
         .then(response => {
             if (response.code === 400) {

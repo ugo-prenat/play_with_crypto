@@ -6,6 +6,8 @@ import { AUTH_HEADERS } from '../../authHeaders'
 import '../../styles/activity.css'
 import ActivityCard from "../activityPage/ActivityCard"
 
+import { BACKEND_URL as URL } from '../../constants/constants';
+
 export default function Activity() {
     const [activityList, setActivityList] = useState()
     const [isLoading, setIsLoading] = useState(true)
@@ -14,7 +16,7 @@ export default function Activity() {
     let history = useHistory()
 
     useEffect(() => {
-        fetch(`/api/users/${userId}/activity`, { headers: AUTH_HEADERS })
+        fetch(`${URL}/api/users/${userId}/activity`, { headers: AUTH_HEADERS })
         .then(res => res.json())
         .then(data => {
             if (data.code) history.push('/login')

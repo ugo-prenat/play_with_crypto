@@ -4,6 +4,8 @@ import { useHistory } from "react-router-dom"
 
 import '../../styles/resetPassword.css'
 
+import { BACKEND_URL as URL } from '../../constants/constants';
+
 export default function PasswordReset(props) {
     const { register, handleSubmit, formState: {errors}, formState } = useForm({
         mode: 'onTouched'
@@ -21,7 +23,7 @@ export default function PasswordReset(props) {
         setAccessToken(token)
 
         // Get user from access token
-        fetch('/api/auth', { headers: setAuthHeaders(token) })
+        fetch(`${URL}/api/auth`, { headers: setAuthHeaders(token) })
         .then(res => res.json())
         .then(res => {
             // If access token is invalid, redirect to the "page not found"
@@ -36,7 +38,7 @@ export default function PasswordReset(props) {
 
     const onSubmit = async data => {
         // Set the new password
-        fetch(`/api/users/${user.id}/password`, {
+        fetch(`${URL}/api/users/${user.id}/password`, {
             method: 'PATCH',
             headers: setAuthHeaders(accessToken),
             body: JSON.stringify({ newPassword: data.password })

@@ -15,7 +15,7 @@ PORT = process.env.PORT
 app.listen(PORT, () => console.log(`Server listenning on port ${PORT}`))
 app.use(express.json())
 app.use(express.text())
-app.use(express.static('client'))
+//app.use(express.static('client'))
 
 // DB connection
 const db = require('./database/export.database')

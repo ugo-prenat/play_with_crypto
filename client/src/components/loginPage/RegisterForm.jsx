@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useHistory } from "react-router-dom"
+
 import FormButton from '../FormButton'
+
+import { BACKEND_URL as URL } from '../../constants/constants';
 
 export default function RegisterForm() {
     const { register, handleSubmit, formState: {errors}, setError } = useForm({
@@ -21,7 +24,7 @@ export default function RegisterForm() {
             password: data.password
         }
 
-        await fetch('/api/auth/register', { method: 'POST', body: JSON.stringify(user) })
+        await fetch(`${URL}/api/auth/register`, { method: 'POST', body: JSON.stringify(user) })
         .then(res => res.json())
         .then(res => {
             if (res.code === 400) {
