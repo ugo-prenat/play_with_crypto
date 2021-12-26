@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { withRouter } from "react-router"
 
+import { BACKEND_URL as URL } from '../constants/constants';
 
 function Header(props) {
   const [user, setUser] = useState('')
@@ -9,7 +10,7 @@ function Header(props) {
 
   useEffect(() => {
       if (props.location.pathname !== '/login') {
-        fetch('/api/auth', { headers: setAuthHeaders() })
+        fetch(`${URL}/api/auth`, { headers: setAuthHeaders() })
         .then(res => res.json())
         .then(res => {
             if (res.code === 200) {
@@ -25,12 +26,12 @@ function Header(props) {
   }, [props.location.pathname])
 
   async function getUser(userId) {
-      await fetch(`/api/users/${userId}`, { headers: setAuthHeaders() })
+      await fetch(`${URL}/api/users/${userId}`, { headers: setAuthHeaders() })
       .then(res => res.json())
       .then(data => setUser(data))
   }
   async function getCryptoPrices() {
-      await fetch('/api/crypto/prices')
+      await fetch(`${URL}/api/crypto/prices`)
       .then(res => res.json())
       .then(data => setCryptoPrices(data))
   }

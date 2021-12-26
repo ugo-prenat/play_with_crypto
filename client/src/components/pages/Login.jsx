@@ -8,12 +8,14 @@ import ResetPasswordForm from "../loginPage/ResetPasswordForm"
 import '../../styles/form.css'
 import '../../styles/login.css'
 
+import { BACKEND_URL as URL } from '../../constants/constants';
+
 export default function Login() {
     const [ showForm, setShowForm ] = useState('login')
     let history = useHistory()
 
     const createGuestAccount = async () => {
-        await fetch('/api/auth/guest', { method: 'POST' })
+        await fetch(`${URL}/api/auth/guest`, { method: 'POST' })
         .then(res => res.json())
         .then(res => {
             localStorage.setItem('accessToken', res.data.accessToken)
@@ -25,7 +27,7 @@ export default function Login() {
     }
 
     useEffect(() => {
-        fetch('/api/auth', { headers: setAuthHeaders() })
+        fetch(`${URL}/api/auth`, { headers: setAuthHeaders() })
         .then(res => res.json())
         .then(res => {
             if (res.code === 200) history.push('/')

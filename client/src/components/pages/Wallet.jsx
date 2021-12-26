@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useHistory } from "react-router-dom"
 
 import { AUTH_HEADERS } from '../../authHeaders'
+import { BACKEND_URL as URL } from '../../constants/constants';
 
 import '../../styles/wallet.css'
 
@@ -14,7 +15,7 @@ export default function Wallet() {
     let history = useHistory()
 
     useEffect(() => {
-        fetch('/api/auth', { headers: AUTH_HEADERS })
+        fetch(`${URL}/api/auth`, { headers: AUTH_HEADERS })
         .then(res => res.json())
         .then(res => {
             if (res.code !== 200) history.push('/login')
@@ -30,12 +31,12 @@ export default function Wallet() {
     }, [])
     
     async function getUserWallet() {
-        await fetch(`/api/users/${userId}/wallet`, { headers: AUTH_HEADERS })
+        await fetch(`${URL}/api/users/${userId}/wallet`, { headers: AUTH_HEADERS })
         .then(res => res.json())
         .then(data => setWallet(data))
     }
     async function getCryptoPrices() {
-        await fetch('/api/crypto/prices')
+        await fetch(`${URL}/api/crypto/prices`)
         .then(res => res.json())
         .then(data => setCryptoPrices(data))
     }

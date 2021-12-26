@@ -4,12 +4,13 @@ import { AUTH_HEADERS } from '../../authHeaders'
 
 import '../../styles/about.css'
 import profilImg from '../../img/ugoprenat.jpeg'
+import { BACKEND_URL as URL } from '../../constants/constants';
 
 export default function About() {
     let history = useHistory()
 
     useEffect(() => {
-        fetch('/api/auth', { headers: AUTH_HEADERS })
+        fetch(`${URL}/api/auth`, { headers: AUTH_HEADERS })
         .then(res => res.json())
         .then(res => {
             if (res.code !== 200) history.push('/login')

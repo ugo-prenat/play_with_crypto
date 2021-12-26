@@ -4,7 +4,7 @@ import ChangePasswordForm from './ChangePasswordForm'
 import Loading from '../Loading'
 
 import { AUTH_HEADERS } from '../../authHeaders'
-
+import { BACKEND_URL as URL } from '../../constants/constants';
 
 export default function UserData(props) {
     const user = props.user
@@ -33,7 +33,7 @@ export default function UserData(props) {
         }
     }
     async function saveProfileImg(link) {
-        fetch(`/api/users/${userId}`, {
+        fetch(`${URL}/api/users/${userId}`, {
             method: 'PATCH',
             headers: AUTH_HEADERS,
             body: JSON.stringify({ profilImg: link })

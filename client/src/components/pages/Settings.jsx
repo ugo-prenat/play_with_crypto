@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import { AUTH_HEADERS } from '../../authHeaders'
 
 import UserData from "../settingsPage/UserData"
+import { BACKEND_URL as URL } from '../../constants/constants';
 
 import '../../styles/settings.css'
 
@@ -14,7 +15,7 @@ export default function Settings() {
     const userId = localStorage.getItem('userId')
 
     useEffect(() => {
-        fetch('/api/auth', { headers: AUTH_HEADERS })
+        fetch(`${URL}/api/auth`, { headers: AUTH_HEADERS })
         .then(res => res.json())
         .then(res => {
             if (res.code !== 200) history.push('/login')
@@ -26,7 +27,7 @@ export default function Settings() {
     }, [])
 
     async function getUser() {
-        await fetch(`/api/users/${userId}`, { headers: AUTH_HEADERS })
+        await fetch(`${URL}/api/users/${userId}`, { headers: AUTH_HEADERS })
         .then(res => res.json())
         .then(data => setUser(data))
     }

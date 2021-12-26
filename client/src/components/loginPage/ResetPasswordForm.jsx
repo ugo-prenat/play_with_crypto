@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form'
 
 import FormButton from '../FormButton'
 
+import { BACKEND_URL as URL } from '../../constants/constants';
 
 export default function ResetPasswordForm() {
     const { register, handleSubmit, formState: {errors}, setError } = useForm({
@@ -14,7 +15,7 @@ export default function ResetPasswordForm() {
         setButtonStatus('loading')
 
         // check if the given mail is associated to an account
-        fetch('/api/auth/mail', { method: 'POST', body: JSON.stringify({ mail: data.mail }) })
+        fetch(`${URL}/api/auth/mail`, { method: 'POST', body: JSON.stringify({ mail: data.mail }) })
         .then(res => res.json())
         .then(res => {
             if (res.code === 400) {

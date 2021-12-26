@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { AUTH_HEADERS } from '../../authHeaders'
+import { BACKEND_URL as URL } from '../../constants/constants';
 
 import FormButton from '../FormButton'
 
@@ -25,7 +26,7 @@ export default function ChangePasswordForm(props) {
         }
         const userId = localStorage.getItem('userId')
 
-        await fetch(`/api/auth/user/${userId}`, { method: 'PATCH', body: JSON.stringify(passwords), headers: AUTH_HEADERS })
+        await fetch(`${URL}/api/auth/user/${userId}`, { method: 'PATCH', body: JSON.stringify(passwords), headers: AUTH_HEADERS })
         .then(res => res.json())
         .then(res => {
             if (res.code !== 200) {
