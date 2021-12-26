@@ -26,7 +26,7 @@ export default function CryptoList() {
         return () => clearInterval(interval)
     }, [])
 
-    if (isLoading) return <div className="loding-msg"><p>Chargement des cryptomonnaies...</p></div>
+    if (isLoading) { return <div className="loading-container"><p>Chargement des cryptomonnaies...</p></div> }
     
     return (
         <div className="crypto-list">

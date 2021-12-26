@@ -35,7 +35,7 @@ function Header(props) {
       .then(data => setCryptoPrices(data))
   }
 
-  if (isLoading) { return <div className="loading-container">Chargement de l'en-tête...</div> }
+  if (isLoading) { return <div className="loading-container"></div> }
 
   if (props.location.pathname !== '/login') {
     return (
