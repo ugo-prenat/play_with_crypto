@@ -43,4 +43,14 @@ const registerConfirmation = (recipientMail) => {
     transporter.sendMail(options, (err, info) => { if (err) console.log(err) })
 }
 
-module.exports = { resetPassword, changePasswordConfirmation, registerConfirmation }
+const issueReport = (object, message, recipient) => {
+    const options = {
+        from: process.env.MAIL_USER,
+        to: 'ugo.prenat@gmail.com',
+        subject: object,
+        html: templates.issueReport(message, recipient)
+    }
+    transporter.sendMail(options, (err, info) => { if (err) console.log(err) })
+}
+
+module.exports = { resetPassword, changePasswordConfirmation, registerConfirmation, issueReport }

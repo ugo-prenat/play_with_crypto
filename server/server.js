@@ -23,9 +23,10 @@ db.connect
 
 // Routes import
 const routes = require('./routes/export.routes')
-app.use('/api/users/', routes.users)
-app.use('/api/crypto/', routes.crypto)
 app.use('/api/auth/', routes.auth)
+app.use('/api/users/', routes.users)
+app.use('/api/issue/', routes.issue)
+app.use('/api/crypto/', routes.crypto)
 
 // API prices loop
 const pricesLoop = require('./api/pricesLoop')
