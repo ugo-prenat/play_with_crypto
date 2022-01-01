@@ -43,12 +43,12 @@ const registerConfirmation = (recipientMail) => {
     transporter.sendMail(options, (err, info) => { if (err) console.log(err) })
 }
 
-const issueReport = (object, message, recipient) => {
+const issueReport = (object, message, recipient, date) => {
     const options = {
         from: process.env.MAIL_USER,
-        to: 'ugo.prenat@gmail.com',
-        subject: object,
-        html: templates.issueReport(message, recipient)
+        to: process.env.ADMIN_MAIL,
+        subject: '👷  Play With Crypto - Nouveau bug signalé',
+        html: templates.issueReport(object, message, recipient, date)
     }
     transporter.sendMail(options, (err, info) => { if (err) console.log(err) })
 }

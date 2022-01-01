@@ -28,6 +28,9 @@ export default function IssueReport() {
 
     const onSubmit = async data => {
         setButtonStatus('loading')
+
+        // Adding date to data
+        data['date'] = new Date().toLocaleString()
         
         await fetch(`${URL}/api/issue`, {
             method: 'POST',
