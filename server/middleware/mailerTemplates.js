@@ -43,16 +43,17 @@ module.exports = {
             </div>
         `
     },
-    issueReport: (message, recipient) => {
+    issueReport: (object, message, recipient, date) => {
         return `
-            <div style="text-align: center;font-family: 'poppins', sans-serif;">
-                <p>Oui le bug</p>
-                <p>${message}</p>
+            <div style="font-family: 'poppins', sans-serif;">
+                <p style="margin-bottom:0;font-weight:600;font-size:17px">Objet : ${object}</p>
+                <p style="white-space:pre-wrap">${message}</p>
+                <p style="font-size:11px;opacity:.5">Créé le ${date}</p>
 
-                <br>
-                <p>id: ${recipient.id}</p>
-                <p>username: ${recipient.username}</p>
-                <p>Mail : ${recipient.mail}</p>
+                <p style="margin-top:60px;font-size:12px">Soumis par :</p>
+                <p style="margin-bottom:0;font-size:12px">${recipient.username}</p>
+                <p style="margin:0;font-size:12px">id ${recipient.id}</p>
+                <p style="margin:0;font-size:12px">${recipient.mail ? recipient.mail : ''}</p>
             </div>
         `
     }
