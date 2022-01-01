@@ -42,7 +42,9 @@ function Header(props) {
     return (
         <div className="header">
             <div className="profile-img-container">
-            <img src={user.profilImg} alt="profile-img" />
+                <a href='/settings'>
+                    <img src={user.profilImg} alt="profile-img" />
+                </a>
             </div>
             <div className="total-balance-container">
                 <p>Solde total</p>

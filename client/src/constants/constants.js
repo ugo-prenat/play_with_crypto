@@ -1,3 +1,3 @@
-const BACKEND_URL = 'https://dev-pwc.herokuapp.com'
+const BACKEND_URL = 'https://play-with-crypto-api.herokuapp.com'
 
 export { BACKEND_URL }
