@@ -1,0 +1,15 @@
+.issue-report-component {
+    width: 50% !important;
+    padding: 0 25%;
+}
+.issue-report-form {
+    box-shadow: none;
+}
+.issue-report-form .input-group {
+    width: calc(100% - 30px - 4px);
+    padding: 15px;
+}
+.issue-report-form textarea {
+    resize: vertical;
+    height: 200px;
+}

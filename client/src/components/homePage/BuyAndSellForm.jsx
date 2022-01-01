@@ -170,7 +170,7 @@ export default function BuyAndSellForm() {
     }
     const handleNewCryptoListSelect = async data => {
         setToCrypto(data)
-        handleToCryptoAmount(fromCryptoAmount, data)
+        handleToCryptoAmount(toCryptoAmount, data)
     }
     
     if (isLoading) { return <div className="loading-container"><p>Chargement...</p></div> }

@@ -1,5 +1,5 @@
 .menu-container, .retracted-menu {
-    width: 250px !important;
+    width: 250px;
     background-color: var(--light-bg-color);
     height: 100vh;
     display: flex;
@@ -147,11 +147,17 @@
     padding: 5px 0;
     margin: 10px 0;
 }
+.retracted-menu .links-container svg {
+    margin-right: 0;
+    width: 23px;
+    height: 23px;
+}
 .retracted-menu .bottom-menu-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 2vh;
+    width: inherit;
 }
 .retracted-menu .bottom-menu-container a {
     margin: 10px 0;
@@ -161,6 +167,6 @@
 }
 .retracted-menu .bottom-menu-container svg {
     margin-right: 0;
-    width: 25px;
-    height: 25px;
+    width: 23px;
+    height: 23px;
 }

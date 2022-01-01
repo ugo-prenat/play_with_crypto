@@ -42,5 +42,18 @@ module.exports = {
                 </a>
             </div>
         `
+    },
+    issueReport: (message, recipient) => {
+        return `
+            <div style="text-align: center;font-family: 'poppins', sans-serif;">
+                <p>Oui le bug</p>
+                <p>${message}</p>
+
+                <br>
+                <p>id: ${recipient.id}</p>
+                <p>username: ${recipient.username}</p>
+                <p>Mail : ${recipient.mail}</p>
+            </div>
+        `
     }
 }
