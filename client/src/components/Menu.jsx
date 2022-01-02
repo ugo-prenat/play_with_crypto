@@ -1,10 +1,25 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { withRouter } from "react-router"
 import { Link } from "react-router-dom"
 
 function Menu(props) {
     const [isRetract, setIsRetract] = useState(false)
-  
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth)
+
+    useEffect(() => {
+        // Set the retract status at the load of the page
+        setIsRetract(windowWidth < 1250 ? true : false)
+
+        function handleResize() {
+            setWindowWidth(window.innerWidth)
+            setIsRetract(windowWidth < 1250 ? true : false)
+        }
+        
+        // Every time user resizes the page, handle it
+        window.addEventListener('resize', handleResize)
+        return () => window.removeEventListener("resize", handleResize);
+    }, [windowWidth]);
+    
     return (
         <div className={isRetract ? "retracted-menu" : "menu-container"}>
 

@@ -96,3 +96,19 @@
 .change-password-form .input-submit {
     padding: 4%;
 }
+/* RESPONSIVE */
+@media screen and (max-width: 1000px) {
+    .settings-component .user-data-container {
+        width: 70%;
+    }
+}
+@media screen and (max-width: 800px) {
+    .settings-component .user-data-container {
+        width: 80%;
+    }
+}
+@media screen and (max-width: 600px) {
+    .settings-component .user-data-container {
+        width: 90%;
+    }
+}

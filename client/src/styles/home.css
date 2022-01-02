@@ -12,7 +12,7 @@
     align-items: center;
 }
 .home-component .crypto-list-container, .buy-and-sell-form-container {
-    width: 50%;
+    width: 45%;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -20,7 +20,7 @@
     height: auto;
 }
 .home-component .crypto-list {
-    width: 80%;
+    width: 100%;
 }
 .crypto-card:first-of-type {
     margin-top: 0;
@@ -29,6 +29,7 @@
     margin-bottom: 30px;
 }
 .crypto-card {
+    max-width: 500px;
     background-color: var(--light-bg-color);
     display: flex;
     align-items: center;
@@ -79,7 +80,7 @@
 }
 
 .buy-and-sell-form {
-    width: 400px;
+    width: calc(100% - 50px);
     position: relative;
     padding: 25px;
     background-color: var(--light-bg-color);
@@ -334,4 +335,15 @@ form button {
     top: 10px;
     cursor: pointer;
     right: 10px;
+}
+/* RESPONSIVE */
+@media screen and (max-width: 1050px) {
+    .home-component {
+        flex-direction: column-reverse;
+        align-items: center;
+        justify-content: start !important;
+        overflow: scroll;
+    }    
+    .home-component .crypto-list-container {
+    }
 }
