@@ -11,6 +11,16 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
-.guest-container {
-    margin-right: 10%;
+
+/* RESPONSIVE */
+@media screen and (max-width: 800px) {
+    .main-component-container .login-component {
+        flex-direction: column;
+        justify-content: center;
+    }
+    .login-component .guest-button {
+        width: 400px;
+        margin-bottom: 60px;
+        padding: 20px ;
+    }
 }
