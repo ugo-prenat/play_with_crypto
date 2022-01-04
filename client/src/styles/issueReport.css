@@ -30,7 +30,7 @@
 }
 @media screen and (max-width: 600px) {
     .issue-report-component {
-        width: 90% !important;
-        padding: 0 5%;
+        width: 80% !important;
+        padding: 0 10%;
     }
 }

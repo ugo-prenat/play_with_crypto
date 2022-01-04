@@ -79,9 +79,15 @@
     .activity-list {
         width: 80%;
     }
+    .activity .activity-left-part {
+        margin-right: 20px;
+    }
 }
 @media screen and (max-width: 600px) {
     .activity-list {
-        width: 80%;
+        width: 85%;
+    }
+    .activity .activity-left-part {
+        margin-right: 10px;
     }
 }

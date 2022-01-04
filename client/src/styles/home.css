@@ -338,12 +338,26 @@ form button {
 }
 /* RESPONSIVE */
 @media screen and (max-width: 1050px) {
+    .main-component-container {
+        overflow: scroll;
+    }
     .home-component {
+        height: max-content !important;
         flex-direction: column-reverse;
         align-items: center;
         justify-content: start !important;
         overflow: scroll;
     }    
-    .home-component .crypto-list-container {
+    .home-component .crypto-list-container, .buy-and-sell-form-container {
+        width: 100%;
     }
+    .home-component .buy-and-sell-form-container .wrapper, .home-component .crypto-list {
+        width: 450px;
+    }
+    .home-component .crypto-list-container {
+        margin-top: 60px;
+    }
+}
+@media screen and (max-width: 600px) {
+
 }
