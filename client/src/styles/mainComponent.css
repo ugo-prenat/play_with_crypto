@@ -9,3 +9,10 @@
     display: flex;
     justify-content: space-evenly;
 }
+
+/* RESPONSIVE */
+@media screen and (max-width: 800px) {
+    .main-component-container {
+        height: calc(100vh - 90px - 70px);
+    }
+}

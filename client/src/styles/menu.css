@@ -161,6 +161,8 @@
 }
 .retracted-menu .bottom-menu-container a {
     margin: 10px 0;
+    opacity: 1;
+    box-shadow: var(--box-shadow);
 }
 .retracted-menu .bottom-menu-container p {
     display: none;
@@ -169,4 +171,74 @@
     margin-right: 0;
     width: 23px;
     height: 23px;
+}
+.bottom-menu .hamburger {
+    display: none;
+    height: 100%;
+    width: 100%;
+    width: max-content;
+    cursor: pointer;
+}
+.bottom-menu .hamburger p {
+    margin-top: 5px;
+}
+
+/* RESPONSIVE */
+@media screen and (max-width: 800px) {
+    .bottom-menu {
+        width: 100%;
+        height: 70px;
+        flex-direction: row;
+        position: fixed;
+        bottom: 0;
+        font-size: 14px;
+        z-index: +1;
+    }
+    .bottom-menu .links-container {
+        width: 80%;
+        flex-direction: row;
+    }
+    .bottom-menu .links-container p, .bottom-menu .bottom-menu-container p {
+        display: block;
+    }
+    .bottom-menu .links-container a svg {
+        margin-bottom: 5px;
+    }
+    .bottom-menu .links-container a {
+        flex-direction: column;
+    }
+    .bottom-menu .links-container a:hover {
+        background-color: transparent;
+    }
+    .bottom-menu .links-container .active {
+        color: var(--main-color);
+    }
+    .bottom-menu .retract-menu-button, .bottom-menu .logo-container {
+        display: none;
+    }
+    .bottom-menu .hamburger {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .bottom-menu .bottom-menu-container {
+        width: 20%;
+        position: relative;
+        justify-content: center;
+        margin-bottom: 0;
+    }
+    .bottom-menu .bottom-menu-container .links {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        padding: 10px 15px;
+        background-color: var(--light-bg-color);
+        position: absolute;
+        bottom: calc(100% + 15px);
+        border-radius: 7px;
+        transition: right .3s ease-out;
+    }
+    .bottom-menu .bottom-menu-container .links svg {
+        margin-right: 7px;
+    }
 }
