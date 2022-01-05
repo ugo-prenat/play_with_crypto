@@ -161,8 +161,6 @@
 }
 .retracted-menu .bottom-menu-container a {
     margin: 10px 0;
-    opacity: 1;
-    box-shadow: var(--box-shadow);
 }
 .retracted-menu .bottom-menu-container p {
     display: none;
@@ -200,6 +198,7 @@
     }
     .bottom-menu .links-container p, .bottom-menu .bottom-menu-container p {
         display: block;
+        text-align: center;
     }
     .bottom-menu .links-container a svg {
         margin-bottom: 5px;
@@ -223,7 +222,6 @@
     }
     .bottom-menu .bottom-menu-container {
         width: 20%;
-        position: relative;
         justify-content: center;
         margin-bottom: 0;
     }
@@ -236,9 +234,12 @@
         position: absolute;
         bottom: calc(100% + 15px);
         border-radius: 7px;
-        transition: right .3s ease-out;
+        transition: right .7s ease-in-out;
     }
     .bottom-menu .bottom-menu-container .links svg {
         margin-right: 7px;
+    }
+    .bottom-menu .bottom-menu-container .links a {
+        opacity: 1;
     }
 }
