@@ -70,3 +70,12 @@
     fill: white;
 }
 
+/* RESPONSIVE */
+@media screen and (max-width: 600px) {
+    .about-component {
+        height: auto !important;
+    }
+    .about-component .creator {
+        margin-top: 50px;
+    }
+}

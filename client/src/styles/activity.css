@@ -22,6 +22,7 @@
 .activity-list img {
     width: 30px;
     margin-right: 10px;
+    border-radius: 50%;
 }
 .activity-left-part .hour {
     font-size: 13px;
@@ -90,5 +91,24 @@
     }
     .activity .activity-left-part {
         margin-right: 10px;
+    }
+}
+@media screen and (max-width: 400px) {
+    .activity-list {
+        width: 90%;
+    }
+    .activity-list .activity-card {
+        flex-direction: column;
+        align-items: start;
+        padding: 15px;
+    }
+    .activity-card .from, .activity-card .to {
+        width: 100%;
+        justify-content: start;
+    }
+    .activity-list .activity-card .arrow {
+        transform: rotate(90deg);
+        position: relative;
+        left: 80%;
     }
 }
