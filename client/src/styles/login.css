@@ -10,7 +10,33 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    z-index: +1;
 }
-.guest-container {
-    margin-right: 10%;
+
+/* RESPONSIVE */
+@media screen and (max-width: 800px) {
+    .main-component-container .login-component {
+        flex-direction: column;
+        justify-content: center;
+    }
+    .login-component .guest-button {
+        width: 400px;
+        margin-bottom: 60px;
+        padding: 20px ;
+    }
+}
+@media screen and (max-width: 440px) {
+    .login-component .guest-container {
+        width: 95%;
+    }
+    .login-component .guest-container .guest-button {
+        width: 100%;
+    }
+    .login-component .form-container {
+        padding: 25px;
+        width: calc(95% - 50px);
+    }
+    .login-component .form-bottom-link {
+        width: 100%;
+    }
 }

@@ -4,7 +4,7 @@
 .activity-list {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 60%;
     height: max-content;
 }
 .activity {
@@ -22,6 +22,7 @@
 .activity-list img {
     width: 30px;
     margin-right: 10px;
+    border-radius: 50%;
 }
 .activity-left-part .hour {
     font-size: 13px;
@@ -36,6 +37,7 @@
     opacity: .2;
 }
 .activity-list .date {
+    width: fit-content;
     padding-bottom: 10px;
     padding-top: 15px;
     margin-bottom: -30px;
@@ -68,4 +70,45 @@
 .activity-card .price .currency-price {
     font-size: 13px;
     opacity: .5;
+}
+/* RESPONSIVE */
+@media screen and (max-width: 1400px) {
+    .activity-list {
+        width: 70%;
+    }
+}
+@media screen and (max-width: 900px) {
+    .activity-list {
+        width: 80%;
+    }
+    .activity .activity-left-part {
+        margin-right: 20px;
+    }
+}
+@media screen and (max-width: 600px) {
+    .activity-list {
+        width: 85%;
+    }
+    .activity .activity-left-part {
+        margin-right: 10px;
+    }
+}
+@media screen and (max-width: 400px) {
+    .activity-list {
+        width: 90%;
+    }
+    .activity-list .activity-card {
+        flex-direction: column;
+        align-items: start;
+        padding: 15px;
+    }
+    .activity-card .from, .activity-card .to {
+        width: 100%;
+        justify-content: start;
+    }
+    .activity-list .activity-card .arrow {
+        transform: rotate(90deg);
+        position: relative;
+        left: 80%;
+    }
 }

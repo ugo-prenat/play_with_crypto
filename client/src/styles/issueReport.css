@@ -21,3 +21,22 @@
     bottom: -27px;
     left: 0;
 }
+/* RESPONSIVE */
+@media screen and (max-width: 1000px) {
+    .issue-report-component {
+        width: 70% !important;
+        padding: 0 15%;
+    }
+}
+@media screen and (max-width: 600px) {
+    .issue-report-component {
+        width: 80% !important;
+        padding: 0 10%;
+    }
+}
+@media screen and (max-width: 400px) {
+    .issue-report-component {
+        width: 90% !important;
+        padding: 0 5%;
+    }
+}

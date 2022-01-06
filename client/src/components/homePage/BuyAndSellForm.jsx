@@ -176,7 +176,7 @@ export default function BuyAndSellForm() {
     if (isLoading) { return <div className="loading-container"><p>Chargement...</p></div> }
 
     return (
-        <div>
+        <div className='wrapper'>
             <form className="buy-and-sell-form" onSubmit={handleSubmit(onSubmit)}>
                 <div className="input-container border-bottom">
                     <WalletSelect newSelect={data => handleNewWalletSelect(data)} options={userWallet} cryptoPrices={cryptoList} className="border-bottom" />

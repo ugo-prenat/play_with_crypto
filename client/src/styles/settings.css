@@ -96,3 +96,31 @@
 .change-password-form .input-submit {
     padding: 4%;
 }
+/* RESPONSIVE */
+@media screen and (max-width: 1000px) {
+    .settings-component .user-data-container {
+        width: 70%;
+    }
+}
+@media screen and (max-width: 800px) {
+    .settings-component .user-data-container {
+        width: 80%;
+    }
+}
+@media screen and (max-width: 600px) {
+    .settings-component .user-data-container {
+        width: 90%;
+    }
+}
+@media screen and (max-width: 400px) {
+    .user-data-container .element {
+        font-size: 14px;
+    }
+    .change-password-form {
+        padding: 20px;
+    }
+    .change-password-form .cross {
+        top: 10px;
+        right: 10px;
+    }
+}
