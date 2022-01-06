@@ -234,12 +234,29 @@
         position: absolute;
         bottom: calc(100% + 15px);
         border-radius: 7px;
-        transition: right .7s ease-in-out;
+        transition: right .5s ease-in-out;
     }
     .bottom-menu .bottom-menu-container .links svg {
         margin-right: 7px;
     }
     .bottom-menu .bottom-menu-container .links a {
         opacity: 1;
+    }
+}
+@media screen and (max-width: 500px) {
+    .bottom-menu .links-container p {
+        font-size: 12px;
+    }
+}
+@media screen and (max-width: 400px) {
+    .bottom-menu .links-container p {
+        display: none;
+    }
+    .bottom-menu .links-container .active::after {
+        content: '';
+        background-color: var(--main-color);
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
     }
 }

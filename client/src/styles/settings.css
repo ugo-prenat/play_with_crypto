@@ -112,3 +112,15 @@
         width: 90%;
     }
 }
+@media screen and (max-width: 400px) {
+    .user-data-container .element {
+        font-size: 14px;
+    }
+    .change-password-form {
+        padding: 20px;
+    }
+    .change-password-form .cross {
+        top: 10px;
+        right: 10px;
+    }
+}

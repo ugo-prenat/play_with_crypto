@@ -21,7 +21,7 @@ function Menu(props) {
 
         function handleResize() {
             setWindowWidth(window.innerWidth)
-            setIsRetract(windowWidth < 1250 ? true : false)
+            setIsRetract(windowWidth < 1250 && windowWidth > 800 ? true : false)
         }
         
         // Every time user resizes the page, handle it
