@@ -28,5 +28,7 @@ Le but du développement de Play With Crypto était d'apprendre la  [stack MERN]
 
 # Stack MERN
 
+<br>
+
 ![MERN stack](https://miro.medium.com/max/1400/1*cvYbP3NxBOxSNScEAik7vQ.png)
 
