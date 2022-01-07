@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { withRouter } from "react-router"
 
-import { BACKEND_URL as URL } from '../constants/constants';
+import { BACKEND_URL as URL, APP_DOMAIN } from '../constants/constants';
 
 function Header(props) {
   const [user, setUser] = useState('')
   const [cryptoPrices, setCryptoPrices] = useState()
   const [isLoading, setIsLoading] = useState(true)
+  const [isProdVersion, setIsProdVersion] = useState(false)
+
 
   useEffect(() => {
       if (props.location.pathname !== '/login') {
@@ -23,6 +25,10 @@ function Header(props) {
             }
         })
       }
+      // Check if the user is on the dev version of the website
+      const hostname = window.location.hostname
+      if (hostname === `dev.${APP_DOMAIN}`) setIsProdVersion(true)
+
   }, [props.location.pathname])
 
   async function getUser(userId) {
@@ -41,14 +47,21 @@ function Header(props) {
   if (props.location.pathname !== '/login') {
     return (
         <div className="header">
-            <div className="profile-img-container">
-                <a href='/settings'>
-                    <img src={user.profilImg} alt="profile-img" />
-                </a>
+
+            <div className="website-version">
+                { isProdVersion && <p>DEV</p>}
             </div>
-            <div className="total-balance-container">
-                <p>Solde total</p>
-                <p>{getWalletAmount(user.wallet, cryptoPrices)}€</p>
+
+            <div className='profil-data'>
+                <div className="total-balance-container">
+                    <p>Solde total</p>
+                    <p>{getWalletAmount(user.wallet, cryptoPrices)}€</p>
+                </div>
+                <div className="profile-img-container">
+                    <a href='/settings'>
+                        <img src={user.profilImg} alt="profile-img" />
+                    </a>
+                </div>
             </div>
         </div>
     )
