@@ -10,7 +10,7 @@ Avec un capital de départ de 100€, cette plateforme vous permet d'effectuer d
 </p>
 
 <a href='https://postimg.cc/mhm9Qm9R' target='_blank'>
-  <img src='https://i.postimg.cc/mhm9Qm9R/play-with-crypto-1.png' border='0' alt='play-with-crypto-1' width="100"/>
+  <img src='https://i.postimg.cc/mhm9Qm9R/play-with-crypto-1.png' border='0' alt='play-with-crypto-1' width="100%"/>
 </a>
 
 En tant que développeur web, le but lors du développement de Play With Crypto était d'apprendre la  [stack MERN](https://www.bocasay.com/fr/quoi-mern-stack/)  en développant une application complète, fonctionnelle et hébergée.
