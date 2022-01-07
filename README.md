@@ -23,6 +23,7 @@ Le but du développement de Play With Crypto était d'apprendre la  [stack MERN]
 <br>
 
 👉 [play-with-crypto.fr](https://play-with-crypto.fr)
+👷‍♂️ [dev.play-with-crypto.fr](https://dev.play-with-crypto.fr)
 
 <br>
 
