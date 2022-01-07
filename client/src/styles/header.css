@@ -38,8 +38,6 @@
 .header-container .total-balance-container p:last-of-type {
     font-weight: 500;
 }
-.header-container .website-version {
-}
 .header-container .website-version p {
     background-color: var(--main-color);
     color: var(--bg-color);
