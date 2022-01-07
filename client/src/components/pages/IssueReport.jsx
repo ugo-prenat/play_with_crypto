@@ -64,7 +64,6 @@ export default function IssueReport() {
                         type="text"
                         name="title"
                         className="input-field"
-                        autoFocus
                         onFocus={() => setFocus('title')}
                         onBlur={() => setFocus()}
                     />
