@@ -54,6 +54,8 @@ router.post('/register', async (req, res) => {
         const accessToken = generateAccessToken(logs)
         // Send the register confirmation email
         mailer.registerConfirmation(logs.mail)
+        // Send an account creation mail to an admin
+        mailer.accountCreation(logs)
 
         res.status(200).send({ code: 200, data: {id: logs.id, accessToken }})
     })
@@ -66,6 +68,8 @@ router.post('/guest', async (req, res) => {
     .then(logs => {
         const accessToken = generateAccessToken(logs)
         res.status(200).send({ code: 200, data: {id: logs.id, accessToken }})
+        // Send an account creation mail to an admin
+        mailer.accountCreation(logs)
     })
 })
 router.post('/mail', async (req, res) => {

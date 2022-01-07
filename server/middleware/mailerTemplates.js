@@ -56,5 +56,15 @@ module.exports = {
                 <p style="margin:0;font-size:12px">${recipient.mail ? recipient.mail : ''}</p>
             </div>
         `
+    },
+    accountCreation: user => {
+        return `
+            <div style="font-family: 'poppins', sans-serif;">
+                <p style="margin-bottom:0;font-weight:600;font-size:17px">Nouveau compte créé</p>
+                <p style="margin-bottom: 0;">${user.username}</p>
+                <p style="margin:0">id ${user.id}</p>
+                <p style="margin:0">${user.mail ? user.mail : '' }</p>
+            </div>
+        `
     }
 }

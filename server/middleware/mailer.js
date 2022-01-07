@@ -53,4 +53,14 @@ const issueReport = (object, message, recipient, date) => {
     transporter.sendMail(options, (err, info) => { if (err) console.log(err) })
 }
 
-module.exports = { resetPassword, changePasswordConfirmation, registerConfirmation, issueReport }
+const accountCreation = user => {
+    const options = {
+        from: process.env.MAIL_USER,
+        to: process.env.ADMIN_MAIL,
+        subject: 'Play With Crypto - Nouveau compte créé',
+        html: templates.accountCreation(user)
+    }
+    transporter.sendMail(options, (err, info) => { if (err) console.log(err) })
+}
+
+module.exports = { resetPassword, changePasswordConfirmation, registerConfirmation, issueReport, accountCreation }
