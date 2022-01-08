@@ -1,5 +1,5 @@
 <div  align=center>
-<img src='https://raw.githubusercontent.com/ugo-prenat/play_with_crypto/main/client/src/img/logo.png' width='300px' />
+<img src='https://raw.githubusercontent.com/ugo-prenat/play_with_crypto/main/client/src/img/logo.png' width='200px' />
 </div>
 
 <h1 align="center">Play With Crypto</h1>
