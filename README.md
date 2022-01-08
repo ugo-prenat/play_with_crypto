@@ -14,7 +14,9 @@ Avec un capital de départ de 100€, cette plateforme vous permet d'effectuer d
 
 <br>
 
-<img src='https://raw.githubusercontent.com/ugo-prenat/play_with_crypto/main/client/src/img/screenshot-1.png' border='0' alt='play-with-crypto-1' width="100%"/>
+<div align='center'>
+  <img src='https://user-images.githubusercontent.com/53117589/148647369-95541fb5-44a2-4ca4-a8ef-5c1b57bcc33b.gif' />
+</div>
   
 <br>
 
