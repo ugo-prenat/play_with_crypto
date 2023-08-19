@@ -4,11 +4,6 @@
 
 <h1 align="center">Play With Crypto</h1>
 
-<p align="center">
-  <a href="https://app.netlify.com/sites/play-with-crypto/deploys" target="_blank">
-    <img src="https://api.netlify.com/api/v1/badges/9c872fc9-4214-4384-ad1d-fd7272e9d8e0/deploy-status" alt="Netlify Status" />
-  </a>
-</p>
 
 <br>
 <br>
@@ -27,17 +22,5 @@ Avec un capital de départ de 100€, cette plateforme vous permet d'effectuer d
   
 <br>
 
-Le but du développement de Play With Crypto était d'apprendre la  [stack MERN](https://www.bocasay.com/fr/quoi-mern-stack/)  en développant une application complète, fonctionnelle et hébergée.
-
-<br>
 
 👉 [play-with-crypto.fr](https://play-with-crypto.fr)<br>
-👷‍♂️ [dev.play-with-crypto.fr](https://dev.play-with-crypto.fr)
-
-<br>
-
-# Stack MERN
-
-<br>
-
-![MERN stack](https://miro.medium.com/max/1400/1*cvYbP3NxBOxSNScEAik7vQ.png)
