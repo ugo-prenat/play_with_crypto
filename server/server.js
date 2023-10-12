@@ -20,6 +20,7 @@ app.use(express.text())
 // DB connection
 const db = require('./database/export.database')
 db.connect
+//la route defini est incorrect
 
 // Routes import
 const routes = require('./routes/export.routes')
